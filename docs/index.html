@@ -1,0 +1,1785 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acreditator · Demo Funcional</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F4F6FA;
+  --surface:#FFFFFF;
+  --surface2:#F8F9FC;
+  --surface3:#EEF2FF;
+  --border:#E4E8F0;
+  --border2:#CDD4E2;
+  --t0:#111827;
+  --t1:#374151;
+  --t2:#6B7280;
+  --t3:#9CA3AF;
+  --accent:#4F46E5;
+  --accent-l:#6366F1;
+  --accent-bg:#EEF2FF;
+  --green:#059669;
+  --green-bg:#ECFDF5;
+  --green-b:#A7F3D0;
+  --orange:#D97706;
+  --orange-bg:#FFFBEB;
+  --orange-b:#FDE68A;
+  --red:#DC2626;
+  --red-bg:#FEF2F2;
+  --red-b:#FECACA;
+  --blue:#0284C7;
+  --blue-bg:#F0F9FF;
+  --blue-b:#BAE6FD;
+  --font:'Plus Jakarta Sans',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
+  --shadow:0 8px 22px rgba(0,0,0,.08),0 3px 8px rgba(0,0,0,.05);
+  --shadow-lg:0 18px 40px rgba(0,0,0,.12),0 6px 14px rgba(0,0,0,.07);
+}
+html,body{height:100%}
+body{font-family:var(--font);background:radial-gradient(circle at top left,#fff,transparent 42%),var(--bg);color:var(--t0);display:flex;flex-direction:column;font-size:14px}
+button,input,select,textarea{font:inherit}
+button{border:none;background:none;cursor:pointer}
+input,select,textarea{border:1px solid var(--border);background:var(--surface2);border-radius:9px;padding:.62rem .78rem;color:var(--t0);transition:all .15s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(79,70,229,.12);background:var(--surface)}
+textarea{resize:vertical;min-height:110px}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:999px}
+.topbar{
+  height:58px;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:1rem;padding:0 1.25rem;box-shadow:var(--shadow-sm);position:sticky;top:0;z-index:60
+}
+.logo{display:flex;align-items:center;gap:.7rem}
+.logo-mark{display:flex;align-items:center;font-size:1rem;font-weight:800;letter-spacing:-.4px}
+.logo-mark .a{color:var(--t0)}
+.logo-mark .b{color:var(--accent)}
+.logo-pill{font-family:var(--mono);font-size:.63rem;padding:3px 8px;border-radius:999px;background:var(--accent-bg);border:1px solid #C7D2FE;color:var(--accent);text-transform:uppercase;letter-spacing:.8px}
+.topbar .sp{flex:1}
+.top-meta{display:flex;align-items:center;gap:.75rem}
+.live{display:flex;align-items:center;gap:.4rem;font-size:.72rem;font-family:var(--mono);color:var(--t2)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2.2s infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(5,150,105,.4)}60%{opacity:.65;box-shadow:0 0 0 5px rgba(5,150,105,0)}}
+.shell{display:flex;flex:1;min-height:0}
+.sidebar{
+  width:232px;flex-shrink:0;background:linear-gradient(180deg,#fff 0%,#fbfcff 100%);border-right:1px solid var(--border);
+  padding:.95rem .72rem;display:flex;flex-direction:column;gap:.2rem;overflow-y:auto
+}
+.nav-label{font-size:.63rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:1px;color:var(--t3);padding:.6rem .55rem .25rem}
+.nav-item{
+  display:flex;align-items:center;gap:.62rem;padding:.6rem .7rem;border-radius:10px;border:1px solid transparent;
+  color:var(--t2);font-size:.84rem;font-weight:600;transition:all .15s;text-align:left
+}
+.nav-item:hover{background:var(--surface2);color:var(--t1)}
+.nav-item.active{background:var(--accent-bg);border-color:#C7D2FE;color:var(--accent)}
+.nav-icon{width:17px;height:17px;stroke:currentColor;flex-shrink:0}
+.nav-badge{margin-left:auto;font-size:.66rem;font-family:var(--mono);padding:2px 7px;border-radius:999px;background:var(--red-bg);border:1px solid var(--red-b);color:var(--red)}
+.sidebar-foot{margin-top:auto;padding:.85rem .55rem 0;border-top:1px solid var(--border);font-size:.67rem;color:var(--t3);font-family:var(--mono)}
+.content{flex:1;overflow-y:auto;padding:1.45rem 1.7rem 2rem}
+.view{display:none}
+.view.active{display:block;animation:fade .2s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.page-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.3rem}
+.page-head h1{font-size:1.38rem;letter-spacing:-.6px}
+.page-head p{font-size:.76rem;color:var(--t2);font-family:var(--mono);margin-top:.16rem}
+.head-actions{display:flex;gap:.5rem;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.38rem;border-radius:9px;padding:.56rem .92rem;
+  font-size:.8rem;font-weight:700;transition:all .15s;white-space:nowrap
+}
+.btn-p{background:var(--accent);color:#fff;box-shadow:0 4px 14px rgba(79,70,229,.22)}
+.btn-p:hover{background:var(--accent-l);transform:translateY(-1px)}
+.btn-g{background:var(--surface);color:var(--t1);border:1px solid var(--border)}
+.btn-g:hover{background:var(--surface2);border-color:var(--border2);color:var(--t0)}
+.btn-w{background:var(--orange-bg);color:var(--orange);border:1px solid var(--orange-b)}
+.btn-r{background:var(--red-bg);color:var(--red);border:1px solid var(--red-b)}
+.btn-sm{padding:.4rem .75rem;font-size:.74rem}
+.btn-xs{padding:.25rem .58rem;font-size:.68rem}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none!important}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.15rem;box-shadow:var(--shadow-sm)}
+.card-title{display:flex;align-items:center;gap:.42rem;font-size:.7rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.8px;color:var(--t2);margin-bottom:.85rem;font-weight:700}
+.card-title .cdot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:.85rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem}
+.grid-2{display:grid;grid-template-columns:1.2fr .8fr;gap:1rem}
+.stack{display:flex;flex-direction:column;gap:1rem}
+.metric{
+  position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1rem 1.05rem;box-shadow:var(--shadow-sm)
+}
+.metric::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent)}
+.metric.green::before{background:var(--green)}
+.metric.orange::before{background:var(--orange)}
+.metric.red::before{background:var(--red)}
+.metric .label{font-size:.68rem;color:var(--t2);font-family:var(--mono);text-transform:uppercase;letter-spacing:.7px}
+.metric .value{font-size:2rem;line-height:1;font-weight:800;letter-spacing:-1.4px;margin:.35rem 0}
+.metric .meta{font-size:.72rem;color:var(--t2)}
+.metric .meta b{font-weight:700}
+.metric.green .meta b{color:var(--green)}
+.metric.orange .meta b{color:var(--orange)}
+.metric.red .meta b{color:var(--red)}
+.badge{display:inline-flex;align-items:center;gap:.3rem;padding:3px 8px;border-radius:999px;font-size:.67rem;font-family:var(--mono);font-weight:700;border:1px solid transparent;white-space:nowrap}
+.badge::before{content:'';width:6px;height:6px;border-radius:50%}
+.bg{background:var(--green-bg);border-color:var(--green-b);color:var(--green)}
+.bg::before{background:var(--green)}
+.bo{background:var(--orange-bg);border-color:var(--orange-b);color:var(--orange)}
+.bo::before{background:var(--orange)}
+.br{background:var(--red-bg);border-color:var(--red-b);color:var(--red)}
+.br::before{background:var(--red)}
+.bb{background:var(--blue-bg);border-color:var(--blue-b);color:var(--blue)}
+.bb::before{background:var(--blue)}
+.bv{background:var(--accent-bg);border-color:#C7D2FE;color:var(--accent)}
+.bv::before{background:var(--accent)}
+.tabs{display:flex;gap:.2rem;padding:3px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;flex-wrap:wrap}
+.tab{padding:.38rem .72rem;border-radius:8px;font-size:.75rem;font-weight:700;color:var(--t2)}
+.tab.active{background:var(--surface);color:var(--accent);box-shadow:var(--shadow-sm)}
+.pill-row{display:flex;gap:.45rem;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:.4rem;padding:.42rem .75rem;border-radius:999px;font-size:.73rem;font-weight:700;border:1px solid var(--border);background:var(--surface2);color:var(--t1)}
+.kpi-bar{display:flex;flex-direction:column;gap:.65rem}
+.bar-row{display:grid;grid-template-columns:140px 1fr 48px;align-items:center;gap:.7rem}
+.bar-label{font-size:.76rem;color:var(--t1);font-weight:600}
+.bar-track{height:10px;background:var(--border);border-radius:999px;overflow:hidden}
+.bar-fill{height:100%;border-radius:999px;background:var(--accent)}
+.bar-value{font-size:.72rem;font-family:var(--mono);color:var(--t2);text-align:right}
+.donut-wrap{display:flex;align-items:center;gap:1rem}
+.donut{
+  width:118px;height:118px;border-radius:50%;background:conic-gradient(var(--green) 0 40%,var(--orange) 40% 78%,var(--red) 78% 100%);
+  position:relative;flex-shrink:0
+}
+.donut::after{
+  content:'';position:absolute;inset:18px;background:var(--surface);border-radius:50%;box-shadow:inset 0 0 0 1px var(--border)
+}
+.donut-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:2;font-weight:800}
+.donut-center span:first-child{font-size:1.4rem;letter-spacing:-1px}
+.donut-center span:last-child{font-size:.66rem;font-family:var(--mono);color:var(--t2)}
+.legend{display:flex;flex-direction:column;gap:.45rem}
+.legend-item{display:flex;align-items:center;gap:.45rem;font-size:.76rem;color:var(--t1)}
+.legend-item i{width:10px;height:10px;border-radius:50%}
+table{width:100%;border-collapse:collapse}
+thead tr{border-bottom:2px solid var(--border)}
+th{text-align:left;font-size:.64rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.8px;color:var(--t2);padding:0 .7rem .55rem;font-weight:700}
+td{padding:.72rem .7rem;border-bottom:1px solid var(--border);font-size:.81rem;color:var(--t1);vertical-align:middle}
+tbody tr:hover td{background:var(--surface2)}
+tbody tr:last-child td{border-bottom:none}
+.avatar{
+  width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;flex-shrink:0
+}
+.person-row{display:flex;align-items:center;gap:.58rem}
+.mono{font-family:var(--mono)}
+.muted{color:var(--t2)}
+.progress{width:100%;height:7px;background:var(--border);border-radius:999px;overflow:hidden}
+.progress > span{display:block;height:100%;border-radius:999px}
+.progress-label{display:flex;align-items:center;gap:.42rem}
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem}
+.quick-btn{
+  border:1px dashed var(--border2);background:linear-gradient(180deg,#fff 0%,#fafbff 100%);border-radius:12px;padding:.9rem;text-align:left;transition:all .15s
+}
+.quick-btn:hover{border-color:#C7D2FE;background:var(--accent-bg)}
+.quick-btn strong{display:block;font-size:.84rem;margin-bottom:.16rem}
+.quick-btn span{font-size:.72rem;color:var(--t2)}
+.project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.project-card{background:var(--surface);border:1px solid var(--border);border-radius:15px;overflow:hidden;box-shadow:var(--shadow-sm);transition:all .18s}
+.project-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.project-card.active{border-color:#C7D2FE;box-shadow:0 0 0 3px rgba(79,70,229,.08),var(--shadow)}
+.project-top{padding:1rem;border-bottom:1px solid var(--border);position:relative}
+.project-top::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--project-color,var(--accent))}
+.project-name{font-size:1rem;font-weight:800;letter-spacing:-.4px}
+.project-meta{font-size:.72rem;color:var(--t2);font-family:var(--mono);margin-top:.18rem}
+.project-bottom{padding:1rem}
+.stats-inline{display:grid;grid-template-columns:repeat(4,1fr);gap:.45rem;margin-bottom:.75rem}
+.mini-stat{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.48rem .55rem;text-align:center}
+.mini-stat strong{display:block;font-size:1rem;letter-spacing:-.5px}
+.mini-stat span{font-size:.57rem;color:var(--t2);font-family:var(--mono);text-transform:uppercase}
+.doc-chip-wrap,.plat-chip-wrap{display:flex;gap:.35rem;flex-wrap:wrap}
+.doc-chip,.plat-chip{padding:4px 8px;border-radius:999px;font-size:.67rem;font-family:var(--mono);background:var(--surface2);border:1px solid var(--border);color:var(--t1)}
+.panel-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:1rem}
+.tool-row{display:flex;gap:.55rem;flex-wrap:wrap;align-items:center}
+.search{min-width:260px}
+.split{display:grid;grid-template-columns:1.3fr .9fr;gap:1rem;align-items:start}
+.side-stack{display:flex;flex-direction:column;gap:1rem}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.form-grid .full{grid-column:1/-1}
+.inline-note{font-size:.72rem;color:var(--t2)}
+.helper{font-size:.68rem;color:var(--t2);font-family:var(--mono)}
+.callout{padding:.78rem .88rem;border-radius:12px;border:1px solid var(--border);background:var(--surface2)}
+.callout.blue{background:var(--blue-bg);border-color:var(--blue-b)}
+.callout.orange{background:var(--orange-bg);border-color:var(--orange-b)}
+.callout.green{background:var(--green-bg);border-color:var(--green-b)}
+.callout.red{background:var(--red-bg);border-color:var(--red-b)}
+.drawer{display:none}
+.drawer.open{display:block}
+.table-wrap{overflow:auto}
+.linkish{color:var(--accent);font-weight:700}
+.doc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.55rem}
+.doc-card{border:1px solid var(--border);background:var(--surface2);border-radius:12px;padding:.72rem}
+.doc-card strong{display:flex;align-items:center;gap:.35rem;font-size:.78rem}
+.doc-card .meta{margin-top:.22rem;font-size:.65rem;color:var(--t2);font-family:var(--mono)}
+.phase-list{display:flex;flex-direction:column;gap:.8rem}
+.phase{
+  border:1px solid var(--border);border-radius:14px;background:var(--surface);box-shadow:var(--shadow-sm);overflow:hidden
+}
+.phase-head{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.85rem 1rem;background:linear-gradient(180deg,#fff 0%,#fafbff 100%);
+  border-bottom:1px solid var(--border)
+}
+.phase-title{display:flex;align-items:flex-start;gap:.8rem}
+.phase-index{
+  width:34px;height:34px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-weight:800;font-family:var(--mono);flex-shrink:0;
+  background:var(--surface2);border:1px solid var(--border);color:var(--t2)
+}
+.phase.run .phase-index{background:var(--blue-bg);border-color:var(--blue-b);color:var(--blue)}
+.phase.done .phase-index{background:var(--green-bg);border-color:var(--green-b);color:var(--green)}
+.phase.warn .phase-index{background:var(--orange-bg);border-color:var(--orange-b);color:var(--orange)}
+.phase-title strong{display:block;font-size:.88rem}
+.phase-title span{display:block;font-size:.7rem;color:var(--t2);font-family:var(--mono);margin-top:.16rem}
+.phase-actions{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap}
+.phase-body{padding:1rem;display:none}
+.phase.open .phase-body{display:block}
+.phase-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:.65rem;margin-bottom:.9rem}
+.summary-box{padding:.7rem .75rem;border-radius:12px;border:1px solid var(--border);background:var(--surface2)}
+.summary-box strong{display:block;font-size:1rem;letter-spacing:-.5px}
+.summary-box span{font-size:.62rem;color:var(--t2);font-family:var(--mono);text-transform:uppercase}
+.mini-list{display:flex;flex-direction:column;gap:.45rem}
+.mini-item{display:flex;align-items:flex-start;justify-content:space-between;gap:.7rem;padding:.62rem .72rem;border:1px solid var(--border);border-radius:10px;background:var(--surface2)}
+.mini-item .sub{font-size:.68rem;color:var(--t2);font-family:var(--mono);margin-top:.15rem}
+.email-preview{padding:.8rem;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+.email-preview h4{font-size:.82rem;margin-bottom:.3rem}
+.email-preview pre{white-space:pre-wrap;font-family:var(--font);font-size:.75rem;color:var(--t1);line-height:1.5}
+.platform-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem}
+.platform-card{border:1px solid var(--border);border-radius:13px;background:var(--surface);padding:.85rem;box-shadow:var(--shadow-sm)}
+.platform-card.success{border-color:var(--green-b);background:var(--green-bg)}
+.platform-card.error{border-color:var(--red-b);background:var(--red-bg)}
+.platform-card.running{border-color:var(--blue-b);background:var(--blue-bg)}
+.platform-card.pending{opacity:.75}
+.platform-head{display:flex;align-items:center;gap:.65rem}
+.plat-logo{
+  width:36px;height:36px;border-radius:11px;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.65rem;flex-shrink:0
+}
+.platform-card h4{font-size:.84rem}
+.platform-card p{font-size:.68rem;color:var(--t2);font-family:var(--mono);margin-top:.15rem}
+.job-list{display:flex;flex-direction:column;gap:.55rem}
+.job-item{padding:.72rem .8rem;border-radius:12px;border:1px solid var(--border);background:var(--surface2);cursor:pointer}
+.job-item.active{border-color:#C7D2FE;background:var(--accent-bg)}
+.log-list{display:flex;flex-direction:column;gap:.45rem;max-height:320px;overflow:auto}
+.log-item{padding:.62rem .7rem;border-radius:10px;background:var(--surface2);border:1px solid var(--border)}
+.log-item .time{font-size:.62rem;font-family:var(--mono);color:var(--t3);margin-top:.18rem}
+.empty{padding:1.2rem;text-align:center;border:1px dashed var(--border2);border-radius:12px;background:linear-gradient(180deg,#fff 0%,#fafbff 100%);color:var(--t2);font-size:.79rem}
+.toast-stack{position:fixed;top:72px;right:1rem;z-index:120;display:flex;flex-direction:column;gap:.45rem}
+.toast{display:flex;align-items:center;gap:.6rem;min-width:250px;max-width:320px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:.7rem .9rem;box-shadow:var(--shadow-lg);transform:translateX(120%);transition:transform .24s ease}
+.toast.in{transform:translateX(0)}
+.toast .line{width:4px;align-self:stretch;border-radius:999px}
+.subgrid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.footer-note{font-size:.67rem;color:var(--t3);font-family:var(--mono)}
+@media (max-width:1200px){
+  .grid-4,.quick-grid,.phase-summary,.stats-inline{grid-template-columns:repeat(2,1fr)}
+  .grid-2,.panel-grid,.split,.subgrid{grid-template-columns:1fr}
+  .project-grid,.platform-grid{grid-template-columns:1fr}
+}
+@media (max-width:820px){
+  .shell{flex-direction:column}
+  .sidebar{width:100%;border-right:none;border-bottom:1px solid var(--border);padding:.7rem;flex-direction:row;overflow:auto}
+  .sidebar > *{flex-shrink:0}
+  .content{padding:1rem}
+  .grid-4,.quick-grid,.doc-grid,.form-grid{grid-template-columns:1fr}
+  .topbar{flex-wrap:wrap;height:auto;padding:.8rem 1rem}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">
+    <div class="logo-mark"><span class="a">art</span><span class="b">BPO</span></div>
+    <span class="logo-pill">demo funcional</span>
+  </div>
+  <div class="tool-row">
+    <select id="top-project-select"></select>
+    <button class="btn btn-g btn-sm" onclick="resetDemo()">Restaurar demo</button>
+  </div>
+  <div class="sp"></div>
+  <div class="top-meta">
+    <div class="live"><span class="dot"></span><span id="live-text">Sistema activo</span></div>
+    <div class="helper" id="now-stamp"></div>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="nav-label">Principal</div>
+    <button class="nav-item active" data-view="dashboard" onclick="goTo('dashboard',this)">
+      <svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      Dashboard
+    </button>
+    <button class="nav-item" data-view="projects" onclick="goTo('projects',this)">
+      <svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.8"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/></svg>
+      Proyectos
+    </button>
+    <button class="nav-item" data-view="people" onclick="goTo('people',this)">
+      <svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.8"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/><path d="M16 3.13a4 4 0 010 7.75M21 21v-2a4 4 0 00-3-3.87"/></svg>
+      Personas
+      <span class="nav-badge" id="people-nav-count">0</span>
+    </button>
+    <button class="nav-item" data-view="pipeline" onclick="goTo('pipeline',this)">
+      <svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.8"><path d="M5 12h4l3 8 4-16 3 8h2"/></svg>
+      Pipeline
+    </button>
+    <button class="nav-item" data-view="control" onclick="goTo('control',this)">
+      <svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.8"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 5-4 9-9 9s-9-4-9-9 4-9 9-9 9 4 9 9z"/></svg>
+      Control
+      <span class="nav-badge" id="control-nav-badge">0</span>
+    </button>
+    <button class="nav-item" data-view="platforms" onclick="goTo('platforms',this)">
+      <svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.8"><path d="M7 16V4m0 0l-4 4m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/></svg>
+      Plataformas
+    </button>
+    <div class="nav-label" style="margin-top:.3rem">Sistema</div>
+    <button class="nav-item" data-view="settings" onclick="goTo('settings',this)">
+      <svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+      Configuración
+    </button>
+    <div class="sidebar-foot">Acreditator · SPA HTML/CSS/JS · estado en memoria + sessionStorage</div>
+  </aside>
+
+  <main class="content">
+    <section class="view active" id="view-dashboard">
+      <div class="page-head">
+        <div>
+          <h1>Dashboard General</h1>
+          <p id="dashboard-subtitle"></p>
+        </div>
+        <div class="head-actions">
+          <button class="btn btn-p btn-sm" onclick="goToById('pipeline')">Ejecutar pipeline</button>
+          <button class="btn btn-g btn-sm" onclick="openPersonForm()">Agregar persona</button>
+        </div>
+      </div>
+      <div class="grid-4" id="dashboard-metrics"></div>
+      <div class="grid-2" style="margin-top:1rem">
+        <div class="card">
+          <div class="card-title"><span class="cdot"></span>Cumplimiento por proyecto</div>
+          <div class="kpi-bar" id="project-bars"></div>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="cdot" style="background:var(--green)"></span>Estado del proyecto activo</div>
+          <div class="donut-wrap">
+            <div class="donut" id="status-donut">
+              <div class="donut-center" id="status-donut-center"></div>
+            </div>
+            <div class="legend" id="status-legend"></div>
+          </div>
+        </div>
+      </div>
+      <div class="subgrid" style="margin-top:1rem">
+        <div class="card">
+          <div class="card-title"><span class="cdot" style="background:var(--orange)"></span>Alertas de caducidad</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Persona</th><th>Documento</th><th>Proyecto</th><th>Estado</th><th>Vence</th></tr></thead>
+              <tbody id="alert-table"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="cdot" style="background:var(--blue)"></span>Accesos rápidos</div>
+          <div class="quick-grid">
+            <button class="quick-btn" onclick="goToById('people')"><strong>Cargar personas</strong><span>Alta manual, CSV y copia/pega.</span></button>
+            <button class="quick-btn" onclick="goToById('settings')"><strong>Configurar proyecto</strong><span>Documentos requeridos y plataformas activas.</span></button>
+            <button class="quick-btn" onclick="goToById('control')"><strong>Revisar control</strong><span>Filtra completos, parciales y sin docs.</span></button>
+            <button class="quick-btn" onclick="goToById('platforms')"><strong>Ver plataformas</strong><span>Folios, errores y reintentos.</span></button>
+          </div>
+          <div class="callout blue" style="margin-top:1rem">
+            <strong style="font-size:.84rem">Última simulación</strong>
+            <div class="inline-note" id="last-sim-summary" style="margin-top:.25rem">Aún no ejecutas el pipeline en esta sesión.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="view-projects">
+      <div class="page-head">
+        <div>
+          <h1>Proyectos</h1>
+          <p>Selecciona el proyecto activo, revisa sus requisitos y el estado del personal asignado.</p>
+        </div>
+        <div class="head-actions">
+          <button class="btn btn-g btn-sm" onclick="setActiveProjectPrompt()">Cambiar proyecto activo</button>
+          <button class="btn btn-p btn-sm" onclick="goToById('settings')">Editar configuración</button>
+        </div>
+      </div>
+      <div class="project-grid" id="project-grid"></div>
+      <div class="panel-grid" style="margin-top:1rem">
+        <div class="card">
+          <div class="card-title"><span class="cdot"></span>Detalle del proyecto activo</div>
+          <div id="active-project-detail"></div>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="cdot" style="background:var(--orange)"></span>Casos destacados</div>
+          <div class="mini-list" id="project-highlight-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="view-people">
+      <div class="page-head">
+        <div>
+          <h1>Personas</h1>
+          <p>Gestiona la nómina a acreditar. Puedes agregar, editar, importar por CSV o pegar desde planilla.</p>
+        </div>
+        <div class="head-actions">
+          <button class="btn btn-p btn-sm" onclick="openPersonForm()">Nueva persona</button>
+          <button class="btn btn-g btn-sm" onclick="togglePeoplePanel('import')">Importar / pegar</button>
+        </div>
+      </div>
+      <div class="split">
+        <div class="card">
+          <div class="tool-row" style="justify-content:space-between;margin-bottom:.85rem">
+            <input class="search" id="people-search" placeholder="Buscar por nombre, RUT o cargo" oninput="renderPeopleView()">
+            <div class="helper" id="people-summary"></div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Persona</th><th>Contacto</th><th>Proyecto</th><th>Estado</th><th>Completitud</th><th></th></tr></thead>
+              <tbody id="people-table"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="side-stack">
+          <div class="card drawer" id="person-form-card">
+            <div class="tool-row" style="justify-content:space-between;margin-bottom:.9rem">
+              <div>
+                <div class="card-title" style="margin-bottom:.2rem"><span class="cdot"></span><span id="person-form-title">Nueva persona</span></div>
+                <div class="helper">Validación demo: RUT, correo y teléfono.</div>
+              </div>
+              <button class="btn btn-g btn-xs" onclick="closePersonForm()">Cerrar</button>
+            </div>
+            <div class="form-grid">
+              <input id="pf-rut" placeholder="RUT">
+              <input id="pf-name" placeholder="Nombre completo">
+              <input id="pf-email" placeholder="Correo">
+              <input id="pf-phone" placeholder="Teléfono">
+              <input id="pf-role" placeholder="Cargo">
+              <select id="pf-project"></select>
+              <textarea id="pf-note" class="full" placeholder="Observación demo (opcional)"></textarea>
+            </div>
+            <div class="tool-row" style="margin-top:.9rem">
+              <button class="btn btn-p btn-sm" onclick="savePerson()">Guardar persona</button>
+              <button class="btn btn-g btn-sm" onclick="fillPersonSample()">Usar ejemplo</button>
+            </div>
+            <div class="inline-note" id="person-form-message" style="margin-top:.6rem"></div>
+          </div>
+          <div class="card drawer" id="people-import-card">
+            <div class="tool-row" style="justify-content:space-between;margin-bottom:.9rem">
+              <div>
+                <div class="card-title" style="margin-bottom:.2rem"><span class="cdot" style="background:var(--orange)"></span>Importación rápida</div>
+                <div class="helper">Acepta coma, punto y coma o tabulación. Detecta cabecera automáticamente.</div>
+              </div>
+              <button class="btn btn-g btn-xs" onclick="togglePeoplePanel('import')">Cerrar</button>
+            </div>
+            <textarea id="import-text" placeholder="rut,nombre,correo,telefono,cargo,proyecto&#10;12.345.678-9,Carlos Gutiérrez,c.gutierrez@contratista.cl,+56 9 8765 4321,Operador Grúa,Pelambres Norte"></textarea>
+            <div class="tool-row" style="margin-top:.75rem">
+              <button class="btn btn-g btn-sm" onclick="loadImportSample()">Cargar ejemplo</button>
+              <button class="btn btn-p btn-sm" onclick="previewImport()">Analizar</button>
+              <button class="btn btn-w btn-sm" onclick="commitImport()" id="commit-import-btn" disabled>Importar filas</button>
+            </div>
+            <div class="inline-note" id="import-status" style="margin-top:.55rem"></div>
+            <div id="import-preview" style="margin-top:.75rem"></div>
+          </div>
+          <div class="card">
+            <div class="card-title"><span class="cdot" style="background:var(--blue)"></span>Detalle seleccionado</div>
+            <div id="people-detail" class="empty">Selecciona una persona para ver documentos, faltantes y acciones rápidas.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="view-pipeline">
+      <div class="page-head">
+        <div>
+          <h1>Pipeline de Acreditación</h1>
+          <p>Flujo demo con 6 fases. Cada fase impacta el estado real del proyecto activo y habilita la siguiente.</p>
+        </div>
+        <div class="head-actions">
+          <button class="btn btn-p btn-sm" onclick="runEntirePipeline()">Correr flujo demo</button>
+          <button class="btn btn-g btn-sm" onclick="resetPipeline()">Reiniciar fases</button>
+        </div>
+      </div>
+      <div class="subgrid">
+        <div class="card">
+          <div class="card-title"><span class="cdot"></span>Resumen del proyecto activo</div>
+          <div id="pipeline-top-summary"></div>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="cdot" style="background:var(--green)"></span>Resultado esperado</div>
+          <div class="callout blue">
+            <strong style="font-size:.84rem">Meta demo</strong>
+            <div class="inline-note" style="margin-top:.25rem">Mostrar caducidades, generar solicitudes, simular recepción, clasificar documentos, recalcular cumplimiento y enviar recordatorios.</div>
+          </div>
+          <div class="tool-row" style="margin-top:.8rem">
+            <button class="btn btn-g btn-sm" onclick="pushEligibleToPlatforms()">Subir aptos a plataformas</button>
+            <button class="btn btn-w btn-sm" onclick="goToById('platforms')">Ver cola de subidas</button>
+          </div>
+        </div>
+      </div>
+      <div class="phase-list" id="phase-list" style="margin-top:1rem"></div>
+    </section>
+
+    <section class="view" id="view-control">
+      <div class="page-head">
+        <div>
+          <h1>Control de Cumplimiento</h1>
+          <p>Filtra por estado y gestiona acciones individuales sobre cada persona del proyecto activo.</p>
+        </div>
+        <div class="head-actions">
+          <div class="tabs" id="control-tabs"></div>
+        </div>
+      </div>
+      <div class="split">
+        <div class="card">
+          <div class="tool-row" style="justify-content:space-between;margin-bottom:.85rem">
+            <input class="search" id="control-search" placeholder="Buscar por nombre o RUT" oninput="renderControlView()">
+            <div class="helper" id="control-summary"></div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Persona</th><th>Proyecto</th><th>%</th><th>Estado</th><th>Última actividad</th><th></th></tr></thead>
+              <tbody id="control-table"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="side-stack">
+          <div class="card">
+            <div class="card-title"><span class="cdot" style="background:var(--green)"></span>Detalle documental</div>
+            <div id="control-detail" class="empty">Selecciona una persona para revisar documentos recibidos, faltantes o vencidos.</div>
+          </div>
+          <div class="card">
+            <div class="card-title"><span class="cdot" style="background:var(--orange)"></span>Acciones sugeridas</div>
+            <div id="control-actions-hints" class="mini-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="view-platforms">
+      <div class="page-head">
+        <div>
+          <h1>Plataformas</h1>
+          <p>Seguimiento de subidas simuladas a Workmate, Sucal, SIGA y LMS BHP con folio, log y reintentos.</p>
+        </div>
+        <div class="head-actions">
+          <button class="btn btn-g btn-sm" onclick="pushEligibleToPlatforms()">Subir aptos del proyecto activo</button>
+        </div>
+      </div>
+      <div class="split">
+        <div class="side-stack">
+          <div class="card">
+            <div class="card-title"><span class="cdot"></span>Trabajo seleccionado</div>
+            <div id="platform-current-job"></div>
+          </div>
+          <div class="card">
+            <div class="card-title"><span class="cdot" style="background:var(--blue)"></span>Estado por plataforma</div>
+            <div class="platform-grid" id="platform-status-grid"></div>
+          </div>
+          <div class="card">
+            <div class="card-title"><span class="cdot" style="background:var(--orange)"></span>Log de actividad</div>
+            <div class="log-list" id="platform-log-list"></div>
+          </div>
+        </div>
+        <div class="side-stack">
+          <div class="card">
+            <div class="card-title"><span class="cdot" style="background:var(--green)"></span>Historial de subidas</div>
+            <div id="platform-job-list" class="job-list"></div>
+          </div>
+          <div class="card">
+            <div class="card-title"><span class="cdot" style="background:var(--red)"></span>Errores y reintentos</div>
+            <div id="platform-errors-box"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="view-settings">
+      <div class="page-head">
+        <div>
+          <h1>Configuración del Proyecto</h1>
+          <p>Define documentos requeridos, plataformas destino y datos base para el proyecto activo.</p>
+        </div>
+        <div class="head-actions">
+          <button class="btn btn-p btn-sm" onclick="saveProjectSettings()">Guardar configuración</button>
+        </div>
+      </div>
+      <div class="split">
+        <div class="side-stack">
+          <div class="card">
+            <div class="card-title"><span class="cdot"></span>Proyecto activo</div>
+            <div class="form-grid">
+              <select id="settings-project"></select>
+              <input id="settings-client" placeholder="Cliente">
+              <input id="settings-name" class="full" placeholder="Nombre del proyecto">
+              <input id="settings-region" placeholder="Región / Faena">
+              <input id="settings-email" placeholder="Correo de recepción">
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title"><span class="cdot" style="background:var(--orange)"></span>Documentos requeridos</div>
+            <div id="settings-docs" class="mini-list"></div>
+          </div>
+        </div>
+        <div class="side-stack">
+          <div class="card">
+            <div class="card-title"><span class="cdot" style="background:var(--blue)"></span>Plataformas activas</div>
+            <div id="settings-platforms" class="mini-list"></div>
+          </div>
+          <div class="card">
+            <div class="card-title"><span class="cdot" style="background:var(--green)"></span>Impacto estimado</div>
+            <div id="settings-impact"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="toast-stack" id="toast-stack"></div>
+
+<script>
+const STORAGE_KEY='acreditator-demo-state-v2';
+const DOC_LIBRARY=[
+  {label:'Cédula de identidad',expirable:true,days:540},
+  {label:'Currículum Vitae',expirable:false,days:0},
+  {label:'Licencia conducir clase B',expirable:true,days:240},
+  {label:'Certificado operador grúa',expirable:true,days:210},
+  {label:'Examen pre-ocupacional',expirable:true,days:120},
+  {label:'Examen altura geográfica',expirable:true,days:90},
+  {label:'Curso ISEM Minería',expirable:true,days:365},
+  {label:'Curso manejo defensivo',expirable:true,days:365},
+  {label:'Contrato de trabajo',expirable:false,days:0},
+  {label:'Certificado antecedentes',expirable:true,days:180},
+];
+const PLATFORM_LIBRARY=[
+  {id:'workmate',name:'Workmate',short:'WM',color:'#0F62FE'},
+  {id:'sucal',name:'SUCAL',short:'SUC',color:'#0D7B3E'},
+  {id:'siga',name:'SIGA',short:'SIGA',color:'#E65100'},
+  {id:'lms_bhp',name:'LMS BHP',short:'LMS',color:'#C8102E'},
+];
+const COLORS=['#4F46E5','#059669','#D97706','#DC2626','#0284C7','#7C3AED','#0D9488','#EA580C','#2563EB','#DB2777','#4C6FFF','#0891B2','#65A30D','#B45309'];
+const PIPELINE_PHASES=[
+  {id:'caducidad',title:'Caducidad',desc:'Detecta documentos vencidos o por vencer y confirma los casos con observación.'},
+  {id:'solicitud',title:'Solicitud',desc:'Genera correos personalizados solo con faltantes o vencidos por persona.'},
+  {id:'recepcion',title:'Recepción',desc:'Simula bandeja entrante o carga manual de archivos de prueba.'},
+  {id:'clasificacion',title:'Clasificación',desc:'Clasifica adjuntos por tipo, persona y vigencia usando lógica simulada.'},
+  {id:'control',title:'Control',desc:'Recalcula cumplimiento por persona y semáforo documental.'},
+  {id:'recordatorio',title:'Recordatorio',desc:'Genera recordatorios para quienes siguen incompletos luego de la recepción.'},
+];
+const IMPORT_SAMPLE=`rut,nombre,correo,telefono,cargo,proyecto
+13.555.777-8,Ignacio Salas,i.salas@contratista.cl,+56 9 9333 1111,Operador Alza Hombre,Pelambres Norte
+16.444.221-7,Camila Rojas,c.rojas@contratista.cl,+56 9 9444 2222,Prevencionista de Riesgos,Los Bronces Nivel 4`;
+
+function isoOffset(days){
+  const d=new Date();
+  d.setHours(0,0,0,0);
+  d.setDate(d.getDate()+days);
+  return d.toISOString().slice(0,10);
+}
+function makeDoc(label,state,expiry=null){
+  if(state==='missing') return {estado:'Faltante',vencimiento:null};
+  if(state==='expired') return {estado:'Recibido',vencimiento:expiry||isoOffset(-5)};
+  if(state==='soon') return {estado:'Recibido',vencimiento:expiry||isoOffset(12)};
+  return {estado:'Recibido',vencimiento:expiry};
+}
+function defaultProjects(){
+  return [
+    {
+      id:'PRJ-001',
+      nombre:'Pelambres Norte',
+      cliente:'Minera Los Pelambres',
+      region:'Coquimbo',
+      color:'#4F46E5',
+      correo:'acreditacion.pelambres@minecorp.cl',
+      documentos_requeridos:['Cédula de identidad','Currículum Vitae','Licencia conducir clase B','Examen pre-ocupacional','Curso ISEM Minería','Contrato de trabajo'],
+      plataformas:['workmate','sucal','siga']
+    },
+    {
+      id:'PRJ-002',
+      nombre:'Los Bronces Nivel 4',
+      cliente:'Anglo American',
+      region:'Región Metropolitana',
+      color:'#D97706',
+      correo:'acreditacion.bronces@minecorp.cl',
+      documentos_requeridos:['Cédula de identidad','Currículum Vitae','Certificado operador grúa','Examen pre-ocupacional','Examen altura geográfica','Curso ISEM Minería','Certificado antecedentes'],
+      plataformas:['workmate','siga','lms_bhp']
+    }
+  ];
+}
+function defaultPeople(){
+  return [
+    {id:'PER-001',rut:'12.345.678-9',nombre:'Carlos Gutiérrez',correo:'c.gutierrez@contratista.cl',telefono:'+56 9 8765 4321',cargo:'Operador Grúa',proyecto_id:'PRJ-001',nota:'Caso demo principal',docs:{
+      'Cédula de identidad':makeDoc('Cédula de identidad','ok',isoOffset(420)),
+      'Currículum Vitae':makeDoc('Currículum Vitae','ok'),
+      'Licencia conducir clase B':makeDoc('Licencia conducir clase B','expired',isoOffset(-16)),
+      'Examen pre-ocupacional':makeDoc('Examen pre-ocupacional','missing'),
+      'Curso ISEM Minería':makeDoc('Curso ISEM Minería','missing'),
+      'Contrato de trabajo':makeDoc('Contrato de trabajo','ok')
+    },lastActivity:'Sincronizado desde carga inicial'},
+    {id:'PER-002',rut:'11.222.333-4',nombre:'María López',correo:'m.lopez@contratista.cl',telefono:'+56 9 8111 0022',cargo:'Jefa de Seguridad',proyecto_id:'PRJ-001',nota:'Completa',docs:{
+      'Cédula de identidad':makeDoc('Cédula de identidad','ok',isoOffset(380)),
+      'Currículum Vitae':makeDoc('Currículum Vitae','ok'),
+      'Licencia conducir clase B':makeDoc('Licencia conducir clase B','ok',isoOffset(170)),
+      'Examen pre-ocupacional':makeDoc('Examen pre-ocupacional','ok',isoOffset(66)),
+      'Curso ISEM Minería':makeDoc('Curso ISEM Minería','ok',isoOffset(222)),
+      'Contrato de trabajo':makeDoc('Contrato de trabajo','ok')
+    },lastActivity:'Acreditación vigente'},
+    {id:'PER-003',rut:'13.444.555-6',nombre:'Jorge Valdés',correo:'j.valdes@contratista.cl',telefono:'+56 9 8777 1010',cargo:'Mecánico de Turno',proyecto_id:'PRJ-001',nota:'Sin docs',docs:{},lastActivity:'Pendiente de carga inicial'},
+    {id:'PER-004',rut:'14.555.666-7',nombre:'Ana Torres',correo:'a.torres@contratista.cl',telefono:'+56 9 8555 0909',cargo:'Técnico Eléctrico',proyecto_id:'PRJ-001',nota:'Por vencer',docs:{
+      'Cédula de identidad':makeDoc('Cédula de identidad','ok',isoOffset(450)),
+      'Currículum Vitae':makeDoc('Currículum Vitae','ok'),
+      'Licencia conducir clase B':makeDoc('Licencia conducir clase B','soon',isoOffset(14)),
+      'Examen pre-ocupacional':makeDoc('Examen pre-ocupacional','ok',isoOffset(30)),
+      'Curso ISEM Minería':makeDoc('Curso ISEM Minería','ok',isoOffset(180)),
+      'Contrato de trabajo':makeDoc('Contrato de trabajo','ok')
+    },lastActivity:'Documento próximo a vencer'},
+    {id:'PER-005',rut:'15.666.777-8',nombre:'Pedro Soto',correo:'p.soto@contratista.cl',telefono:'+56 9 8222 3434',cargo:'Conductor Clase A',proyecto_id:'PRJ-001',nota:'Faltantes críticos',docs:{
+      'Cédula de identidad':makeDoc('Cédula de identidad','ok',isoOffset(600)),
+      'Currículum Vitae':makeDoc('Currículum Vitae','ok'),
+      'Licencia conducir clase B':makeDoc('Licencia conducir clase B','ok',isoOffset(121)),
+      'Examen pre-ocupacional':makeDoc('Examen pre-ocupacional','missing'),
+      'Curso ISEM Minería':makeDoc('Curso ISEM Minería','missing')
+    },lastActivity:'Solicitud pendiente'},
+    {id:'PER-006',rut:'16.777.888-9',nombre:'Claudia Vera',correo:'c.vera@contratista.cl',telefono:'+56 9 8666 4545',cargo:'Enfermera Turno',proyecto_id:'PRJ-001',nota:'Casi completa',docs:{
+      'Cédula de identidad':makeDoc('Cédula de identidad','ok',isoOffset(520)),
+      'Currículum Vitae':makeDoc('Currículum Vitae','ok'),
+      'Licencia conducir clase B':makeDoc('Licencia conducir clase B','missing'),
+      'Examen pre-ocupacional':makeDoc('Examen pre-ocupacional','ok',isoOffset(45)),
+      'Curso ISEM Minería':makeDoc('Curso ISEM Minería','ok',isoOffset(200)),
+      'Contrato de trabajo':makeDoc('Contrato de trabajo','ok')
+    },lastActivity:'Falta licencia de respaldo'},
+    {id:'PER-007',rut:'17.888.999-0',nombre:'Roberto Díaz',correo:'r.diaz@contratista.cl',telefono:'+56 9 8999 5656',cargo:'Supervisor Terreno',proyecto_id:'PRJ-002',nota:'Expirado',docs:{
+      'Cédula de identidad':makeDoc('Cédula de identidad','ok',isoOffset(300)),
+      'Currículum Vitae':makeDoc('Currículum Vitae','ok'),
+      'Certificado operador grúa':makeDoc('Certificado operador grúa','ok',isoOffset(150)),
+      'Examen pre-ocupacional':makeDoc('Examen pre-ocupacional','expired',isoOffset(-8)),
+      'Examen altura geográfica':makeDoc('Examen altura geográfica','missing'),
+      'Curso ISEM Minería':makeDoc('Curso ISEM Minería','ok',isoOffset(210)),
+      'Certificado antecedentes':makeDoc('Certificado antecedentes','soon',isoOffset(18))
+    },lastActivity:'Observación en control'},
+    {id:'PER-008',rut:'18.999.000-1',nombre:'Sofía Muñoz',correo:'s.munoz@contratista.cl',telefono:'+56 9 8444 6767',cargo:'Geóloga Senior',proyecto_id:'PRJ-002',nota:'Parcial',docs:{
+      'Cédula de identidad':makeDoc('Cédula de identidad','ok',isoOffset(430)),
+      'Currículum Vitae':makeDoc('Currículum Vitae','ok'),
+      'Certificado operador grúa':makeDoc('Certificado operador grúa','missing'),
+      'Examen pre-ocupacional':makeDoc('Examen pre-ocupacional','ok',isoOffset(80)),
+      'Examen altura geográfica':makeDoc('Examen altura geográfica','missing'),
+      'Curso ISEM Minería':makeDoc('Curso ISEM Minería','missing'),
+      'Certificado antecedentes':makeDoc('Certificado antecedentes','ok',isoOffset(90))
+    },lastActivity:'Esperando adjuntos'},
+    {id:'PER-009',rut:'19.111.222-3',nombre:'Diego Castro',correo:'d.castro@contratista.cl',telefono:'+56 9 8555 7878',cargo:'Soldador Certificado',proyecto_id:'PRJ-002',nota:'Completo',docs:{
+      'Cédula de identidad':makeDoc('Cédula de identidad','ok',isoOffset(280)),
+      'Currículum Vitae':makeDoc('Currículum Vitae','ok'),
+      'Certificado operador grúa':makeDoc('Certificado operador grúa','ok',isoOffset(132)),
+      'Examen pre-ocupacional':makeDoc('Examen pre-ocupacional','ok',isoOffset(70)),
+      'Examen altura geográfica':makeDoc('Examen altura geográfica','ok',isoOffset(38)),
+      'Curso ISEM Minería':makeDoc('Curso ISEM Minería','ok',isoOffset(270)),
+      'Certificado antecedentes':makeDoc('Certificado antecedentes','ok',isoOffset(140))
+    },lastActivity:'Listo para subida'},
+    {id:'PER-010',rut:'20.222.333-4',nombre:'Valentina Reyes',correo:'v.reyes@contratista.cl',telefono:'+56 9 8666 8989',cargo:'Ingeniera de Procesos',proyecto_id:'PRJ-002',nota:'Sin certificado',docs:{
+      'Cédula de identidad':makeDoc('Cédula de identidad','ok',isoOffset(580)),
+      'Currículum Vitae':makeDoc('Currículum Vitae','ok'),
+      'Examen pre-ocupacional':makeDoc('Examen pre-ocupacional','ok',isoOffset(52)),
+      'Examen altura geográfica':makeDoc('Examen altura geográfica','soon',isoOffset(10)),
+      'Curso ISEM Minería':makeDoc('Curso ISEM Minería','ok',isoOffset(160)),
+      'Certificado antecedentes':makeDoc('Certificado antecedentes','missing')
+    },lastActivity:'Debe reenviar certificado'},
+    {id:'PER-011',rut:'9.876.543-2',nombre:'Matías Rojas',correo:'m.rojas@contratista.cl',telefono:'+56 9 8777 1234',cargo:'Ayudante Mantención',proyecto_id:'PRJ-002',nota:'Sin documentos',docs:{},lastActivity:'Pendiente de contacto'},
+    {id:'PER-012',rut:'10.123.456-7',nombre:'Fernanda Silva',correo:'f.silva@contratista.cl',telefono:'+56 9 8888 2323',cargo:'Asistente Operaciones',proyecto_id:'PRJ-001',nota:'Con recordatorio enviado',docs:{
+      'Cédula de identidad':makeDoc('Cédula de identidad','ok',isoOffset(480)),
+      'Currículum Vitae':makeDoc('Currículum Vitae','ok'),
+      'Examen pre-ocupacional':makeDoc('Examen pre-ocupacional','missing'),
+      'Curso ISEM Minería':makeDoc('Curso ISEM Minería','missing'),
+      'Contrato de trabajo':makeDoc('Contrato de trabajo','ok')
+    },lastActivity:'Recordatorio enviado'},
+    {id:'PER-013',rut:'7.654.321-0',nombre:'Nicolás Pizarro',correo:'n.pizarro@contratista.cl',telefono:'+56 9 8111 5678',cargo:'Topógrafo',proyecto_id:'PRJ-002',nota:'Carga reciente',docs:{
+      'Cédula de identidad':makeDoc('Cédula de identidad','ok',isoOffset(365)),
+      'Currículum Vitae':makeDoc('Currículum Vitae','ok'),
+      'Examen pre-ocupacional':makeDoc('Examen pre-ocupacional','ok',isoOffset(95)),
+      'Curso ISEM Minería':makeDoc('Curso ISEM Minería','missing'),
+      'Certificado antecedentes':makeDoc('Certificado antecedentes','missing')
+    },lastActivity:'Pendiente de respuesta'},
+    {id:'PER-014',rut:'8.765.432-1',nombre:'Paula Contreras',correo:'p.contreras@contratista.cl',telefono:'+56 9 8222 6789',cargo:'Operadora Sala Control',proyecto_id:'PRJ-001',nota:'Completa',docs:{
+      'Cédula de identidad':makeDoc('Cédula de identidad','ok',isoOffset(560)),
+      'Currículum Vitae':makeDoc('Currículum Vitae','ok'),
+      'Licencia conducir clase B':makeDoc('Licencia conducir clase B','ok',isoOffset(230)),
+      'Examen pre-ocupacional':makeDoc('Examen pre-ocupacional','ok',isoOffset(87)),
+      'Curso ISEM Minería':makeDoc('Curso ISEM Minería','ok',isoOffset(333)),
+      'Contrato de trabajo':makeDoc('Contrato de trabajo','ok')
+    },lastActivity:'Acreditación exitosa'}
+  ];
+}
+function defaultState(){
+  return {
+    projects:defaultProjects(),
+    people:defaultPeople(),
+    ui:{
+      activeView:'dashboard',
+      activeProjectId:'PRJ-001',
+      peoplePanel:null,
+      editingPersonId:null,
+      selectedPersonId:'PER-001',
+      controlFilter:'Todos',
+      selectedControlPersonId:'PER-001',
+      selectedPlatformJobId:null,
+      importPreview:[],
+      importErrors:[],
+      phaseOpen:0
+    },
+    pipeline:{
+      phases:PIPELINE_PHASES.map(p=>({id:p.id,status:'pending',summary:'Aún no ejecutada',payload:null})),
+      lastRunAt:null,
+      running:false
+    },
+    platformJobs:[],
+    activity:[
+      {id:'ACT-1',msg:'Demo cargada con 14 personas y 2 proyectos.',time:new Date().toISOString()},
+      {id:'ACT-2',msg:'Proyecto Pelambres Norte activo al inicio.',time:new Date().toISOString()}
+    ]
+  };
+}
+
+let state=loadState();
+let toastSeq=0;
+let platformSimulationPromise=Promise.resolve();
+
+function loadState(){
+  try{
+    const raw=sessionStorage.getItem(STORAGE_KEY);
+    if(raw){
+      const parsed=JSON.parse(raw);
+      if(parsed && parsed.projects && parsed.people) return parsed;
+    }
+  }catch(err){}
+  return defaultState();
+}
+function saveState(){sessionStorage.setItem(STORAGE_KEY,JSON.stringify(state))}
+function resetDemo(){
+  state=defaultState();
+  saveState();
+  renderApp();
+  toast('↺','Demo restaurada al estado inicial','var(--accent)');
+}
+function nowText(){return new Date().toLocaleString('es-CL',{dateStyle:'medium',timeStyle:'short'})}
+function shortDate(v){return v?new Date(v+'T00:00:00').toLocaleDateString('es-CL'):'—'}
+function addDays(days){
+  const d=new Date();
+  d.setDate(d.getDate()+days);
+  return d.toISOString().slice(0,10);
+}
+function id(prefix){return prefix+'-'+Math.random().toString(36).slice(2,8).toUpperCase()}
+function initials(name){return name.split(' ').map(x=>x[0]).join('').slice(0,2)}
+function avatarStyle(index){
+  const c=COLORS[index%COLORS.length];
+  return `background:${c}18;color:${c};border:1.5px solid ${c}33`;
+}
+function getProject(id){return state.projects.find(p=>p.id===id)}
+function getPerson(id){return state.people.find(p=>p.id===id)}
+function projectPeople(projectId){return state.people.filter(p=>p.proyecto_id===projectId)}
+function libDoc(label){return DOC_LIBRARY.find(d=>d.label===label)||{label,expirable:false,days:0}}
+function getRequiredDocs(projectId){return getProject(projectId)?.documentos_requeridos||[]}
+function docStatus(person,docLabel){
+  const doc=person.docs?.[docLabel];
+  if(!doc) return 'Faltante';
+  if(!doc.vencimiento) return 'Recibido';
+  const today=new Date(); today.setHours(0,0,0,0);
+  const exp=new Date(doc.vencimiento+'T00:00:00');
+  if(exp<today) return 'Vencido';
+  const diff=Math.ceil((exp-today)/86400000);
+  if(diff<=30) return 'Por vencer';
+  return 'Recibido';
+}
+function summaryForPerson(person){
+  const required=getRequiredDocs(person.proyecto_id);
+  const docStates=required.map(label=>({label,status:docStatus(person,label),raw:person.docs?.[label]||null}));
+  const complete=docStates.filter(d=>d.status==='Recibido').length;
+  const expired=docStates.filter(d=>d.status==='Vencido').length;
+  const soon=docStates.filter(d=>d.status==='Por vencer').length;
+  const missing=docStates.filter(d=>d.status==='Faltante').length;
+  const pct=required.length?Math.round((complete/required.length)*100):0;
+  let bucket='Parcial';
+  if(required.length && complete===required.length && !expired && !soon) bucket='Completo';
+  else if(complete===0 && missing===required.length) bucket='Sin documentos';
+  else if(expired>0) bucket='Observado';
+  return {required,docStates,complete,expired,soon,missing,pct,bucket};
+}
+function projectSummary(projectId){
+  const people=projectPeople(projectId);
+  const summaries=people.map(summaryForPerson);
+  const total=people.length;
+  const completos=summaries.filter(s=>s.bucket==='Completo').length;
+  const parciales=summaries.filter(s=>s.bucket==='Parcial'||s.bucket==='Observado').length;
+  const sinDocs=summaries.filter(s=>s.bucket==='Sin documentos').length;
+  const vencidos=summaries.reduce((acc,s)=>acc+s.expired,0);
+  const porVencer=summaries.reduce((acc,s)=>acc+s.soon,0);
+  const pct=total?Math.round((completos/total)*100):0;
+  return {total,completos,parciales,sinDocs,vencidos,porVencer,pct};
+}
+function bucketBadge(bucket){
+  const map={
+    'Completo':'bg',
+    'Parcial':'bo',
+    'Observado':'br',
+    'Sin documentos':'br'
+  };
+  return `<span class="badge ${map[bucket]||'bb'}">${bucket}</span>`;
+}
+function progressColor(pct){
+  if(pct>=90) return 'var(--green)';
+  if(pct>=50) return 'var(--orange)';
+  return 'var(--red)';
+}
+function addActivity(msg){
+  state.activity.unshift({id:id('ACT'),msg,time:new Date().toISOString()});
+  state.activity=state.activity.slice(0,40);
+}
+function goTo(view,el){
+  state.ui.activeView=view;
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+view).classList.add('active');
+  if(el) el.classList.add('active');
+  else{
+    const nav=document.querySelector(`.nav-item[data-view="${view}"]`);
+    if(nav) nav.classList.add('active');
+  }
+  saveState();
+}
+function goToById(view){goTo(view)}
+function setActiveProject(projectId,options={}){
+  state.ui.activeProjectId=projectId;
+  if(getPerson(state.ui.selectedPersonId)?.proyecto_id!==projectId) state.ui.selectedPersonId=projectPeople(projectId)[0]?.id||null;
+  if(getPerson(state.ui.selectedControlPersonId)?.proyecto_id!==projectId) state.ui.selectedControlPersonId=projectPeople(projectId)[0]?.id||null;
+  document.getElementById('top-project-select').value=projectId;
+  saveState();
+  renderApp();
+  if(!options.silent) toast('📁',`Proyecto activo: ${getProject(projectId).nombre}`,'var(--accent)');
+}
+function setActiveProjectPrompt(){
+  const ids=state.projects.map(p=>`${p.id} — ${p.nombre}`).join('\n');
+  const chosen=prompt('Ingresa el ID del proyecto activo:\n'+ids,state.ui.activeProjectId);
+  if(chosen && getProject(chosen.trim())) setActiveProject(chosen.trim());
+}
+function togglePeoplePanel(panel){
+  state.ui.peoplePanel=state.ui.peoplePanel===panel?null:panel;
+  if(panel!=='form') state.ui.editingPersonId=null;
+  renderPeopleView();
+  saveState();
+}
+function openPersonForm(personId=null){
+  state.ui.peoplePanel='form';
+  state.ui.editingPersonId=personId;
+  const p=personId?getPerson(personId):null;
+  document.getElementById('person-form-title').textContent=personId?'Editar persona':'Nueva persona';
+  document.getElementById('pf-rut').value=p?.rut||'';
+  document.getElementById('pf-name').value=p?.nombre||'';
+  document.getElementById('pf-email').value=p?.correo||'';
+  document.getElementById('pf-phone').value=p?.telefono||'';
+  document.getElementById('pf-role').value=p?.cargo||'';
+  document.getElementById('pf-project').value=p?.proyecto_id||state.ui.activeProjectId;
+  document.getElementById('pf-note').value=p?.nota||'';
+  document.getElementById('person-form-message').textContent='';
+  renderPeopleView();
+}
+function closePersonForm(){
+  state.ui.peoplePanel=null;
+  state.ui.editingPersonId=null;
+  renderPeopleView();
+}
+function fillPersonSample(){
+  document.getElementById('pf-rut').value='21.333.444-5';
+  document.getElementById('pf-name').value='Daniela Figueroa';
+  document.getElementById('pf-email').value='d.figueroa@contratista.cl';
+  document.getElementById('pf-phone').value='+56 9 9555 1212';
+  document.getElementById('pf-role').value='Prevencionista de Riesgos';
+  document.getElementById('pf-project').value=state.ui.activeProjectId;
+  document.getElementById('pf-note').value='Creada desde ejemplo rápido';
+}
+function validatePerson(data){
+  if(!/^\d{1,2}\.\d{3}\.\d{3}-[\dkK]$/.test(data.rut)) return 'RUT inválido. Usa formato 12.345.678-9';
+  if(!data.nombre.trim()) return 'Nombre obligatorio';
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.correo)) return 'Correo inválido';
+  if(!/^[+\d\s()-]{8,}$/.test(data.telefono)) return 'Teléfono inválido';
+  if(!data.cargo.trim()) return 'Cargo obligatorio';
+  return null;
+}
+function savePerson(){
+  const data={
+    rut:document.getElementById('pf-rut').value.trim(),
+    nombre:document.getElementById('pf-name').value.trim(),
+    correo:document.getElementById('pf-email').value.trim(),
+    telefono:document.getElementById('pf-phone').value.trim(),
+    cargo:document.getElementById('pf-role').value.trim(),
+    proyecto_id:document.getElementById('pf-project').value,
+    nota:document.getElementById('pf-note').value.trim()
+  };
+  const error=validatePerson(data);
+  if(error){
+    document.getElementById('person-form-message').textContent=error;
+    toast('⚠️',error,'var(--orange)');
+    return;
+  }
+  const duplicate=state.people.find(p=>p.rut===data.rut && p.id!==state.ui.editingPersonId);
+  if(duplicate){
+    document.getElementById('person-form-message').textContent='Ya existe una persona con ese RUT.';
+    toast('⚠️','Ya existe una persona con ese RUT','var(--orange)');
+    return;
+  }
+  if(state.ui.editingPersonId){
+    const target=getPerson(state.ui.editingPersonId);
+    Object.assign(target,data,{lastActivity:'Ficha actualizada manualmente'});
+    addActivity(`Se actualizó la ficha de ${target.nombre}.`);
+    toast('✏️',`Persona actualizada: ${target.nombre}`,'var(--accent)');
+  }else{
+    const docs={};
+    getRequiredDocs(data.proyecto_id).forEach(label=>{docs[label]={estado:'Faltante',vencimiento:null}});
+    const person={id:id('PER'),...data,docs,lastActivity:'Agregada manualmente'};
+    state.people.unshift(person);
+    state.ui.selectedPersonId=person.id;
+    state.ui.selectedControlPersonId=person.id;
+    addActivity(`Se agregó manualmente a ${person.nombre}.`);
+    toast('✅',`Persona agregada: ${person.nombre}`,'var(--green)');
+  }
+  saveState();
+  closePersonForm();
+  renderApp();
+}
+function deletePerson(personId){
+  const person=getPerson(personId);
+  if(!person || !confirm(`¿Eliminar a ${person.nombre} del demo?`)) return;
+  state.people=state.people.filter(p=>p.id!==personId);
+  state.ui.selectedPersonId=state.people[0]?.id||null;
+  state.ui.selectedControlPersonId=state.people[0]?.id||null;
+  addActivity(`Se eliminó a ${person.nombre} de la nómina demo.`);
+  saveState();
+  renderApp();
+  toast('🗑️',`Persona eliminada: ${person.nombre}`,'var(--red)');
+}
+function loadImportSample(){
+  document.getElementById('import-text').value=IMPORT_SAMPLE;
+}
+function parseImportRows(text){
+  const lines=text.split(/\r?\n/).map(l=>l.trim()).filter(Boolean);
+  if(!lines.length) return {rows:[],errors:['No hay contenido para importar.']};
+  const delimiters=[',',';','\t'];
+  const delim=delimiters.map(d=>({d,count:(lines[0].match(new RegExp('\\'+d,'g'))||[]).length})).sort((a,b)=>b.count-a.count)[0].d;
+  let rows=lines.map(line=>line.split(delim).map(v=>v.trim()));
+  const headerTokens=rows[0].map(v=>v.toLowerCase());
+  const hasHeader=headerTokens.some(v=>['rut','nombre','correo','telefono','cargo','proyecto'].includes(v));
+  if(hasHeader) rows=rows.slice(1);
+  return {
+    rows:rows.map(cols=>({
+      rut:cols[0]||'',
+      nombre:cols[1]||'',
+      correo:cols[2]||'',
+      telefono:cols[3]||'',
+      cargo:cols[4]||'',
+      proyectoNombre:cols[5]||getProject(state.ui.activeProjectId).nombre
+    })),
+    errors:[]
+  };
+}
+function previewImport(){
+  const text=document.getElementById('import-text').value;
+  const parsed=parseImportRows(text);
+  state.ui.importPreview=parsed.rows;
+  state.ui.importErrors=parsed.errors;
+  renderImportPreview();
+}
+function resolveProjectIdByName(name){
+  const clean=name.trim().toLowerCase();
+  const exact=state.projects.find(p=>p.nombre.toLowerCase()===clean);
+  if(exact) return exact.id;
+  const contains=state.projects.find(p=>p.nombre.toLowerCase().includes(clean) || clean.includes(p.nombre.toLowerCase().split(' ')[0]));
+  return contains?.id||state.ui.activeProjectId;
+}
+function commitImport(){
+  const rows=state.ui.importPreview||[];
+  if(!rows.length) return;
+  let ok=0,skipped=0;
+  rows.forEach(row=>{
+    const data={...row,proyecto_id:resolveProjectIdByName(row.proyectoNombre)};
+    const mapped={
+      rut:data.rut,
+      nombre:data.nombre,
+      correo:data.correo,
+      telefono:data.telefono,
+      cargo:data.cargo,
+      proyecto_id:data.proyecto_id
+    };
+    const error=validatePerson({...mapped,nota:''});
+    const dupe=state.people.find(p=>p.rut===mapped.rut);
+    if(error || dupe){skipped++;return;}
+    const docs={};
+    getRequiredDocs(mapped.proyecto_id).forEach(label=>{docs[label]={estado:'Faltante',vencimiento:null}});
+    state.people.push({id:id('PER'),...mapped,nota:'Importada por lote',docs,lastActivity:'Importada desde CSV'});
+    ok++;
+  });
+  addActivity(`Importación demo completada: ${ok} persona(s) agregadas, ${skipped} omitidas.`);
+  state.ui.importPreview=[];
+  document.getElementById('import-text').value='';
+  saveState();
+  renderApp();
+  toast('📥',`Importación: ${ok} agregadas, ${skipped} omitidas`,'var(--blue)');
+}
+function renderImportPreview(){
+  const mount=document.getElementById('import-preview');
+  const btn=document.getElementById('commit-import-btn');
+  const note=document.getElementById('import-status');
+  if(state.ui.importErrors?.length){
+    note.textContent=state.ui.importErrors.join(' ');
+    mount.innerHTML='';
+    btn.disabled=true;
+    return;
+  }
+  const rows=state.ui.importPreview||[];
+  if(!rows.length){
+    note.textContent='Aún no hay preview.';
+    mount.innerHTML='';
+    btn.disabled=true;
+    return;
+  }
+  note.textContent=`Preview listo: ${rows.length} fila(s) detectadas.`;
+  btn.disabled=false;
+  mount.innerHTML=`<div class="table-wrap"><table><thead><tr><th>RUT</th><th>Nombre</th><th>Correo</th><th>Cargo</th><th>Proyecto</th></tr></thead><tbody>${
+    rows.slice(0,5).map(r=>`<tr><td class="mono">${r.rut}</td><td>${r.nombre}</td><td>${r.correo}</td><td>${r.cargo}</td><td>${r.proyectoNombre}</td></tr>`).join('')
+  }</tbody></table></div>${rows.length>5?`<div class="footer-note" style="margin-top:.45rem">Mostrando 5 de ${rows.length} filas.</div>`:''}`;
+}
+function selectPerson(personId){
+  state.ui.selectedPersonId=personId;
+  renderPeopleView();
+  saveState();
+}
+function selectControlPerson(personId){
+  state.ui.selectedControlPersonId=personId;
+  renderControlView();
+  saveState();
+}
+function sendReminder(personId){
+  const person=getPerson(personId);
+  const s=summaryForPerson(person);
+  const pending=s.docStates.filter(d=>d.status!=='Recibido').map(d=>d.label);
+  person.lastActivity='Recordatorio enviado';
+  addActivity(`Recordatorio enviado a ${person.nombre} por ${pending.length} documento(s).`);
+  saveState();
+  renderApp();
+  toast('✉️',`Recordatorio a ${person.nombre}: ${pending.join(', ')}`,'var(--orange)');
+}
+function markDocReceived(personId,docLabel){
+  const person=getPerson(personId);
+  const meta=libDoc(docLabel);
+  person.docs[docLabel]={estado:'Recibido',vencimiento:meta.expirable?addDays(meta.days):null};
+  person.lastActivity=`Documento recibido: ${docLabel}`;
+  addActivity(`${person.nombre} adjuntó ${docLabel}.`);
+  saveState();
+  renderApp();
+  toast('📄',`${docLabel} marcado como recibido para ${person.nombre}`,'var(--green)');
+}
+function generateEmailText(person,mode){
+  const s=summaryForPerson(person);
+  const items=s.docStates.filter(d=>mode==='solicitud'?d.status==='Faltante'||d.status==='Vencido'||d.status==='Por vencer':d.status!=='Recibido').map(d=>`- ${d.label}`);
+  return `Hola ${person.nombre},\n\nNecesitamos regularizar la acreditación para ${getProject(person.proyecto_id).nombre}.\n\nDocumentos requeridos:\n${items.join('\n')||'- Sin pendientes'}\n\nEste correo es una simulación del demo Acreditator.\n\nSaludos,\nCoordinación de Acreditación`;
+}
+function resetPipeline(){
+  state.pipeline.phases=PIPELINE_PHASES.map(p=>({id:p.id,status:'pending',summary:'Aún no ejecutada',payload:null}));
+  state.pipeline.lastRunAt=null;
+  state.ui.phaseOpen=0;
+  saveState();
+  renderPipelineView();
+  renderDashboard();
+  toast('↺','Pipeline reiniciado para el proyecto activo','var(--accent)');
+}
+async function runEntirePipeline(){
+  for(let i=0;i<PIPELINE_PHASES.length;i++){
+    if(state.pipeline.phases[i].status==='done') continue;
+    await executePhase(i);
+  }
+}
+async function executePhase(index){
+  if(state.pipeline.running) return;
+  if(index>0 && state.pipeline.phases[index-1].status!=='done'){
+    toast('⛔',`Primero debes completar la fase ${index}.`,'var(--red)');
+    return;
+  }
+  state.pipeline.running=true;
+  const phase=state.pipeline.phases[index];
+  phase.status='run';
+  state.ui.phaseOpen=index;
+  renderPipelineView();
+  const projectId=state.ui.activeProjectId;
+  const people=projectPeople(projectId);
+  const summaries=people.map(p=>({person:p,summary:summaryForPerson(p)}));
+  const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+
+  if(phase.id==='caducidad'){
+    await sleep(650);
+    const issues=summaries.flatMap(({person,summary})=>summary.docStates.filter(d=>d.status==='Vencido'||d.status==='Por vencer').map(d=>({person,doc:d.label,status:d.status,vencimiento:person.docs[d.label]?.vencimiento||null})));
+    phase.payload={issues};
+    phase.status='done';
+    phase.summary=`${issues.length} alerta(s) detectadas entre vencidos y por vencer.`;
+    addActivity(`Caducidad ejecutada en ${getProject(projectId).nombre}: ${issues.length} alertas detectadas.`);
+    toast('🧭',phase.summary,'var(--blue)');
+  }
+  if(phase.id==='solicitud'){
+    await sleep(650);
+    const emails=summaries.filter(({summary})=>summary.bucket!=='Completo').map(({person,summary})=>({
+      personId:person.id,
+      subject:`Solicitud de documentos — ${person.nombre} — ${getProject(projectId).nombre}`,
+      body:generateEmailText(person,'solicitud'),
+      pending:summary.docStates.filter(d=>d.status!=='Recibido').map(d=>d.label)
+    }));
+    emails.forEach(e=>{const p=getPerson(e.personId); p.lastActivity='Solicitud enviada';});
+    phase.payload={emails};
+    phase.status='done';
+    phase.summary=`${emails.length} correo(s) simulados con faltantes personalizados.`;
+    addActivity(`Solicitudes generadas para ${emails.length} persona(s).`);
+    toast('✉️',phase.summary,'var(--accent)');
+  }
+  if(phase.id==='recepcion'){
+    await sleep(800);
+    const attachments=[];
+    summaries.filter(({summary})=>summary.bucket!=='Completo').slice(0,5).forEach(({person,summary})=>{
+      summary.docStates.filter(d=>d.status==='Faltante'||d.status==='Vencido'||d.status==='Por vencer').slice(0,2).forEach(doc=>{
+        attachments.push({
+          personId:person.id,
+          personName:person.nombre,
+          docLabel:doc.label,
+          filename:doc.label.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,'_')+'_'+person.rut.replace(/\W/g,'')+'.pdf'
+        });
+      });
+    });
+    phase.payload={attachments};
+    phase.status='done';
+    phase.summary=`${attachments.length} archivo(s) simulados en bandeja de entrada.`;
+    addActivity(`Recepción simulada: ${attachments.length} adjuntos listos para clasificar.`);
+    toast('📥',phase.summary,'var(--blue)');
+  }
+  if(phase.id==='clasificacion'){
+    await sleep(900);
+    const received=state.pipeline.phases[2].payload?.attachments||[];
+    const classified=received.map(file=>{
+      const person=getPerson(file.personId);
+      const meta=libDoc(file.docLabel);
+      person.docs[file.docLabel]={estado:'Recibido',vencimiento:meta.expirable?addDays(meta.days):null};
+      person.lastActivity=`Documento clasificado: ${file.docLabel}`;
+      return {...file,confianza:(0.91+Math.random()*0.08).toFixed(2)};
+    });
+    phase.payload={classified};
+    phase.status='done';
+    phase.summary=`${classified.length} documento(s) clasificados y asignados automáticamente.`;
+    addActivity(`Clasificación completada: ${classified.length} documentos asignados.`);
+    toast('🤖',phase.summary,'var(--green)');
+  }
+  if(phase.id==='control'){
+    await sleep(600);
+    const result=projectSummary(projectId);
+    phase.payload={result};
+    phase.status='done';
+    phase.summary=`Control recalculado: ${result.completos} completos, ${result.parciales} parciales, ${result.sinDocs} sin docs.`;
+    addActivity(`Control recalculado para ${getProject(projectId).nombre}.`);
+    toast('📊',phase.summary,'var(--green)');
+  }
+  if(phase.id==='recordatorio'){
+    await sleep(650);
+    const reminders=projectPeople(projectId).map(p=>({person:p,summary:summaryForPerson(p)})).filter(({summary})=>summary.bucket!=='Completo').map(({person})=>({
+      personId:person.id,
+      body:generateEmailText(person,'recordatorio')
+    }));
+    reminders.forEach(r=>{const p=getPerson(r.personId); p.lastActivity='Recordatorio automático generado';});
+    phase.payload={reminders};
+    phase.status='done';
+    phase.summary=`${reminders.length} recordatorio(s) generados para pendientes restantes.`;
+    state.pipeline.lastRunAt=new Date().toISOString();
+    addActivity(`Recordatorios generados para ${reminders.length} pendientes.`);
+    toast('🔔',phase.summary,'var(--orange)');
+  }
+  state.pipeline.running=false;
+  saveState();
+  renderApp();
+}
+
+function createPlatformJob(personId,source='manual'){
+  const person=getPerson(personId);
+  const project=getProject(person.proyecto_id);
+  const job={
+    id:id('JOB'),
+    personId,
+    projectId:project.id,
+    source,
+    createdAt:new Date().toISOString(),
+    status:'running',
+    platforms:project.plataformas.reduce((acc,pid)=>{acc[pid]={status:'pending',folio:null,error:null,timestamp:null};return acc;},{}),
+    logs:[{msg:`Trabajo creado para ${person.nombre} desde ${source}.`,time:new Date().toISOString()}]
+  };
+  state.platformJobs.unshift(job);
+  state.ui.selectedPlatformJobId=job.id;
+  saveState();
+  renderPlatformsView();
+  return job;
+}
+function canUploadPerson(personId){
+  const person=getPerson(personId);
+  return summaryForPerson(person).bucket==='Completo';
+}
+function pushToPlatforms(personId,source='control'){
+  const person=getPerson(personId);
+  if(!canUploadPerson(personId)){
+    toast('⛔',`${person.nombre} aún no tiene 100% de documentos vigentes.`,'var(--red)');
+    selectControlPerson(personId);
+    goToById('control');
+    return;
+  }
+  const job=createPlatformJob(personId,source);
+  addActivity(`Se inició subida a plataformas para ${person.nombre}.`);
+  goToById('platforms');
+  platformSimulationPromise=platformSimulationPromise.then(()=>simulatePlatformJob(job.id));
+}
+function pushEligibleToPlatforms(){
+  const eligible=projectPeople(state.ui.activeProjectId).filter(p=>summaryForPerson(p).bucket==='Completo');
+  if(!eligible.length){
+    toast('⚠️','No hay personas aptas para subir en el proyecto activo.','var(--orange)');
+    return;
+  }
+  eligible.slice(0,3).forEach(person=>pushToPlatforms(person.id,'pipeline'));
+  toast('☁️',`Se encolaron ${Math.min(3,eligible.length)} subidas demo a plataformas.`,'var(--blue)');
+}
+async function simulatePlatformJob(jobId){
+  const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+  const job=state.platformJobs.find(j=>j.id===jobId);
+  if(!job) return;
+  const platformIds=Object.keys(job.platforms);
+  for(const pid of platformIds){
+    const slot=job.platforms[pid];
+    slot.status='running';
+    slot.timestamp=new Date().toISOString();
+    job.logs.unshift({msg:`${platformName(pid)}: autenticando sesión y preparando paquete.`,time:new Date().toISOString()});
+    saveState();
+    renderPlatformsView();
+    await sleep(850);
+    const ok=Math.random()>0.18;
+    slot.status=ok?'success':'error';
+    slot.folio=ok?`ACRED-${Math.floor(100000+Math.random()*899999)}`:null;
+    slot.error=ok?null:'Timeout en carga del comprobante. Reintentar.';
+    slot.timestamp=new Date().toISOString();
+    job.logs.unshift({msg:`${platformName(pid)}: ${ok?'subida confirmada':'error de conexión simulado'}.`,time:new Date().toISOString()});
+    saveState();
+    renderPlatformsView();
+    toast(ok?'✅':'⚠️',`${platformName(pid)}: ${ok?'subida exitosa':'error simulado'}`,ok?'var(--green)':'var(--orange)');
+    await sleep(260);
+  }
+  const results=Object.values(job.platforms);
+  const successCount=results.filter(r=>r.status==='success').length;
+  const errorCount=results.filter(r=>r.status==='error').length;
+  job.status=errorCount?'partial':'done';
+  const person=getPerson(job.personId);
+  person.lastActivity=`Subida ${errorCount?'con observaciones':'exitosa'} a plataformas`;
+  job.logs.unshift({msg:`Trabajo finalizado: ${successCount} exitosa(s), ${errorCount} con error.`,time:new Date().toISOString()});
+  saveState();
+  renderApp();
+}
+function retryPlatform(jobId,platformId){
+  const job=state.platformJobs.find(j=>j.id===jobId);
+  if(!job) return;
+  const slot=job.platforms[platformId];
+  if(!slot || slot.status!=='error') return;
+  slot.status='running';
+  slot.error=null;
+  job.logs.unshift({msg:`${platformName(platformId)}: reintento manual solicitado.`,time:new Date().toISOString()});
+  saveState();
+  renderPlatformsView();
+  toast('🔁',`Reintentando ${platformName(platformId)}...`,'var(--accent)');
+  platformSimulationPromise=platformSimulationPromise.then(async()=>{
+    const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+    await sleep(850);
+    slot.status='success';
+    slot.folio=`ACRED-${Math.floor(100000+Math.random()*899999)}`;
+    slot.timestamp=new Date().toISOString();
+    job.logs.unshift({msg:`${platformName(platformId)}: reintento exitoso.`,time:new Date().toISOString()});
+    job.status=Object.values(job.platforms).some(p=>p.status==='error')?'partial':'done';
+    saveState();
+    renderApp();
+    toast('✅',`${platformName(platformId)} recuperado con reintento`,'var(--green)');
+  });
+}
+function selectPlatformJob(jobId){
+  state.ui.selectedPlatformJobId=jobId;
+  saveState();
+  renderPlatformsView();
+}
+function platformName(id){return PLATFORM_LIBRARY.find(p=>p.id===id)?.name||id}
+function saveProjectSettings(){
+  const project=getProject(document.getElementById('settings-project').value);
+  project.nombre=document.getElementById('settings-name').value.trim()||project.nombre;
+  project.cliente=document.getElementById('settings-client').value.trim()||project.cliente;
+  project.region=document.getElementById('settings-region').value.trim()||project.region;
+  project.correo=document.getElementById('settings-email').value.trim()||project.correo;
+  project.documentos_requeridos=DOC_LIBRARY.filter(d=>document.querySelector(`input[data-doc="${cssEscape(d.label)}"]`)?.checked).map(d=>d.label);
+  project.plataformas=PLATFORM_LIBRARY.filter(p=>document.querySelector(`input[data-platform="${p.id}"]`)?.checked).map(p=>p.id);
+  projectPeople(project.id).forEach(person=>{
+    person.docs=person.docs||{};
+    project.documentos_requeridos.forEach(label=>{if(!person.docs[label]) person.docs[label]={estado:'Faltante',vencimiento:null};});
+  });
+  addActivity(`Configuración actualizada para ${project.nombre}.`);
+  saveState();
+  renderApp();
+  toast('💾',`Configuración guardada para ${project.nombre}`,'var(--green)');
+}
+function cssEscape(str){return str.replace(/"/g,'\\"')}
+function toast(icon,msg,color){
+  const el=document.createElement('div');
+  el.className='toast';
+  el.innerHTML=`<div class="line" style="background:${color||'var(--accent)'}"></div><div style="font-size:1rem">${icon}</div><div>${msg}</div>`;
+  document.getElementById('toast-stack').appendChild(el);
+  requestAnimationFrame(()=>el.classList.add('in'));
+  setTimeout(()=>{
+    el.classList.remove('in');
+    setTimeout(()=>el.remove(),240);
+  },3400);
+}
+
+function renderApp(){
+  renderTopbar();
+  renderDashboard();
+  renderProjectsView();
+  renderPeopleView();
+  renderPipelineView();
+  renderControlView();
+  renderPlatformsView();
+  renderSettingsView();
+  goTo(state.ui.activeView);
+  saveState();
+}
+function renderTopbar(){
+  document.getElementById('now-stamp').textContent=nowText();
+  const select=document.getElementById('top-project-select');
+  select.innerHTML=state.projects.map(p=>`<option value="${p.id}">${p.nombre}</option>`).join('');
+  select.value=state.ui.activeProjectId;
+  select.onchange=e=>setActiveProject(e.target.value,{silent:true});
+  document.getElementById('live-text').textContent=state.pipeline.running?'Procesando pipeline...':'Sistema activo';
+  document.getElementById('people-nav-count').textContent=projectPeople(state.ui.activeProjectId).length;
+  const controlAlert=projectSummary(state.ui.activeProjectId).parciales+projectSummary(state.ui.activeProjectId).sinDocs;
+  document.getElementById('control-nav-badge').textContent=controlAlert;
+}
+function renderDashboard(){
+  const project=getProject(state.ui.activeProjectId);
+  const sum=projectSummary(project.id);
+  document.getElementById('dashboard-subtitle').textContent=`${project.nombre} · ${project.cliente} · ${project.region}`;
+  const metrics=[
+    {cls:'',label:'Total personas',value:sum.total,meta:`Activas en <b>${project.nombre}</b>`},
+    {cls:'green',label:'Acreditados completos',value:sum.completos,meta:`<b>${sum.pct}%</b> del proyecto activo`},
+    {cls:'orange',label:'Por vencer ≤ 30 días',value:sum.porVencer,meta:`<b>${sum.parciales}</b> persona(s) con seguimiento`},
+    {cls:'red',label:'Vencidos',value:sum.vencidos,meta:`<b>${sum.sinDocs}</b> sin documentación base`}
+  ];
+  document.getElementById('dashboard-metrics').innerHTML=metrics.map(m=>`<div class="metric ${m.cls}"><div class="label">${m.label}</div><div class="value">${m.value}</div><div class="meta">${m.meta}</div></div>`).join('');
+  document.getElementById('project-bars').innerHTML=state.projects.map(p=>{
+    const ps=projectSummary(p.id);
+    return `<div class="bar-row"><div class="bar-label">${p.nombre}</div><div class="bar-track"><div class="bar-fill" style="width:${ps.pct}%;background:${p.color}"></div></div><div class="bar-value">${ps.pct}%</div></div>`;
+  }).join('');
+  const total=Math.max(sum.total,1);
+  const compPct=Math.round(sum.completos/total*100);
+  const parPct=Math.round(sum.parciales/total*100);
+  const sinPct=Math.max(0,100-compPct-parPct);
+  document.getElementById('status-donut').style.background=`conic-gradient(var(--green) 0 ${compPct}%,var(--orange) ${compPct}% ${compPct+parPct}%,var(--red) ${compPct+parPct}% 100%)`;
+  document.getElementById('status-donut-center').innerHTML=`<span>${sum.total}</span><span>personas</span>`;
+  document.getElementById('status-legend').innerHTML=`
+    <div class="legend-item"><i style="background:var(--green)"></i>Completos: ${sum.completos}</div>
+    <div class="legend-item"><i style="background:var(--orange)"></i>Parciales / observados: ${sum.parciales}</div>
+    <div class="legend-item"><i style="background:var(--red)"></i>Sin docs: ${sum.sinDocs}</div>`;
+  const alerts=projectPeople(project.id).flatMap(person=>summaryForPerson(person).docStates.filter(d=>d.status==='Vencido'||d.status==='Por vencer').map(d=>({person,doc:d.label,status:d.status,vencimiento:person.docs[d.label]?.vencimiento||null}))).slice(0,8);
+  document.getElementById('alert-table').innerHTML=alerts.length?alerts.map(a=>`
+    <tr onclick="selectControlPerson('${a.person.id}');goToById('control')">
+      <td><div class="person-row"><div class="avatar" style="${avatarStyle(state.people.indexOf(a.person))}">${initials(a.person.nombre)}</div><div><strong>${a.person.nombre}</strong><div class="helper">${a.person.cargo}</div></div></div></td>
+      <td>${a.doc}</td><td>${project.nombre}</td><td>${bucketBadge(a.status==='Vencido'?'Observado':'Parcial')}</td><td class="mono">${shortDate(a.vencimiento)}</td>
+    </tr>`).join(''):`<tr><td colspan="5"><div class="empty">No hay alertas de caducidad en el proyecto activo.</div></td></tr>`;
+  document.getElementById('last-sim-summary').textContent=state.pipeline.lastRunAt?`Última corrida: ${new Date(state.pipeline.lastRunAt).toLocaleString('es-CL')}. Revisa Control y Plataformas para continuar.`:'Aún no ejecutas el pipeline en esta sesión.';
+}
+function renderProjectsView(){
+  const grid=document.getElementById('project-grid');
+  grid.innerHTML=state.projects.map(project=>{
+    const sum=projectSummary(project.id);
+    return `<div class="project-card ${project.id===state.ui.activeProjectId?'active':''}">
+      <div class="project-top" style="--project-color:${project.color}">
+        <div style="display:flex;justify-content:space-between;gap:.6rem;align-items:flex-start">
+          <div>
+            <div class="project-name">${project.nombre}</div>
+            <div class="project-meta">${project.cliente} · ${project.region}</div>
+          </div>
+          ${project.id===state.ui.activeProjectId?'<span class="badge bv">Activo</span>':'<span class="badge bb">Disponible</span>'}
+        </div>
+      </div>
+      <div class="project-bottom">
+        <div class="stats-inline">
+          <div class="mini-stat"><strong>${sum.total}</strong><span>Total</span></div>
+          <div class="mini-stat"><strong style="color:var(--green)">${sum.completos}</strong><span>Completos</span></div>
+          <div class="mini-stat"><strong style="color:var(--orange)">${sum.parciales}</strong><span>Parciales</span></div>
+          <div class="mini-stat"><strong style="color:var(--red)">${sum.sinDocs}</strong><span>Sin docs</span></div>
+        </div>
+        <div class="tool-row">
+          <button class="btn btn-p btn-sm" onclick="setActiveProject('${project.id}')">Usar proyecto</button>
+          <button class="btn btn-g btn-sm" onclick="goToById('settings');document.getElementById('settings-project').value='${project.id}';loadSettingsProject('${project.id}')">Configurar</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  const active=getProject(state.ui.activeProjectId);
+  const activePeople=projectPeople(active.id);
+  document.getElementById('active-project-detail').innerHTML=`
+    <div class="callout blue"><strong style="font-size:.9rem">${active.nombre}</strong><div class="inline-note" style="margin-top:.25rem">${active.cliente} · ${active.region} · correo receptor ${active.correo}</div></div>
+    <div style="margin-top:.9rem">
+      <div class="card-title" style="margin-bottom:.45rem"><span class="cdot"></span>Documentos requeridos</div>
+      <div class="doc-chip-wrap">${active.documentos_requeridos.map(doc=>`<span class="doc-chip">${doc}</span>`).join('')}</div>
+    </div>
+    <div style="margin-top:.9rem">
+      <div class="card-title" style="margin-bottom:.45rem"><span class="cdot" style="background:var(--blue)"></span>Plataformas</div>
+      <div class="plat-chip-wrap">${active.plataformas.map(pid=>`<span class="plat-chip">${platformName(pid)}</span>`).join('')}</div>
+    </div>
+    <div style="margin-top:.9rem">
+      <div class="card-title" style="margin-bottom:.45rem"><span class="cdot" style="background:var(--green)"></span>Personas asignadas</div>
+      <div class="mini-list">${activePeople.slice(0,5).map(person=>`<div class="mini-item"><div><strong>${person.nombre}</strong><div class="sub">${person.cargo}</div></div><div>${bucketBadge(summaryForPerson(person).bucket)}</div></div>`).join('')}</div>
+    </div>`;
+  const highlighted=activePeople.map(person=>({person,summary:summaryForPerson(person)})).sort((a,b)=>b.summary.expired-a.summary.expired || b.summary.missing-a.summary.missing).slice(0,4);
+  document.getElementById('project-highlight-list').innerHTML=highlighted.map(({person,summary})=>`
+    <div class="mini-item" onclick="selectControlPerson('${person.id}');goToById('control')">
+      <div><strong>${person.nombre}</strong><div class="sub">${summary.expired?summary.expired+' vencido(s)':summary.missing+' faltante(s)'}</div></div>
+      <div>${bucketBadge(summary.bucket)}</div>
+    </div>`).join('');
+}
+function renderPeopleView(){
+  const people=projectPeople(state.ui.activeProjectId);
+  const query=document.getElementById('people-search')?.value?.trim().toLowerCase()||'';
+  const filtered=people.filter(p=>!query||[p.nombre,p.rut,p.cargo].join(' ').toLowerCase().includes(query));
+  document.getElementById('people-summary').textContent=`${filtered.length} persona(s) visibles de ${people.length} en ${getProject(state.ui.activeProjectId).nombre}`;
+  document.getElementById('people-table').innerHTML=filtered.length?filtered.map(person=>{
+    const idx=state.people.indexOf(person);
+    const s=summaryForPerson(person);
+    return `<tr onclick="selectPerson('${person.id}')">
+      <td><div class="person-row"><div class="avatar" style="${avatarStyle(idx)}">${initials(person.nombre)}</div><div><strong>${person.nombre}</strong><div class="helper">${person.cargo}</div></div></div></td>
+      <td><div>${person.correo}</div><div class="helper">${person.telefono}</div></td>
+      <td>${getProject(person.proyecto_id).nombre}</td>
+      <td>${bucketBadge(s.bucket)}</td>
+      <td><div class="progress-label"><div class="progress" style="width:80px"><span style="width:${s.pct}%;background:${progressColor(s.pct)}"></span></div><span class="helper">${s.pct}%</span></div></td>
+      <td><div class="tool-row"><button class="btn btn-g btn-xs" onclick="event.stopPropagation();openPersonForm('${person.id}')">Editar</button><button class="btn btn-r btn-xs" onclick="event.stopPropagation();deletePerson('${person.id}')">Eliminar</button></div></td>
+    </tr>`;
+  }).join(''):`<tr><td colspan="6"><div class="empty">Aún no hay personas cargadas para este proyecto. Importa un archivo o agrega manualmente.</div></td></tr>`;
+  document.getElementById('pf-project').innerHTML=state.projects.map(p=>`<option value="${p.id}">${p.nombre}</option>`).join('');
+  document.getElementById('pf-project').value=state.ui.editingPersonId?getPerson(state.ui.editingPersonId)?.proyecto_id||state.ui.activeProjectId:state.ui.activeProjectId;
+  document.getElementById('person-form-card').classList.toggle('open',state.ui.peoplePanel==='form');
+  document.getElementById('people-import-card').classList.toggle('open',state.ui.peoplePanel==='import');
+  renderImportPreview();
+  const selected=getPerson(state.ui.selectedPersonId);
+  if(selected && selected.proyecto_id===state.ui.activeProjectId){
+    const s=summaryForPerson(selected);
+    document.getElementById('people-detail').className='';
+    document.getElementById('people-detail').innerHTML=`
+      <div class="callout ${s.bucket==='Completo'?'green':s.bucket==='Sin documentos'?'red':'orange'}">
+        <strong style="font-size:.9rem">${selected.nombre}</strong>
+        <div class="inline-note" style="margin-top:.25rem">${selected.cargo} · ${selected.rut} · ${selected.lastActivity}</div>
+      </div>
+      <div class="tool-row" style="margin:.8rem 0">
+        <button class="btn btn-g btn-sm" onclick="sendReminder('${selected.id}')">Enviar recordatorio</button>
+        <button class="btn btn-p btn-sm" onclick="pushToPlatforms('${selected.id}','people')">Subir a plataformas</button>
+      </div>
+      <div class="doc-grid">${s.docStates.map(d=>`
+        <div class="doc-card" style="border-color:${d.status==='Recibido'?'var(--green-b)':d.status==='Faltante'?'var(--red-b)':'var(--orange-b)'}">
+          <strong><span style="color:${d.status==='Recibido'?'var(--green)':d.status==='Faltante'?'var(--red)':'var(--orange)'}">${d.status==='Recibido'?'✓':d.status==='Faltante'?'✗':'!'}</span>${d.label}</strong>
+          <div class="meta">${d.status}${d.raw?.vencimiento?' · '+shortDate(d.raw.vencimiento):''}</div>
+          ${d.status!=='Recibido'?`<button class="btn btn-g btn-xs" style="margin-top:.5rem" onclick="markDocReceived('${selected.id}','${d.label.replace(/'/g,"\\'")}')">Marcar recibido</button>`:''}
+        </div>`).join('')}</div>`;
+  }else{
+    document.getElementById('people-detail').className='empty';
+    document.getElementById('people-detail').textContent='Selecciona una persona para ver documentos, faltantes y acciones rápidas.';
+  }
+}
+function renderPipelineView(){
+  const project=getProject(state.ui.activeProjectId);
+  const sum=projectSummary(project.id);
+  document.getElementById('pipeline-top-summary').innerHTML=`
+    <div class="phase-summary">
+      <div class="summary-box"><strong>${sum.total}</strong><span>Personas del lote</span></div>
+      <div class="summary-box"><strong>${sum.vencidos+sum.porVencer}</strong><span>Alertas caducidad</span></div>
+      <div class="summary-box"><strong>${sum.completos}</strong><span>Aptos para upload</span></div>
+    </div>
+    <div class="inline-note">Proyecto activo: ${project.nombre}. Los botones del flujo operan sobre este lote demo y recalculan el resto de la app.</div>`;
+  document.getElementById('phase-list').innerHTML=state.pipeline.phases.map((phase,index)=>{
+    const meta=PIPELINE_PHASES[index];
+    const open=index===state.ui.phaseOpen;
+    const payload=phase.payload;
+    const badgeMap={pending:'bv',run:'bb',done:'bg',warn:'bo'};
+    let detail='<div class="empty">Todavía no hay resultados para esta fase.</div>';
+    if(phase.id==='caducidad' && payload?.issues){
+      detail=`<div class="mini-list">${payload.issues.slice(0,5).map(i=>`<div class="mini-item"><div><strong>${i.person.nombre}</strong><div class="sub">${i.doc}</div></div>${bucketBadge(i.status==='Vencido'?'Observado':'Parcial')}</div>`).join('')}</div>`;
+    }
+    if(phase.id==='solicitud' && payload?.emails){
+      detail=`<div class="stack">${payload.emails.slice(0,2).map(e=>`<div class="email-preview"><h4>${e.subject}</h4><pre>${e.body}</pre></div>`).join('')}</div>`;
+    }
+    if(phase.id==='recepcion' && payload?.attachments){
+      detail=`<div class="mini-list">${payload.attachments.slice(0,6).map(a=>`<div class="mini-item"><div><strong>${a.filename}</strong><div class="sub">${a.personName} · ${a.docLabel}</div></div><span class="badge bb">Recibido</span></div>`).join('')}</div>`;
+    }
+    if(phase.id==='clasificacion' && payload?.classified){
+      detail=`<div class="mini-list">${payload.classified.slice(0,6).map(c=>`<div class="mini-item"><div><strong>${c.personName}</strong><div class="sub">${c.docLabel} · confianza ${c.confianza}</div></div><span class="badge bg">Clasificado</span></div>`).join('')}</div>`;
+    }
+    if(phase.id==='control' && payload?.result){
+      detail=`<div class="phase-summary">
+        <div class="summary-box"><strong>${payload.result.completos}</strong><span>Completos</span></div>
+        <div class="summary-box"><strong>${payload.result.parciales}</strong><span>Parciales</span></div>
+        <div class="summary-box"><strong>${payload.result.sinDocs}</strong><span>Sin docs</span></div>
+      </div>`;
+    }
+    if(phase.id==='recordatorio' && payload?.reminders){
+      detail=`<div class="mini-list">${payload.reminders.slice(0,5).map(r=>{const p=getPerson(r.personId);return `<div class="mini-item"><div><strong>${p.nombre}</strong><div class="sub">${p.correo}</div></div><span class="badge bo">Recordatorio</span></div>`}).join('')}</div>`;
+    }
+    return `<div class="phase ${phase.status} ${open?'open':''}">
+      <div class="phase-head">
+        <div class="phase-title">
+          <div class="phase-index">${phase.status==='done'?'✓':index+1}</div>
+          <div><strong>Fase ${index+1} · ${meta.title}</strong><span>${meta.desc}</span></div>
+        </div>
+        <div class="phase-actions">
+          <span class="badge ${badgeMap[phase.status]||'bv'}">${phase.status==='pending'?'Pendiente':phase.status==='run'?'En ejecución':phase.status==='done'?'Completa':'Observaciones'}</span>
+          <button class="btn btn-g btn-xs" onclick="togglePhase(${index})">${open?'Ocultar':'Ver detalle'}</button>
+          <button class="btn btn-p btn-xs" onclick="executePhase(${index})" ${state.pipeline.running?'disabled':''}>Ejecutar fase</button>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="callout blue" style="margin-bottom:.85rem"><strong style="font-size:.82rem">Resumen</strong><div class="inline-note" style="margin-top:.22rem">${phase.summary}</div></div>
+        ${detail}
+      </div>
+    </div>`;
+  }).join('');
+}
+function togglePhase(index){
+  state.ui.phaseOpen=state.ui.phaseOpen===index?-1:index;
+  renderPipelineView();
+  saveState();
+}
+function renderControlView(){
+  const tabs=['Todos','Completo','Parcial','Sin documentos','Observado'];
+  document.getElementById('control-tabs').innerHTML=tabs.map(tab=>`<button class="tab ${state.ui.controlFilter===tab?'active':''}" onclick="setControlFilter('${tab}')">${tab}</button>`).join('');
+  const q=document.getElementById('control-search')?.value?.trim().toLowerCase()||'';
+  const people=projectPeople(state.ui.activeProjectId).map(person=>({person,summary:summaryForPerson(person)})).filter(({person,summary})=>{
+    const filterOk=state.ui.controlFilter==='Todos'||summary.bucket===state.ui.controlFilter;
+    const searchOk=!q||[person.nombre,person.rut].join(' ').toLowerCase().includes(q);
+    return filterOk&&searchOk;
+  });
+  const matchedSelection=people.find(({person})=>person.id===state.ui.selectedControlPersonId)?.person||people[0]?.person||null;
+  if(matchedSelection && matchedSelection.id!==state.ui.selectedControlPersonId) state.ui.selectedControlPersonId=matchedSelection.id;
+  document.getElementById('control-summary').textContent=`${people.length} fila(s) para ${state.ui.controlFilter}`;
+  document.getElementById('control-table').innerHTML=people.length?people.map(({person,summary})=>`
+    <tr onclick="selectControlPerson('${person.id}')">
+      <td><div class="person-row"><div class="avatar" style="${avatarStyle(state.people.indexOf(person))}">${initials(person.nombre)}</div><div><strong>${person.nombre}</strong><div class="helper">${person.rut}</div></div></div></td>
+      <td>${getProject(person.proyecto_id).nombre}</td>
+      <td><div class="progress-label"><div class="progress" style="width:84px"><span style="width:${summary.pct}%;background:${progressColor(summary.pct)}"></span></div><span class="helper">${summary.pct}%</span></div></td>
+      <td>${bucketBadge(summary.bucket)}</td>
+      <td>${person.lastActivity}</td>
+      <td><div class="tool-row"><button class="btn btn-g btn-xs" onclick="event.stopPropagation();sendReminder('${person.id}')">Recordar</button><button class="btn btn-p btn-xs" onclick="event.stopPropagation();pushToPlatforms('${person.id}','control')">Subir</button></div></td>
+    </tr>`).join(''):`<tr><td colspan="6"><div class="empty">No hay resultados para este filtro.</div></td></tr>`;
+  const selected=matchedSelection;
+  if(selected && selected.proyecto_id===state.ui.activeProjectId){
+    const s=summaryForPerson(selected);
+    document.getElementById('control-detail').className='';
+    document.getElementById('control-detail').innerHTML=`
+      <div class="callout ${s.bucket==='Completo'?'green':s.bucket==='Sin documentos'?'red':'orange'}">
+        <strong style="font-size:.88rem">${selected.nombre}</strong>
+        <div class="inline-note" style="margin-top:.2rem">${selected.cargo} · ${selected.correo}</div>
+      </div>
+      <div class="tool-row" style="margin:.8rem 0">
+        <button class="btn btn-g btn-sm" onclick="openPersonForm('${selected.id}')">Editar ficha</button>
+        <button class="btn btn-w btn-sm" onclick="sendReminder('${selected.id}')">Enviar recordatorio</button>
+      </div>
+      <div class="doc-grid">${s.docStates.map(d=>`<div class="doc-card" style="border-color:${d.status==='Recibido'?'var(--green-b)':d.status==='Faltante'?'var(--red-b)':'var(--orange-b)'}"><strong>${d.label}</strong><div class="meta">${d.status}${d.raw?.vencimiento?' · '+shortDate(d.raw.vencimiento):''}</div></div>`).join('')}</div>`;
+    const hints=[];
+    if(s.bucket!=='Completo') hints.push({title:'Enviar recordatorio',text:`Faltan ${s.missing+s.expired+s.soon} documento(s) por regularizar.`});
+    if(s.expired) hints.push({title:'Actualizar vencidos',text:`Hay ${s.expired} documento(s) vencidos que bloquean la acreditación.`});
+    if(s.bucket==='Completo') hints.push({title:'Subir a plataformas',text:'La persona ya puede pasar a Workmate / SIGA / LMS según proyecto.'});
+    document.getElementById('control-actions-hints').innerHTML=hints.map(h=>`<div class="mini-item"><div><strong>${h.title}</strong><div class="sub">${h.text}</div></div></div>`).join('');
+  }else{
+    document.getElementById('control-detail').className='empty';
+    document.getElementById('control-detail').textContent='Selecciona una persona para revisar documentos recibidos, faltantes o vencidos.';
+    document.getElementById('control-actions-hints').innerHTML='<div class="empty">Las sugerencias aparecerán cuando selecciones una persona.</div>';
+  }
+}
+function setControlFilter(filter){
+  state.ui.controlFilter=filter;
+  renderControlView();
+  saveState();
+}
+function renderPlatformsView(){
+  const jobs=state.platformJobs;
+  if(!state.ui.selectedPlatformJobId && jobs[0]) state.ui.selectedPlatformJobId=jobs[0].id;
+  const current=jobs.find(j=>j.id===state.ui.selectedPlatformJobId)||null;
+  document.getElementById('platform-job-list').innerHTML=jobs.length?jobs.map(job=>{
+    const person=getPerson(job.personId);
+    const succ=Object.values(job.platforms).filter(p=>p.status==='success').length;
+    const err=Object.values(job.platforms).filter(p=>p.status==='error').length;
+    return `<div class="job-item ${current?.id===job.id?'active':''}" onclick="selectPlatformJob('${job.id}')"><strong>${person?.nombre||'Persona eliminada'}</strong><div class="helper">${getProject(job.projectId)?.nombre||'—'} · ${new Date(job.createdAt).toLocaleString('es-CL')}</div><div class="helper" style="margin-top:.2rem">${succ} ok · ${err} error · origen ${job.source}</div></div>`;
+  }).join(''):`<div class="empty">Todavía no hay subidas simuladas.</div>`;
+  if(!current){
+    document.getElementById('platform-current-job').innerHTML='<div class="empty">Selecciona o genera una subida para ver detalle por plataforma.</div>';
+    document.getElementById('platform-status-grid').innerHTML='';
+    document.getElementById('platform-log-list').innerHTML='';
+    document.getElementById('platform-errors-box').innerHTML='<div class="empty">Sin errores en este momento.</div>';
+    return;
+  }
+  const person=getPerson(current.personId);
+  const succ=Object.values(current.platforms).filter(p=>p.status==='success').length;
+  const err=Object.values(current.platforms).filter(p=>p.status==='error').length;
+  document.getElementById('platform-current-job').innerHTML=`
+    <div class="callout ${err?'orange':'green'}">
+      <strong style="font-size:.9rem">${person.nombre}</strong>
+      <div class="inline-note" style="margin-top:.24rem">${getProject(current.projectId).nombre} · ${current.source} · ${new Date(current.createdAt).toLocaleString('es-CL')}</div>
+    </div>
+    <div class="phase-summary" style="margin-top:.85rem">
+      <div class="summary-box"><strong>${Object.keys(current.platforms).length}</strong><span>Plataformas</span></div>
+      <div class="summary-box"><strong>${succ}</strong><span>Exitosas</span></div>
+      <div class="summary-box"><strong>${err}</strong><span>Errores</span></div>
+    </div>`;
+  document.getElementById('platform-status-grid').innerHTML=Object.entries(current.platforms).map(([pid,slot])=>{
+    const meta=PLATFORM_LIBRARY.find(p=>p.id===pid);
+    const cls=slot.status==='success'?'success':slot.status==='error'?'error':slot.status==='running'?'running':'pending';
+    return `<div class="platform-card ${cls}">
+      <div class="platform-head">
+        <div class="plat-logo" style="background:${meta.color}">${meta.short}</div>
+        <div><h4>${meta.name}</h4><p>${slot.status==='pending'?'En espera':slot.status==='running'?'Subiendo...':slot.status==='success'?'Confirmado':slot.error}</p></div>
+      </div>
+      <div class="tool-row" style="margin-top:.8rem;justify-content:space-between">
+        <div class="helper">${slot.folio?`Folio ${slot.folio}`:'Sin folio aún'}</div>
+        ${slot.status==='error'?`<button class="btn btn-g btn-xs" onclick="retryPlatform('${current.id}','${pid}')">Reintentar</button>`:''}
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('platform-log-list').innerHTML=current.logs.length?current.logs.map(log=>`<div class="log-item"><div>${log.msg}</div><div class="time">${new Date(log.time).toLocaleString('es-CL')}</div></div>`).join(''):'<div class="empty">Sin logs aún.</div>';
+  const errors=Object.entries(current.platforms).filter(([,slot])=>slot.status==='error');
+  document.getElementById('platform-errors-box').innerHTML=errors.length?errors.map(([pid,slot])=>`<div class="mini-item"><div><strong>${platformName(pid)}</strong><div class="sub">${slot.error}</div></div><button class="btn btn-g btn-xs" onclick="retryPlatform('${current.id}','${pid}')">Reintentar</button></div>`).join(''):'<div class="empty">No hay plataformas con error para este trabajo.</div>';
+}
+function loadSettingsProject(projectId){
+  const project=getProject(projectId);
+  document.getElementById('settings-project').value=project.id;
+  document.getElementById('settings-name').value=project.nombre;
+  document.getElementById('settings-client').value=project.cliente;
+  document.getElementById('settings-region').value=project.region;
+  document.getElementById('settings-email').value=project.correo;
+  document.getElementById('settings-docs').innerHTML=DOC_LIBRARY.map(doc=>`<label class="mini-item"><div><strong>${doc.label}</strong><div class="sub">${doc.expirable?'Con vigencia demo':'Sin vigencia demo'}</div></div><input type="checkbox" data-doc="${doc.label}" ${project.documentos_requeridos.includes(doc.label)?'checked':''}></label>`).join('');
+  document.getElementById('settings-platforms').innerHTML=PLATFORM_LIBRARY.map(p=>`<label class="mini-item"><div><strong>${p.name}</strong><div class="sub">${p.id}</div></div><input type="checkbox" data-platform="${p.id}" ${project.plataformas.includes(p.id)?'checked':''}></label>`).join('');
+  const sum=projectSummary(project.id);
+  document.getElementById('settings-impact').innerHTML=`
+    <div class="phase-summary">
+      <div class="summary-box"><strong>${project.documentos_requeridos.length}</strong><span>Docs requeridos</span></div>
+      <div class="summary-box"><strong>${project.plataformas.length}</strong><span>Plataformas</span></div>
+      <div class="summary-box"><strong>${sum.total}</strong><span>Personas afectadas</span></div>
+    </div>
+    <div class="callout blue"><div class="inline-note">Al guardar, el demo recalcula cumplimiento para todas las personas del proyecto activo usando la nueva checklist.</div></div>`;
+}
+function renderSettingsView(){
+  document.getElementById('settings-project').innerHTML=state.projects.map(p=>`<option value="${p.id}">${p.nombre}</option>`).join('');
+  document.getElementById('settings-project').value=state.ui.activeProjectId;
+  document.getElementById('settings-project').onchange=e=>loadSettingsProject(e.target.value);
+  loadSettingsProject(state.ui.activeProjectId);
+}
+
+setInterval(()=>{document.getElementById('now-stamp').textContent=nowText()},30000);
+renderApp();
+</script>
+</body>
+</html>
