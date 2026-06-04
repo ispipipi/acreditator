@@ -744,7 +744,7 @@ tbody tr:last-child td{border-bottom:none}
       <div class="page-head">
         <div>
           <h1>Pipeline de Acreditación</h1>
-          <p>Flujo demo con 6 fases. Cada fase impacta el estado real del proyecto activo y habilita la siguiente.</p>
+          <p>Flujo demo con 7 fases. Cada fase impacta el estado real del proyecto activo y habilita la siguiente.</p>
         </div>
         <div class="head-actions">
           <button class="btn btn-p btn-sm" onclick="runEntirePipeline()">Correr flujo demo</button>
@@ -760,7 +760,7 @@ tbody tr:last-child td{border-bottom:none}
           <div class="card-title"><span class="cdot" style="background:var(--green)"></span>Resultado esperado</div>
           <div class="callout blue">
             <strong style="font-size:.84rem">Meta demo</strong>
-            <div class="inline-note" style="margin-top:.25rem">Mostrar caducidades, generar solicitudes, simular recepción, clasificar documentos, recalcular cumplimiento y enviar recordatorios.</div>
+            <div class="inline-note" style="margin-top:.25rem">Preseleccionar, solicitar documentos, recibir correos, clasificar adjuntos, recalcular control, enviar recordatorios, subir a plataforma y cerrar con certificado descargable.</div>
           </div>
           <div class="tool-row" style="margin-top:.8rem">
             <button class="btn btn-g btn-sm" onclick="pushEligibleToPlatforms()">Subir aptos a plataformas</button>
@@ -923,12 +923,13 @@ const PLATFORM_LIBRARY=[
 ];
 const COLORS=['#4F46E5','#059669','#D97706','#DC2626','#0284C7','#7C3AED','#0D9488','#EA580C','#2563EB','#DB2777','#4C6FFF','#0891B2','#65A30D','#B45309'];
 const PIPELINE_PHASES=[
-  {id:'caducidad',title:'Caducidad',desc:'Detecta documentos vencidos o por vencer y confirma los casos con observación.'},
-  {id:'solicitud',title:'Solicitud',desc:'Genera correos personalizados solo con faltantes o vencidos por persona.'},
-  {id:'recepcion',title:'Recepción',desc:'Simula bandeja entrante o carga manual de archivos de prueba.'},
-  {id:'clasificacion',title:'Clasificación',desc:'Clasifica adjuntos por tipo, persona y vigencia usando lógica simulada.'},
-  {id:'control',title:'Control',desc:'Recalcula cumplimiento por persona y semáforo documental.'},
-  {id:'recordatorio',title:'Recordatorio',desc:'Genera recordatorios para quienes siguen incompletos luego de la recepción.'},
+  {id:'solicitud',title:'Preselección y solicitud',desc:'Se notifica al postulante preseleccionado y se solicita el set completo de documentos.'},
+  {id:'recepcion',title:'Recepción de correos',desc:'Acreditator recibe correos con adjuntos y los deja en bandeja operativa.'},
+  {id:'clasificacion',title:'Clasificación documental',desc:'Los adjuntos se analizan, se identifican y se asignan a la ficha del trabajador.'},
+  {id:'control',title:'Reporte de control',desc:'El sistema recalcula cumplimiento, detecta faltantes y prepara el control operativo.'},
+  {id:'recordatorio',title:'Correo de recordatorio',desc:'Se avisa a quienes faltan por enviar documentos o tengan vigencias próximas a caducar.'},
+  {id:'certificacion',title:'Solicitud a plataforma',desc:'Cuando la carpeta está completa, se simula el ingreso a plataforma y la carga de datos.'},
+  {id:'certificado',title:'Descarga de certificado',desc:'El flujo termina con la descarga del certificado de acreditación emitido por plataforma.'},
 ];
 const IMPORT_SAMPLE=`rut,nombre,correo,telefono,cargo,proyecto
 13.555.777-8,Ignacio Salas,i.salas@contratista.cl,+56 9 9333 1111,Operador Alza Hombre,Pelambres Norte
@@ -1187,7 +1188,7 @@ function projectDashboardStats(projectId){
   return {completos,observados,noRealizados,pendientes};
 }
 function statusBadgeClass(status){
-  return status==='Recibido'?'bg':status==='Vencido'?'br':status==='Por vencer'?'bo':'bv';
+  return status==='Recibido'||status==='Emitido'?'bg':status==='Vencido'?'br':status==='Por vencer'?'bo':'bv';
 }
 function buildDocumentRecord(person,docLabel,status,raw){
   const project=getProject(person.proyecto_id);
@@ -1247,6 +1248,74 @@ function buildDocumentRecord(person,docLabel,status,raw){
       ?`No se ha recibido aún el archivo formal de ${docLabel}. Esta ficha representa la solicitud pendiente que el sistema enviaría al trabajador o contratista.`
       :`Este archivo corresponde a ${docLabel} asociado al expediente de ${person.nombre}. Se utiliza para validar cumplimiento documental dentro del flujo de acreditación del proyecto ${project.nombre}.`
   };
+}
+function buildCertificateRecord(person,job){
+  const project=getProject(person.proyecto_id);
+  const issuedAt=(job?.completedAt || new Date().toISOString()).slice(0,10);
+  return {
+    label:'Certificado de acreditación',
+    status:'Emitido',
+    fileName:`certificado_acreditacion_${person.rut.replace(/\W/g,'')}.pdf`,
+    documentId:`CERT-${person.id.slice(-3)}-${job?.id?.slice(-4)||'FINL'}`,
+    issuedAt,
+    expiresOn:addDays(365),
+    caducado:'No',
+    vencePronto:'No',
+    issuer:'Plataforma de certificación / Acreditator',
+    pages:1,
+    description:'Certificado final emitido una vez completada la acreditación del trabajador en plataforma.',
+    note:'Documento final de salida generado para la demostración del flujo completo.',
+    projectName:project.nombre,
+    projectRequirement:'Sí',
+    holderName:person.nombre,
+    holderRut:person.rut,
+    body:`Se certifica que ${person.nombre} completó satisfactoriamente el proceso de acreditación para ${project.nombre} y quedó habilitado para operar según las reglas documentales vigentes.`,
+    platformSummary:job?Object.entries(job.platforms).filter(([,slot])=>slot.status==='success').map(([pid,slot])=>`${platformName(pid)} · ${slot.folio}`).join(' · '):'Sin plataformas asociadas'
+  };
+}
+function renderRecordInViewer(record,status){
+  document.getElementById('doc-viewer-title').textContent=record.label;
+  document.getElementById('doc-viewer-subtitle').textContent=`${record.holderName} · ${record.projectName} · ${record.fileName}`;
+  document.getElementById('doc-viewer-body').innerHTML=`
+    <div class="doc-meta-grid">
+      <div class="doc-meta-item"><span>Estado</span><strong>${status}</strong></div>
+      <div class="doc-meta-item"><span>Documento ID</span><strong>${record.documentId}</strong></div>
+      <div class="doc-meta-item"><span>Emisor</span><strong>${record.issuer}</strong></div>
+      <div class="doc-meta-item"><span>Emitido</span><strong>${shortDate(record.issuedAt)}</strong></div>
+      <div class="doc-meta-item"><span>Vencimiento</span><strong>${record.expiresOn?shortDate(record.expiresOn):'Sin vencimiento'}</strong></div>
+      <div class="doc-meta-item"><span>Caducado</span><strong>${record.caducado}</strong></div>
+      <div class="doc-meta-item"><span>Vence pronto</span><strong>${record.vencePronto}</strong></div>
+      <div class="doc-meta-item"><span>Requerido en proyecto</span><strong>${record.projectRequirement}</strong></div>
+    </div>
+    <div class="doc-preview">
+      <div class="doc-preview-head">
+        <div>
+          <strong>Expediente visual</strong>
+          <span>Vista original simulada del archivo</span>
+        </div>
+        <span class="badge ${statusBadgeClass(status)}">${status}</span>
+      </div>
+      <div class="doc-preview-body">
+        ${record.caducado==='Sí'?`<div class="doc-preview-alert">Campo caducado: Sí. Este archivo quedó fuera de vigencia y requiere renovación antes de autorizar el acceso.</div>`:''}
+        ${renderDocumentOriginal(record,status)}
+        <div class="doc-preview-footer">Vista generada por Acreditator demo · ${record.pages} página(s) simuladas · archivo de ejemplo no oficial</div>
+      </div>
+    </div>`;
+  document.getElementById('doc-viewer').classList.add('open');
+}
+function openPhaseDocument(personId,docLabel,status='Recibido',overrides={}){
+  const person=getPerson(personId);
+  if(!person) return;
+  const raw={...(person.docs?.[docLabel]||{}),...overrides};
+  const record=buildDocumentRecord(person,docLabel,status,raw);
+  renderRecordInViewer(record,status);
+}
+function openCertificateViewer(personId,jobId){
+  const person=getPerson(personId);
+  if(!person) return;
+  const job=state.platformJobs.find(j=>j.id===jobId)||null;
+  const record=buildCertificateRecord(person,job);
+  renderRecordInViewer(record,'Emitido');
 }
 function groupDocumentsByStatus(docStates){
   const groups={Recibido:[], 'Por vencer':[], Vencido:[], Faltante:[]};
@@ -1693,34 +1762,7 @@ function openDocViewer(personId,docLabel){
   const status=docStatus(person,docLabel);
   const raw=person.docs?.[docLabel] || null;
   const record=buildDocumentRecord(person,docLabel,status,raw);
-  document.getElementById('doc-viewer-title').textContent=record.label;
-  document.getElementById('doc-viewer-subtitle').textContent=`${record.holderName} · ${record.projectName} · ${record.fileName}`;
-  document.getElementById('doc-viewer-body').innerHTML=`
-    <div class="doc-meta-grid">
-      <div class="doc-meta-item"><span>Estado</span><strong>${status}</strong></div>
-      <div class="doc-meta-item"><span>Documento ID</span><strong>${record.documentId}</strong></div>
-      <div class="doc-meta-item"><span>Emisor</span><strong>${record.issuer}</strong></div>
-      <div class="doc-meta-item"><span>Emitido</span><strong>${shortDate(record.issuedAt)}</strong></div>
-      <div class="doc-meta-item"><span>Vencimiento</span><strong>${record.expiresOn?shortDate(record.expiresOn):'Sin vencimiento'}</strong></div>
-      <div class="doc-meta-item"><span>Caducado</span><strong>${record.caducado}</strong></div>
-      <div class="doc-meta-item"><span>Vence pronto</span><strong>${record.vencePronto}</strong></div>
-      <div class="doc-meta-item"><span>Requerido en proyecto</span><strong>${record.projectRequirement}</strong></div>
-    </div>
-    <div class="doc-preview">
-      <div class="doc-preview-head">
-        <div>
-          <strong>Expediente visual</strong>
-          <span>Vista original simulada del archivo</span>
-        </div>
-        <span class="badge ${statusBadgeClass(status)}">${status}</span>
-      </div>
-      <div class="doc-preview-body">
-        ${record.caducado==='Sí'?`<div class="doc-preview-alert">Campo caducado: Sí. Este archivo quedó fuera de vigencia y requiere renovación antes de autorizar el acceso.</div>`:''}
-        ${renderDocumentOriginal(record,status)}
-        <div class="doc-preview-footer">Vista generada por Acreditator demo · ${record.pages} página(s) simuladas · archivo de ejemplo no oficial</div>
-      </div>
-    </div>`;
-  document.getElementById('doc-viewer').classList.add('open');
+  renderRecordInViewer(record,status);
 }
 function closeDocViewer(){
   document.getElementById('doc-viewer').classList.remove('open');
@@ -1747,8 +1789,12 @@ function markDocReceived(personId,docLabel){
 }
 function generateEmailText(person,mode){
   const s=summaryForPerson(person);
-  const items=s.docStates.filter(d=>mode==='solicitud'?d.status==='Faltante'||d.status==='Vencido'||d.status==='Por vencer':d.status!=='Recibido').map(d=>`- ${d.label}`);
-  return `Hola ${person.nombre},\n\nNecesitamos regularizar la acreditación para ${getProject(person.proyecto_id).nombre}.\n\nDocumentos requeridos:\n${items.join('\n')||'- Sin pendientes'}\n\nEste correo es una simulación del demo Acreditator.\n\nSaludos,\nCoordinación de Acreditación`;
+  const project=getProject(person.proyecto_id);
+  const items=s.docStates.filter(d=>mode==='solicitud'?d.status!=='Recibido':d.status!=='Recibido').map(d=>`- ${d.label}`);
+  if(mode==='solicitud'){
+    return `Hola ${person.nombre},\n\nTe informamos que fuiste preseleccionado para ${project.nombre} (${project.cliente}).\n\nPara continuar con tu proceso de acreditación, por favor responde este correo adjuntando el siguiente set documental:\n${items.join('\n')||'- Sin pendientes'}\n\nCuando recibamos los archivos, Acreditator analizará cada documento y actualizará tu ficha automáticamente.\n\nSaludos,\nCoordinación de Acreditación`;
+  }
+  return `Hola ${person.nombre},\n\nTu carpeta documental para ${project.nombre} sigue con observaciones.\n\nDocumentos pendientes o con atención requerida:\n${items.join('\n')||'- Sin pendientes'}\n\nRecuerda responder a este correo con los archivos faltantes o actualizados. Si alguno está pronto a caducar, envíalo renovado para evitar rechazos en plataforma.\n\nSaludos,\nCoordinación de Acreditación`;
 }
 function resetPipeline(){
   state.pipeline.phases=PIPELINE_PHASES.map(p=>({id:p.id,status:'pending',summary:'Aún no ejecutada',payload:null}));
@@ -1780,88 +1826,139 @@ async function executePhase(index){
   const people=projectPeople(projectId);
   const summaries=people.map(p=>({person:p,summary:summaryForPerson(p)}));
   const sleep=ms=>new Promise(r=>setTimeout(r,ms));
-
-  if(phase.id==='caducidad'){
-    await sleep(650);
-    const issues=summaries.flatMap(({person,summary})=>summary.docStates.filter(d=>d.status==='Vencido'||d.status==='Por vencer').map(d=>({person,doc:d.label,status:d.status,vencimiento:person.docs[d.label]?.vencimiento||null})));
-    phase.payload={issues};
-    phase.status='done';
-    phase.summary=`${issues.length} alerta(s) detectadas entre vencidos y por vencer.`;
-    addActivity(`Caducidad ejecutada en ${getProject(projectId).nombre}: ${issues.length} alertas detectadas.`);
-    toast('🧭',phase.summary,'var(--blue)');
-  }
   if(phase.id==='solicitud'){
     await sleep(650);
     const emails=summaries.filter(({summary})=>summary.bucket!=='Completo').map(({person,summary})=>({
       personId:person.id,
-      subject:`Solicitud de documentos — ${person.nombre} — ${getProject(projectId).nombre}`,
+      from:`Coordinación de Acreditación <acreditacion@${getProject(projectId).nombre.toLowerCase().replace(/\s+/g,'')}.cl>`,
+      to:person.correo,
+      subject:`Preselección ${getProject(projectId).nombre} · envío de carpeta documental`,
       body:generateEmailText(person,'solicitud'),
+      sentAt:new Date().toISOString(),
       pending:summary.docStates.filter(d=>d.status!=='Recibido').map(d=>d.label)
     }));
     emails.forEach(e=>{const p=getPerson(e.personId); p.lastActivity='Solicitud enviada';});
     phase.payload={emails};
     phase.status='done';
-    phase.summary=`${emails.length} correo(s) simulados con faltantes personalizados.`;
+    phase.summary=`${emails.length} correo(s) de preselección enviados a postulantes con checklist documental.`;
     addActivity(`Solicitudes generadas para ${emails.length} persona(s).`);
     toast('✉️',phase.summary,'var(--accent)');
   }
   if(phase.id==='recepcion'){
     await sleep(800);
-    const attachments=[];
-    summaries.filter(({summary})=>summary.bucket!=='Completo').slice(0,5).forEach(({person,summary})=>{
-      summary.docStates.filter(d=>d.status==='Faltante'||d.status==='Vencido'||d.status==='Por vencer').slice(0,2).forEach(doc=>{
-        attachments.push({
-          personId:person.id,
-          personName:person.nombre,
-          docLabel:doc.label,
-          filename:doc.label.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,'_')+'_'+person.rut.replace(/\W/g,'')+'.pdf'
-        });
-      });
+    const requested=state.pipeline.phases.find(p=>p.id==='solicitud')?.payload?.emails||[];
+    const inbox=requested.slice(0,5).map((mail,idx)=>{
+      const person=getPerson(mail.personId);
+      const summary=summaryForPerson(person);
+      const attachments=summary.docStates.filter(d=>d.status!=='Recibido').slice(0,Math.min(3,summary.docStates.filter(d=>d.status!=='Recibido').length)).map(doc=>({
+        personId:person.id,
+        personName:person.nombre,
+        docLabel:doc.label,
+        filename:`${slugify(doc.label)}_${person.rut.replace(/\W/g,'')}.pdf`,
+        statusAtArrival:doc.status,
+        receivedAt:new Date(Date.now()+idx*60000).toISOString(),
+        sender:person.correo
+      }));
+      person.lastActivity='Correo recibido en bandeja Acreditator';
+      return {
+        id:id('MAIL'),
+        personId:person.id,
+        from:`${person.nombre} <${person.correo}>`,
+        to:'bandeja@acreditator.cl',
+        subject:`Re: ${mail.subject}`,
+        body:`Hola equipo,\nAdjunto los documentos disponibles para continuar con mi acreditación en ${getProject(projectId).nombre}.\nQuedo atento a observaciones.\n\nSaludos,\n${person.nombre}`,
+        receivedAt:new Date(Date.now()+idx*60000).toISOString(),
+        attachments
+      };
     });
-    phase.payload={attachments};
+    phase.payload={inbox};
     phase.status='done';
-    phase.summary=`${attachments.length} archivo(s) simulados en bandeja de entrada.`;
-    addActivity(`Recepción simulada: ${attachments.length} adjuntos listos para clasificar.`);
+    phase.summary=`${inbox.length} correo(s) recibidos en la bandeja de Acreditator con adjuntos listos para análisis.`;
+    addActivity(`Recepción simulada: ${inbox.length} correos ingresaron a la bandeja operativa.`);
     toast('📥',phase.summary,'var(--blue)');
   }
   if(phase.id==='clasificacion'){
     await sleep(900);
-    const received=state.pipeline.phases[2].payload?.attachments||[];
+    const inbox=state.pipeline.phases.find(p=>p.id==='recepcion')?.payload?.inbox||[];
+    const received=inbox.flatMap(mail=>mail.attachments);
     const classified=received.map(file=>{
       const person=getPerson(file.personId);
       const meta=libDoc(file.docLabel);
-      person.docs[file.docLabel]={estado:'Recibido',vencimiento:meta.expirable?addDays(meta.days):null};
-      person.lastActivity=`Documento clasificado: ${file.docLabel}`;
-      return {...file,confianza:(0.91+Math.random()*0.08).toFixed(2)};
+      person.docs[file.docLabel]={estado:'Recibido',vencimiento:meta.expirable?addDays(meta.days):null,fileName:file.filename,issuer:meta.label==='Cédula de identidad'?'Registro Civil e Identificación':'Sistema receptor Acreditator'};
+      person.lastActivity=`Documento analizado e incorporado: ${file.docLabel}`;
+      return {...file,confianza:(0.91+Math.random()*0.08).toFixed(2),bucket:'Ficha actualizada'};
     });
     phase.payload={classified};
     phase.status='done';
-    phase.summary=`${classified.length} documento(s) clasificados y asignados automáticamente.`;
+    phase.summary=`${classified.length} documento(s) clasificados, analizados e incorporados a la ficha y al control.`;
     addActivity(`Clasificación completada: ${classified.length} documentos asignados.`);
     toast('🤖',phase.summary,'var(--green)');
   }
   if(phase.id==='control'){
     await sleep(600);
     const result=projectSummary(projectId);
-    phase.payload={result};
+    const checklist=projectPeople(projectId).map(person=>{
+      const summary=summaryForPerson(person);
+      return {personId:person.id,personName:person.nombre,bucket:summary.bucket,pct:summary.pct,pending:summary.docStates.filter(d=>d.status!=='Recibido').map(d=>`${d.label} · ${d.status}`)};
+    });
+    phase.payload={result,checklist};
     phase.status='done';
-    phase.summary=`Control recalculado: ${result.completos} completos, ${result.parciales} parciales, ${result.sinDocs} sin docs.`;
+    phase.summary=`Control recalculado: ${result.completos} completos, ${result.parciales} con observaciones o pendientes, ${result.sinDocs} sin documentos.`;
     addActivity(`Control recalculado para ${getProject(projectId).nombre}.`);
     toast('📊',phase.summary,'var(--green)');
   }
   if(phase.id==='recordatorio'){
     await sleep(650);
-    const reminders=projectPeople(projectId).map(p=>({person:p,summary:summaryForPerson(p)})).filter(({summary})=>summary.bucket!=='Completo').map(({person})=>({
+    const reminders=projectPeople(projectId).map(p=>({person:p,summary:summaryForPerson(p)})).filter(({summary})=>summary.bucket!=='Completo'||summary.soon>0).map(({person,summary})=>({
       personId:person.id,
-      body:generateEmailText(person,'recordatorio')
+      to:person.correo,
+      subject:`Recordatorio documental · ${getProject(projectId).nombre}`,
+      body:generateEmailText(person,'recordatorio'),
+      pending:summary.docStates.filter(d=>d.status!=='Recibido').map(d=>`${d.label} (${d.status})`)
     }));
     reminders.forEach(r=>{const p=getPerson(r.personId); p.lastActivity='Recordatorio automático generado';});
     phase.payload={reminders};
     phase.status='done';
-    phase.summary=`${reminders.length} recordatorio(s) generados para pendientes restantes.`;
-    state.pipeline.lastRunAt=new Date().toISOString();
+    phase.summary=`${reminders.length} correo(s) de recordatorio generados para faltantes o vigencias por vencer.`;
     addActivity(`Recordatorios generados para ${reminders.length} pendientes.`);
     toast('🔔',phase.summary,'var(--orange)');
+  }
+  if(phase.id==='certificacion'){
+    await sleep(500);
+    const eligible=projectPeople(projectId).filter(p=>summaryForPerson(p).bucket==='Completo');
+    const jobs=[];
+    for(const person of eligible.slice(0,4)){
+      const job=createPlatformJob(person.id,'pipeline-certificacion');
+      job.logs.unshift({msg:'Ingreso automatizado a plataforma de certificación.',time:new Date().toISOString()});
+      await simulatePlatformJob(job.id);
+      jobs.push(job);
+    }
+    phase.payload={jobs:jobs.map(job=>({jobId:job.id,personId:job.personId,status:job.status,platforms:job.platforms,completedAt:job.completedAt||new Date().toISOString()}))};
+    phase.status='done';
+    phase.summary=`${jobs.length} trabajador(es) enviados a plataforma de certificación con simulación de carga y validación.`;
+    addActivity(`Certificación en plataforma ejecutada para ${jobs.length} trabajador(es).`);
+    toast('☁️',phase.summary,'var(--blue)');
+  }
+  if(phase.id==='certificado'){
+    await sleep(450);
+    const certJobs=state.pipeline.phases.find(p=>p.id==='certificacion')?.payload?.jobs||[];
+    const certificates=certJobs.filter(job=>job.status==='done' || job.status==='partial').map(job=>{
+      const person=getPerson(job.personId);
+      person.lastActivity='Certificado de acreditación disponible';
+      return {
+        jobId:job.jobId,
+        personId:person.id,
+        personName:person.nombre,
+        fileName:`certificado_acreditacion_${person.rut.replace(/\W/g,'')}.pdf`,
+        issuedAt:job.completedAt||new Date().toISOString()
+      };
+    });
+    phase.payload={certificates};
+    phase.status='done';
+    phase.summary=`${certificates.length} certificado(s) de acreditación disponibles para descarga.`;
+    state.pipeline.lastRunAt=new Date().toISOString();
+    addActivity(`Proceso finalizado con ${certificates.length} certificado(s) descargables.`);
+    toast('📜',phase.summary,'var(--green)');
   }
   state.pipeline.running=false;
   saveState();
@@ -1941,6 +2038,7 @@ async function simulatePlatformJob(jobId){
   const successCount=results.filter(r=>r.status==='success').length;
   const errorCount=results.filter(r=>r.status==='error').length;
   job.status=errorCount?'partial':'done';
+  job.completedAt=new Date().toISOString();
   const person=getPerson(job.personId);
   person.lastActivity=`Subida ${errorCount?'con observaciones':'exitosa'} a plataformas`;
   job.logs.unshift({msg:`Trabajo finalizado: ${successCount} exitosa(s), ${errorCount} con error.`,time:new Date().toISOString()});
@@ -2211,8 +2309,8 @@ function renderPipelineView(){
   document.getElementById('pipeline-top-summary').innerHTML=`
     <div class="phase-summary">
       <div class="summary-box"><strong>${sum.total}</strong><span>Personas del lote</span></div>
-      <div class="summary-box"><strong>${sum.vencidos+sum.porVencer}</strong><span>Alertas caducidad</span></div>
-      <div class="summary-box"><strong>${sum.completos}</strong><span>Aptos para upload</span></div>
+      <div class="summary-box"><strong>${sum.vencidos+sum.porVencer+sum.sinDocs}</strong><span>Casos con observación</span></div>
+      <div class="summary-box"><strong>${sum.completos}</strong><span>Aptos para certificación</span></div>
     </div>
     <div class="inline-note">Proyecto activo: ${project.nombre}. Los botones del flujo operan sobre este lote demo y recalculan el resto de la app.</div>`;
   document.getElementById('phase-list').innerHTML=state.pipeline.phases.map((phase,index)=>{
@@ -2221,27 +2319,30 @@ function renderPipelineView(){
     const payload=phase.payload;
     const badgeMap={pending:'bv',run:'bb',done:'bg',warn:'bo'};
     let detail='<div class="empty">Todavía no hay resultados para esta fase.</div>';
-    if(phase.id==='caducidad' && payload?.issues){
-      detail=`<div class="mini-list">${payload.issues.slice(0,5).map(i=>`<div class="mini-item"><div><strong>${i.person.nombre}</strong><div class="sub">${i.doc}</div></div>${bucketBadge(i.status==='Vencido'?'Observado':'Parcial')}</div>`).join('')}</div>`;
-    }
     if(phase.id==='solicitud' && payload?.emails){
-      detail=`<div class="stack">${payload.emails.slice(0,2).map(e=>`<div class="email-preview"><h4>${e.subject}</h4><pre>${e.body}</pre></div>`).join('')}</div>`;
+      detail=`<div class="stack">${payload.emails.slice(0,3).map(e=>`<div class="email-preview"><h4>${e.subject}</h4><div class="helper" style="margin-bottom:.45rem">${e.from} · para ${e.to} · ${new Date(e.sentAt).toLocaleString('es-CL')}</div><pre>${e.body}</pre><div class="doc-chip-wrap" style="margin-top:.65rem">${e.pending.map(p=>`<span class="doc-chip">${p}</span>`).join('')}</div></div>`).join('')}</div>`;
     }
-    if(phase.id==='recepcion' && payload?.attachments){
-      detail=`<div class="mini-list">${payload.attachments.slice(0,6).map(a=>`<div class="mini-item"><div><strong>${a.filename}</strong><div class="sub">${a.personName} · ${a.docLabel}</div></div><span class="badge bb">Recibido</span></div>`).join('')}</div>`;
+    if(phase.id==='recepcion' && payload?.inbox){
+      detail=`<div class="stack">${payload.inbox.slice(0,4).map(mail=>`<div class="email-preview"><h4>${mail.subject}</h4><div class="helper" style="margin-bottom:.45rem">${mail.from} · recibido ${new Date(mail.receivedAt).toLocaleString('es-CL')}</div><pre>${mail.body}</pre><div class="mini-list" style="margin-top:.65rem">${mail.attachments.map(att=>`<div class="mini-item"><div><strong>${att.filename}</strong><div class="sub">${att.personName} · ${att.docLabel}</div></div><button class="btn btn-g btn-xs" onclick="openPhaseDocument('${att.personId}','${att.docLabel}','${att.statusAtArrival==='Faltante'?'Recibido':att.statusAtArrival}',{fileName:'${att.filename}',note:'Adjunto recibido por correo en bandeja Acreditator',issuer:'Correo entrante / Postulante'})">Ver documento</button></div>`).join('')}</div></div>`).join('')}</div>`;
     }
     if(phase.id==='clasificacion' && payload?.classified){
-      detail=`<div class="mini-list">${payload.classified.slice(0,6).map(c=>`<div class="mini-item"><div><strong>${c.personName}</strong><div class="sub">${c.docLabel} · confianza ${c.confianza}</div></div><span class="badge bg">Clasificado</span></div>`).join('')}</div>`;
+      detail=`<div class="mini-list">${payload.classified.slice(0,8).map(c=>`<div class="mini-item"><div><strong>${c.personName}</strong><div class="sub">${c.docLabel} · confianza ${c.confianza} · ${c.bucket}</div></div><div class="tool-row"><button class="btn btn-g btn-xs" onclick="openDocViewer('${c.personId}','${c.docLabel}')">Ver ficha</button><button class="btn btn-g btn-xs" onclick="openPhaseDocument('${c.personId}','${c.docLabel}','Recibido',{fileName:'${c.filename}',note:'Documento clasificado automáticamente y agregado a ficha.'})">Ver original</button></div></div>`).join('')}</div>`;
     }
     if(phase.id==='control' && payload?.result){
       detail=`<div class="phase-summary">
         <div class="summary-box"><strong>${payload.result.completos}</strong><span>Completos</span></div>
         <div class="summary-box"><strong>${payload.result.parciales}</strong><span>Parciales</span></div>
         <div class="summary-box"><strong>${payload.result.sinDocs}</strong><span>Sin docs</span></div>
-      </div>`;
+      </div><div class="mini-list">${payload.checklist.slice(0,6).map(item=>`<div class="mini-item"><div><strong>${item.personName}</strong><div class="sub">${item.pending.length?item.pending.join(' · '):'Sin observaciones pendientes'}</div></div><div>${bucketBadge(item.bucket)}</div></div>`).join('')}</div>`;
     }
     if(phase.id==='recordatorio' && payload?.reminders){
-      detail=`<div class="mini-list">${payload.reminders.slice(0,5).map(r=>{const p=getPerson(r.personId);return `<div class="mini-item"><div><strong>${p.nombre}</strong><div class="sub">${p.correo}</div></div><span class="badge bo">Recordatorio</span></div>`}).join('')}</div>`;
+      detail=`<div class="stack">${payload.reminders.slice(0,4).map(r=>{const p=getPerson(r.personId);return `<div class="email-preview"><h4>${r.subject}</h4><div class="helper" style="margin-bottom:.45rem">Para ${r.to}</div><pre>${r.body}</pre><div class="doc-chip-wrap" style="margin-top:.65rem">${r.pending.map(pend=>`<span class="doc-chip">${pend}</span>`).join('')}</div></div>`}).join('')}</div>`;
+    }
+    if(phase.id==='certificacion' && payload?.jobs){
+      detail=`<div class="mini-list">${payload.jobs.map(job=>{const p=getPerson(job.personId);const approved=Object.entries(job.platforms).map(([pid,slot])=>`${platformName(pid)} ${slot.folio||slot.status}`).join(' · ');return `<div class="mini-item"><div><strong>${p.nombre}</strong><div class="sub">Ingreso simulado a plataforma · ${approved}</div></div><button class="btn btn-g btn-xs" onclick="goToById('platforms');selectPlatformJob('${job.jobId}')">Ver subida</button></div>`}).join('')}</div>`;
+    }
+    if(phase.id==='certificado' && payload?.certificates){
+      detail=`<div class="mini-list">${payload.certificates.map(cert=>`<div class="mini-item"><div><strong>${cert.personName}</strong><div class="sub">${cert.fileName} · ${new Date(cert.issuedAt).toLocaleString('es-CL')}</div></div><button class="btn btn-p btn-xs" onclick="openCertificateViewer('${cert.personId}','${cert.jobId}')">Descargar / ver certificado</button></div>`).join('')}</div>`;
     }
     return `<div class="phase ${phase.status} ${open?'open':''}">
       <div class="phase-head">
