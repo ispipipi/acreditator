@@ -217,6 +217,42 @@ tbody tr:last-child td{border-bottom:none}
 .doc-card{border:1px solid var(--border);background:var(--surface2);border-radius:12px;padding:.72rem}
 .doc-card strong{display:flex;align-items:center;gap:.35rem;font-size:.78rem}
 .doc-card .meta{margin-top:.22rem;font-size:.65rem;color:var(--t2);font-family:var(--mono)}
+.doc-sections{display:flex;flex-direction:column;gap:.9rem}
+.doc-section{border:1px solid var(--border);border-radius:14px;padding:.85rem;background:linear-gradient(180deg,#fff 0%,#fbfcff 100%)}
+.doc-section-head{display:flex;align-items:center;justify-content:space-between;gap:.65rem;margin-bottom:.7rem}
+.doc-section-title{font-size:.72rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.8px;color:var(--t2);font-weight:700}
+.doc-section-count{font-size:.66rem;font-family:var(--mono);color:var(--t2)}
+.doc-section-grid{display:grid;grid-template-columns:1fr;gap:.55rem}
+.doc-entry{border:1px solid var(--border);background:var(--surface2);border-radius:12px;padding:.72rem}
+.doc-entry-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.7rem}
+.doc-entry-title{font-size:.8rem;font-weight:700;color:var(--t0)}
+.doc-entry-sub{margin-top:.18rem;font-size:.66rem;color:var(--t2);font-family:var(--mono);line-height:1.45}
+.doc-entry-actions{display:flex;gap:.45rem;flex-wrap:wrap;margin-top:.65rem}
+.doc-entry-actions .btn{flex:0 0 auto}
+.doc-entry.expired{border-color:var(--red-b);background:var(--red-bg)}
+.doc-entry.missing{border-color:var(--orange-b);background:var(--orange-bg)}
+.doc-entry.soon{border-color:var(--orange-b);background:linear-gradient(180deg,#fff 0%,var(--orange-bg) 100%)}
+.doc-viewer{position:fixed;inset:0;background:rgba(15,23,42,.52);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:1rem;z-index:140}
+.doc-viewer.open{display:flex}
+.doc-viewer-card{width:min(840px,100%);max-height:calc(100vh - 2rem);overflow:auto;border-radius:18px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-lg)}
+.doc-viewer-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;padding:1rem 1.1rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(255,255,255,.96);backdrop-filter:blur(12px)}
+.doc-viewer-head h3{font-size:1rem;letter-spacing:-.4px}
+.doc-viewer-body{padding:1rem 1.1rem 1.2rem}
+.doc-meta-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem;margin-bottom:1rem}
+.doc-meta-item{padding:.68rem .72rem;border-radius:12px;border:1px solid var(--border);background:var(--surface2)}
+.doc-meta-item span{display:block;font-size:.6rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.8px;color:var(--t2);margin-bottom:.15rem}
+.doc-meta-item strong{font-size:.79rem;color:var(--t0)}
+.doc-preview{border:1px solid var(--border);border-radius:14px;background:linear-gradient(180deg,#fff 0%,#fbfcff 100%);overflow:hidden}
+.doc-preview-head{padding:.9rem 1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:.8rem}
+.doc-preview-head strong{font-size:.88rem}
+.doc-preview-head span{font-size:.66rem;color:var(--t2);font-family:var(--mono)}
+.doc-preview-body{padding:1rem}
+.doc-preview-block + .doc-preview-block{margin-top:.85rem}
+.doc-preview-label{font-size:.62rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.8px;color:var(--t2);margin-bottom:.22rem}
+.doc-preview-value{font-size:.81rem;color:var(--t1);line-height:1.55}
+.doc-preview-text{padding:.8rem;border-radius:12px;background:var(--surface2);border:1px solid var(--border)}
+.doc-preview-alert{padding:.8rem;border-radius:12px;background:var(--red-bg);border:1px solid var(--red-b);color:var(--red);font-size:.76rem;font-weight:700}
+.doc-preview-footer{margin-top:.9rem;font-size:.67rem;color:var(--t2);font-family:var(--mono)}
 .phase-list{display:flex;flex-direction:column;gap:.8rem}
 .phase{
   border:1px solid var(--border);border-radius:14px;background:var(--surface);box-shadow:var(--shadow-sm);overflow:hidden
@@ -312,6 +348,8 @@ tbody tr:last-child td{border-bottom:none}
   .donut-wrap{flex-direction:column}
   .bar-row{grid-template-columns:1fr}
   .bar-value{text-align:left}
+  .doc-meta-grid{grid-template-columns:1fr}
+  .doc-viewer-head{flex-direction:column;align-items:flex-start}
   .table-wrap{overflow:visible}
   .table-wrap table{min-width:0}
   .mobile-table table,
@@ -343,6 +381,7 @@ tbody tr:last-child td{border-bottom:none}
   .metric .value{font-size:1.7rem}
   .metric .meta{font-size:.69rem}
   .stats-inline,.phase-summary,.subgrid{grid-template-columns:1fr}
+  .doc-entry-top{flex-direction:column}
   .empty{padding:1rem}
 }
 </style>
@@ -700,6 +739,18 @@ tbody tr:last-child td{border-bottom:none}
 </div>
 
 <div class="toast-stack" id="toast-stack"></div>
+<div class="doc-viewer" id="doc-viewer">
+  <div class="doc-viewer-card">
+    <div class="doc-viewer-head">
+      <div>
+        <h3 id="doc-viewer-title">Documento</h3>
+        <div class="helper" id="doc-viewer-subtitle"></div>
+      </div>
+      <button class="btn btn-g btn-sm" onclick="closeDocViewer()">Cerrar</button>
+    </div>
+    <div class="doc-viewer-body" id="doc-viewer-body"></div>
+  </div>
+</div>
 
 <script>
 const STORAGE_KEY='acreditator-demo-state-v2';
@@ -932,6 +983,7 @@ function addDays(days){
 }
 function id(prefix){return prefix+'-'+Math.random().toString(36).slice(2,8).toUpperCase()}
 function initials(name){return name.split(' ').map(x=>x[0]).join('').slice(0,2)}
+function slugify(text){return text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'')}
 function avatarStyle(index){
   const c=COLORS[index%COLORS.length];
   return `background:${c}18;color:${c};border:1.5px solid ${c}33`;
@@ -965,6 +1017,110 @@ function summaryForPerson(person){
   else if(complete===0 && missing===required.length) bucket='Sin documentos';
   else if(expired>0) bucket='Observado';
   return {required,docStates,complete,expired,soon,missing,pct,bucket};
+}
+function statusBadgeClass(status){
+  return status==='Recibido'?'bg':status==='Vencido'?'br':status==='Por vencer'?'bo':'bv';
+}
+function buildDocumentRecord(person,docLabel,status,raw){
+  const project=getProject(person.proyecto_id);
+  const meta=libDoc(docLabel);
+  const issueBase=new Date();
+  issueBase.setDate(issueBase.getDate() - Math.max(20, meta.days || 45));
+  const issueDate=raw?.emitido_en || issueBase.toISOString().slice(0,10);
+  const expiresOn=raw?.vencimiento || null;
+  const expired=status==='Vencido';
+  const pending=status==='Faltante';
+  const soon=status==='Por vencer';
+  const fileName=raw?.fileName || `${slugify(docLabel)}_${person.rut.replace(/\W/g,'')}.${pending?'html':'pdf'}`;
+  const documentId=raw?.documentId || `DOC-${person.id.slice(-3)}-${slugify(docLabel).slice(0,6).toUpperCase()}`;
+  const issuerMap={
+    'Cédula de identidad':'Registro Civil e Identificación',
+    'Currículum Vitae':'Postulante / Contratista',
+    'Licencia conducir clase B':'Municipalidad / Dirección de Tránsito',
+    'Certificado operador grúa':'OTEC Minera Norte',
+    'Examen pre-ocupacional':'Mutual de Seguridad',
+    'Examen altura geográfica':'Mutual de Seguridad',
+    'Curso ISEM Minería':'NPR Academy',
+    'Curso manejo defensivo':'OTEC Seguridad Vial',
+    'Contrato de trabajo':'Contratista principal',
+    'Certificado antecedentes':'Registro Civil'
+  };
+  const descriptionMap={
+    'Cédula de identidad':'Documento de identidad requerido para validación de acceso y coincidencia de datos personales.',
+    'Currículum Vitae':'Antecedentes curriculares utilizados para validar experiencia y perfil del trabajador.',
+    'Licencia conducir clase B':'Licencia exigida para conducción interna y traslados operativos asociados al proyecto.',
+    'Certificado operador grúa':'Certificado técnico que acredita competencia específica del operador.',
+    'Examen pre-ocupacional':'Evaluación médica base para validar aptitud laboral en faena.',
+    'Examen altura geográfica':'Examen complementario requerido para exposición a altura geográfica.',
+    'Curso ISEM Minería':'Capacitación obligatoria de inducción y seguridad minera.',
+    'Curso manejo defensivo':'Capacitación obligatoria para conducción segura en contexto operacional.',
+    'Contrato de trabajo':'Documento laboral base para respaldo contractual del ingreso.',
+    'Certificado antecedentes':'Certificado legal solicitado por exigencia de cliente o faena.'
+  };
+  const projectRequirement=project.documentos_requeridos.includes(docLabel)?'Sí':'No';
+  return {
+    label:docLabel,
+    status,
+    fileName,
+    documentId,
+    issuedAt:issueDate,
+    expiresOn,
+    caducado:expired?'Sí':'No',
+    vencePronto:soon?'Sí':'No',
+    issuer:raw?.issuer || issuerMap[docLabel] || 'Sistema demo Acreditator',
+    pages:raw?.pages || (pending?1:2),
+    description:descriptionMap[docLabel] || 'Documento asociado al expediente demo de acreditación.',
+    note:raw?.note || person.nota || 'Documento generado para demostración funcional del expediente.',
+    projectName:project.nombre,
+    projectRequirement,
+    holderName:person.nombre,
+    holderRut:person.rut,
+    body:pending
+      ?`No se ha recibido aún el archivo formal de ${docLabel}. Esta ficha representa la solicitud pendiente que el sistema enviaría al trabajador o contratista.`
+      :`Este archivo corresponde a ${docLabel} asociado al expediente de ${person.nombre}. Se utiliza para validar cumplimiento documental dentro del flujo de acreditación del proyecto ${project.nombre}.`
+  };
+}
+function groupDocumentsByStatus(docStates){
+  const groups={Recibido:[], 'Por vencer':[], Vencido:[], Faltante:[]};
+  docStates.forEach(d=>groups[d.status]?.push(d));
+  return groups;
+}
+function renderDocumentSections(person,docStates){
+  const groups=groupDocumentsByStatus(docStates);
+  const order=[
+    {key:'Recibido',title:'Vigentes',badge:'bg'},
+    {key:'Por vencer',title:'Por vencer',badge:'bo'},
+    {key:'Vencido',title:'Caducados',badge:'br'},
+    {key:'Faltante',title:'Pendientes',badge:'bv'}
+  ];
+  return `<div class="doc-sections">${order.map(section=>{
+    const items=groups[section.key]||[];
+    if(!items.length) return '';
+    return `<div class="doc-section">
+      <div class="doc-section-head">
+        <div class="doc-section-title">${section.title}</div>
+        <span class="badge ${section.badge}">${items.length} documento(s)</span>
+      </div>
+      <div class="doc-section-grid">${items.map(item=>{
+        const record=buildDocumentRecord(person,item.label,item.status,item.raw);
+        const entryClass=item.status==='Vencido'?'expired':item.status==='Faltante'?'missing':item.status==='Por vencer'?'soon':'';
+        return `<div class="doc-entry ${entryClass}">
+          <div class="doc-entry-top">
+            <div>
+              <div class="doc-entry-title">${item.label}</div>
+              <div class="doc-entry-sub">${record.fileName}</div>
+            </div>
+            <span class="badge ${statusBadgeClass(item.status)}">${item.status}</span>
+          </div>
+          <div class="doc-entry-sub">${item.raw?.vencimiento?`Vence ${shortDate(item.raw.vencimiento)}`:item.status==='Faltante'?'Archivo pendiente de recepción':'Documento sin vencimiento'}</div>
+          <div class="doc-entry-actions">
+            <button class="btn btn-g btn-xs" onclick="openDocViewer('${person.id}','${item.label.replace(/'/g,"\\'")}')">${item.status==='Faltante'?'Ver solicitud':'Ver documento'}</button>
+            ${item.status!=='Recibido' && item.status!=='Por vencer' ?`<button class="btn btn-w btn-xs" onclick="markDocReceived('${person.id}','${item.label.replace(/'/g,"\\'")}')">Marcar recibido</button>`:''}
+          </div>
+        </div>`;
+      }).join('')}</div>
+    </div>`;
+  }).join('')}</div>`;
 }
 function projectSummary(projectId){
   const people=projectPeople(projectId);
@@ -1217,6 +1373,58 @@ function selectControlPerson(personId){
   state.ui.selectedControlPersonId=personId;
   renderControlView();
   saveState();
+}
+function openDocViewer(personId,docLabel){
+  const person=getPerson(personId);
+  if(!person) return;
+  const status=docStatus(person,docLabel);
+  const raw=person.docs?.[docLabel] || null;
+  const record=buildDocumentRecord(person,docLabel,status,raw);
+  document.getElementById('doc-viewer-title').textContent=record.label;
+  document.getElementById('doc-viewer-subtitle').textContent=`${record.holderName} · ${record.projectName} · ${record.fileName}`;
+  document.getElementById('doc-viewer-body').innerHTML=`
+    <div class="doc-meta-grid">
+      <div class="doc-meta-item"><span>Estado</span><strong>${status}</strong></div>
+      <div class="doc-meta-item"><span>Documento ID</span><strong>${record.documentId}</strong></div>
+      <div class="doc-meta-item"><span>Emisor</span><strong>${record.issuer}</strong></div>
+      <div class="doc-meta-item"><span>Emitido</span><strong>${shortDate(record.issuedAt)}</strong></div>
+      <div class="doc-meta-item"><span>Vencimiento</span><strong>${record.expiresOn?shortDate(record.expiresOn):'Sin vencimiento'}</strong></div>
+      <div class="doc-meta-item"><span>Caducado</span><strong>${record.caducado}</strong></div>
+      <div class="doc-meta-item"><span>Vence pronto</span><strong>${record.vencePronto}</strong></div>
+      <div class="doc-meta-item"><span>Requerido en proyecto</span><strong>${record.projectRequirement}</strong></div>
+    </div>
+    <div class="doc-preview">
+      <div class="doc-preview-head">
+        <div>
+          <strong>${record.label}</strong>
+          <span>${record.fileName}</span>
+        </div>
+        <span class="badge ${statusBadgeClass(status)}">${status}</span>
+      </div>
+      <div class="doc-preview-body">
+        ${record.caducado==='Sí'?`<div class="doc-preview-alert">Campo caducado: Sí. Este archivo quedó fuera de vigencia y requiere renovación antes de autorizar el acceso.</div>`:''}
+        <div class="doc-preview-block">
+          <div class="doc-preview-label">Titular</div>
+          <div class="doc-preview-value">${record.holderName} · RUT ${record.holderRut}</div>
+        </div>
+        <div class="doc-preview-block">
+          <div class="doc-preview-label">Descripción</div>
+          <div class="doc-preview-text"><div class="doc-preview-value">${record.description}</div></div>
+        </div>
+        <div class="doc-preview-block">
+          <div class="doc-preview-label">Contenido del archivo</div>
+          <div class="doc-preview-text">
+            <div class="doc-preview-value">${record.body}</div>
+            <div class="doc-preview-value" style="margin-top:.55rem">Observación demo: ${record.note}</div>
+          </div>
+        </div>
+        <div class="doc-preview-footer">Vista generada por Acreditator demo · ${record.pages} página(s) simuladas · archivo de ejemplo no oficial</div>
+      </div>
+    </div>`;
+  document.getElementById('doc-viewer').classList.add('open');
+}
+function closeDocViewer(){
+  document.getElementById('doc-viewer').classList.remove('open');
 }
 function sendReminder(personId){
   const person=getPerson(personId);
@@ -1642,12 +1850,7 @@ function renderPeopleView(){
         <button class="btn btn-g btn-sm" onclick="sendReminder('${selected.id}')">Enviar recordatorio</button>
         <button class="btn btn-p btn-sm" onclick="pushToPlatforms('${selected.id}','people')">Subir a plataformas</button>
       </div>
-      <div class="doc-grid">${s.docStates.map(d=>`
-        <div class="doc-card" style="border-color:${d.status==='Recibido'?'var(--green-b)':d.status==='Faltante'?'var(--red-b)':'var(--orange-b)'}">
-          <strong><span style="color:${d.status==='Recibido'?'var(--green)':d.status==='Faltante'?'var(--red)':'var(--orange)'}">${d.status==='Recibido'?'✓':d.status==='Faltante'?'✗':'!'}</span>${d.label}</strong>
-          <div class="meta">${d.status}${d.raw?.vencimiento?' · '+shortDate(d.raw.vencimiento):''}</div>
-          ${d.status!=='Recibido'?`<button class="btn btn-g btn-xs" style="margin-top:.5rem" onclick="markDocReceived('${selected.id}','${d.label.replace(/'/g,"\\'")}')">Marcar recibido</button>`:''}
-        </div>`).join('')}</div>`;
+      ${renderDocumentSections(selected,s.docStates)}`;
   }else{
     document.getElementById('people-detail').className='empty';
     document.getElementById('people-detail').textContent='Selecciona una persona para ver documentos, faltantes y acciones rápidas.';
@@ -1749,7 +1952,7 @@ function renderControlView(){
         <button class="btn btn-g btn-sm" onclick="openPersonForm('${selected.id}')">Editar ficha</button>
         <button class="btn btn-w btn-sm" onclick="sendReminder('${selected.id}')">Enviar recordatorio</button>
       </div>
-      <div class="doc-grid">${s.docStates.map(d=>`<div class="doc-card" style="border-color:${d.status==='Recibido'?'var(--green-b)':d.status==='Faltante'?'var(--red-b)':'var(--orange-b)'}"><strong>${d.label}</strong><div class="meta">${d.status}${d.raw?.vencimiento?' · '+shortDate(d.raw.vencimiento):''}</div></div>`).join('')}</div>`;
+      ${renderDocumentSections(selected,s.docStates)}`;
     const hints=[];
     if(s.bucket!=='Completo') hints.push({title:'Enviar recordatorio',text:`Faltan ${s.missing+s.expired+s.soon} documento(s) por regularizar.`});
     if(s.expired) hints.push({title:'Actualizar vencidos',text:`Hay ${s.expired} documento(s) vencidos que bloquean la acreditación.`});
