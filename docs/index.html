@@ -8,19 +8,19 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#EEF3F4;
+  --bg:#F3F7FC;
   --surface:#FFFFFF;
-  --surface2:#F5F8F9;
-  --surface3:#E7F4F1;
-  --border:#D9E4E7;
-  --border2:#B7C7CD;
-  --t0:#0F172A;
-  --t1:#1E293B;
-  --t2:#475569;
+  --surface2:#F7FAFE;
+  --surface3:#EEF4FF;
+  --border:#E2EAF3;
+  --border2:#C6D3E2;
+  --t0:#0B1324;
+  --t1:#172033;
+  --t2:#516074;
   --t3:#94A3B8;
-  --accent:#0F766E;
-  --accent-l:#115E59;
-  --accent-bg:#E7F4F1;
+  --accent:#2563EB;
+  --accent-l:#1D4ED8;
+  --accent-bg:#EEF4FF;
   --green:#059669;
   --green-bg:#ECFDF5;
   --green-b:#A7F3D0;
@@ -30,33 +30,33 @@
   --red:#DC2626;
   --red-bg:#FEF2F2;
   --red-b:#FECACA;
-  --blue:#0284C7;
-  --blue-bg:#F0F9FF;
-  --blue-b:#BAE6FD;
+  --blue:#2563EB;
+  --blue-bg:#EFF6FF;
+  --blue-b:#BFDBFE;
   --font:'Plus Jakarta Sans',sans-serif;
   --mono:'IBM Plex Mono',monospace;
-  --shadow-sm:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
-  --shadow:0 8px 22px rgba(0,0,0,.08),0 3px 8px rgba(0,0,0,.05);
-  --shadow-lg:0 18px 40px rgba(0,0,0,.12),0 6px 14px rgba(0,0,0,.07);
+  --shadow-sm:0 6px 14px rgba(15,23,42,.05),0 1px 2px rgba(15,23,42,.03);
+  --shadow:0 18px 34px rgba(15,23,42,.08),0 8px 16px rgba(15,23,42,.05);
+  --shadow-lg:0 30px 60px rgba(15,23,42,.14),0 12px 22px rgba(15,23,42,.08);
 }
 html,body{height:100%}
-body{font-family:var(--font);background:radial-gradient(circle at top left,#fff,transparent 42%),var(--bg);color:var(--t0);display:flex;flex-direction:column;font-size:14px}
+body{font-family:var(--font);background:radial-gradient(circle at top left,#fff,transparent 36%),linear-gradient(180deg,#F8FBFF 0%,#F3F7FC 58%,#EFF4FA 100%);color:var(--t0);display:flex;flex-direction:column;font-size:14px}
 button,input,select,textarea{font:inherit}
 button{border:none;background:none;cursor:pointer}
 input,select,textarea{border:1px solid var(--border);background:var(--surface2);border-radius:9px;padding:.62rem .78rem;color:var(--t0);transition:all .15s}
-input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(79,70,229,.12);background:var(--surface)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(37,99,235,.12);background:var(--surface)}
 textarea{resize:vertical;min-height:110px}
 ::-webkit-scrollbar{width:6px;height:6px}
 ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:999px}
 .topbar{
-  height:58px;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);
-  display:flex;align-items:center;gap:1rem;padding:0 1.25rem;box-shadow:var(--shadow-sm);position:sticky;top:0;z-index:60
+  height:64px;background:rgba(255,255,255,.9);backdrop-filter:blur(18px);border-bottom:1px solid rgba(198,211,226,.7);
+  display:flex;align-items:center;gap:1rem;padding:0 1.4rem;box-shadow:0 10px 26px rgba(15,23,42,.05);position:sticky;top:0;z-index:60
 }
 .logo{display:flex;align-items:center;gap:.7rem}
-.logo-mark{display:flex;align-items:center;font-size:1rem;font-weight:800;letter-spacing:-.4px}
+.logo-mark{display:flex;align-items:center;font-size:1.02rem;font-weight:800;letter-spacing:-.5px}
 .logo-mark .a{color:var(--t0)}
 .logo-mark .b{color:var(--accent)}
-.logo-pill{font-family:var(--mono);font-size:.63rem;padding:3px 8px;border-radius:999px;background:var(--accent-bg);border:1px solid #C7D2FE;color:var(--accent);text-transform:uppercase;letter-spacing:.8px}
+.logo-pill{font-family:var(--mono);font-size:.63rem;padding:3px 8px;border-radius:999px;background:var(--accent-bg);border:1px solid var(--blue-b);color:var(--accent);text-transform:uppercase;letter-spacing:.8px}
 .top-controls{display:flex;align-items:center;gap:.55rem;flex-wrap:wrap}
 .topbar .sp{flex:1}
 .top-meta{display:flex;align-items:center;gap:.75rem}
@@ -65,16 +65,16 @@ textarea{resize:vertical;min-height:110px}
 @keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(5,150,105,.4)}60%{opacity:.65;box-shadow:0 0 0 5px rgba(5,150,105,0)}}
 .shell{display:flex;flex:1;min-height:0}
 .sidebar{
-  width:232px;flex-shrink:0;background:linear-gradient(180deg,#fff 0%,#fbfcff 100%);border-right:1px solid var(--border);
-  padding:.95rem .72rem;display:flex;flex-direction:column;gap:.2rem;overflow-y:auto
+  width:244px;flex-shrink:0;background:linear-gradient(180deg,#FFFFFF 0%,#F8FBFF 100%);border-right:1px solid var(--border);
+  padding:1rem .78rem;display:flex;flex-direction:column;gap:.24rem;overflow-y:auto;box-shadow:inset -1px 0 0 rgba(255,255,255,.5)
 }
 .nav-label{font-size:.63rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:1px;color:var(--t3);padding:.6rem .55rem .25rem}
 .nav-item{
   display:flex;align-items:center;gap:.62rem;padding:.6rem .7rem;border-radius:10px;border:1px solid transparent;
   color:var(--t2);font-size:.84rem;font-weight:600;transition:all .15s;text-align:left
 }
-.nav-item:hover{background:var(--surface2);color:var(--t1)}
-.nav-item.active{background:var(--accent-bg);border-color:#C7D2FE;color:var(--accent)}
+.nav-item:hover{background:var(--surface2);color:var(--t1);border-color:#EEF2F7}
+.nav-item.active{background:linear-gradient(180deg,#FFFFFF 0%,#F3F7FF 100%);border-color:var(--blue-b);color:var(--accent);box-shadow:0 8px 16px rgba(37,99,235,.08)}
 .nav-icon{width:17px;height:17px;stroke:currentColor;flex-shrink:0}
 .nav-badge{margin-left:auto;font-size:.66rem;font-family:var(--mono);padding:2px 7px;border-radius:999px;background:var(--red-bg);border:1px solid var(--red-b);color:var(--red)}
 .sidebar-foot{margin-top:auto;padding:.85rem .55rem 0;border-top:1px solid var(--border);font-size:.67rem;color:var(--t3);font-family:var(--mono)}
@@ -90,7 +90,7 @@ textarea{resize:vertical;min-height:110px}
   display:inline-flex;align-items:center;justify-content:center;gap:.38rem;border-radius:9px;padding:.56rem .92rem;
   font-size:.8rem;font-weight:700;transition:all .15s;white-space:nowrap
 }
-.btn-p{background:var(--accent);color:#fff;box-shadow:0 4px 14px rgba(79,70,229,.22)}
+.btn-p{background:linear-gradient(135deg,var(--accent) 0%,var(--accent-l) 100%);color:#fff;box-shadow:0 10px 18px rgba(37,99,235,.24)}
 .btn-p:hover{background:var(--accent-l);transform:translateY(-1px)}
 .btn-g{background:var(--surface);color:var(--t1);border:1px solid var(--border)}
 .btn-g:hover{background:var(--surface2);border-color:var(--border2);color:var(--t0)}
@@ -99,7 +99,7 @@ textarea{resize:vertical;min-height:110px}
 .btn-sm{padding:.4rem .75rem;font-size:.74rem}
 .btn-xs{padding:.25rem .58rem;font-size:.68rem}
 .btn:disabled{opacity:.45;cursor:not-allowed;transform:none!important}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.15rem;box-shadow:var(--shadow-sm)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:1.15rem;box-shadow:var(--shadow-sm)}
 .card-title{display:flex;align-items:center;gap:.42rem;font-size:.7rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.8px;color:var(--t2);margin-bottom:.85rem;font-weight:700}
 .card-title .cdot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
 .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:.85rem}
@@ -107,21 +107,22 @@ textarea{resize:vertical;min-height:110px}
 .grid-2{display:grid;grid-template-columns:1.2fr .8fr;gap:1rem}
 .stack{display:flex;flex-direction:column;gap:1rem}
 .metric{
-  position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1rem 1.05rem;box-shadow:var(--shadow-sm)
+  position:relative;overflow:hidden;background:linear-gradient(180deg,#fff 0%,#F9FBFF 100%);border:1px solid var(--border);border-radius:18px;padding:1rem 1.05rem;box-shadow:var(--shadow-sm)
 }
 .metric::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent)}
+.metric::after{content:'';position:absolute;right:-18px;top:-18px;width:76px;height:76px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.12),transparent 65%)}
 .metric.green::before{background:var(--green)}
 .metric.orange::before{background:var(--orange)}
 .metric.red::before{background:var(--red)}
 .metric .label{font-size:.68rem;color:var(--t2);font-family:var(--mono);text-transform:uppercase;letter-spacing:.7px}
-.metric .value{font-size:2rem;line-height:1;font-weight:800;letter-spacing:-1.4px;margin:.35rem 0}
+.metric .value{font-size:2.05rem;line-height:1;font-weight:800;letter-spacing:-1.5px;margin:.42rem 0}
 .metric .meta{font-size:.72rem;color:var(--t2)}
 .metric .meta b{font-weight:700}
 .metric.green .meta b{color:var(--green)}
 .metric.orange .meta b{color:var(--orange)}
 .metric.red .meta b{color:var(--red)}
 .metric.clickable{cursor:pointer;transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}
-.metric.clickable:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--border2)}
+.metric.clickable:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--blue-b)}
 .badge{display:inline-flex;align-items:center;gap:.3rem;padding:3px 8px;border-radius:999px;font-size:.67rem;font-family:var(--mono);font-weight:700;border:1px solid transparent;white-space:nowrap}
 .badge::before{content:'';width:6px;height:6px;border-radius:50%}
 .bg{background:var(--green-bg);border-color:var(--green-b);color:var(--green)}
@@ -271,38 +272,71 @@ tbody tr:last-child td{border-bottom:none}
 .doc-sample-page-tag{padding:.28rem .48rem;border-radius:999px;background:var(--surface2);border:1px solid var(--border);font-size:.62rem;font-family:var(--mono);text-transform:uppercase;color:var(--t2)}
 .doc-sample-caption{margin-top:.75rem;font-size:.72rem;color:var(--t2);line-height:1.5}
 .dashboard-hero{
-  position:relative;overflow:hidden;border:1px solid #C8D8DC;border-radius:24px;padding:1.2rem 1.2rem 1.15rem;
+  position:relative;overflow:hidden;border:1px solid var(--border);border-radius:28px;padding:1.25rem 1.25rem 1.2rem;
   background:
-    radial-gradient(circle at top right,rgba(15,118,110,.18),transparent 30%),
-    linear-gradient(135deg,#0F172A 0%,#10243B 54%,#0F766E 135%);
-  color:#F8FAFC;box-shadow:var(--shadow-lg);margin-bottom:1rem
+    radial-gradient(circle at top right,rgba(37,99,235,.14),transparent 26%),
+    radial-gradient(circle at bottom left,rgba(14,165,233,.08),transparent 30%),
+    linear-gradient(180deg,#FFFFFF 0%,#F6FAFF 100%);
+  color:var(--t0);box-shadow:var(--shadow-lg);margin-bottom:1rem
 }
 .dashboard-hero::after{
   content:'';position:absolute;inset:auto -80px -80px auto;width:220px;height:220px;border-radius:50%;
-  background:radial-gradient(circle,rgba(255,255,255,.12),transparent 62%)
+  background:radial-gradient(circle,rgba(37,99,235,.12),transparent 62%)
 }
-.dashboard-hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:1rem;position:relative;z-index:1}
-.dashboard-brand{display:flex;align-items:flex-start;gap:1rem}
+.dashboard-hero-grid{display:grid;grid-template-columns:1.22fr .78fr;gap:1rem;position:relative;z-index:1}
+.dashboard-brand{display:grid;grid-template-columns:1.2fr .8fr;align-items:stretch;gap:1rem}
+.dashboard-brand-main{display:flex;align-items:flex-start;gap:1rem}
+.dashboard-brand-aside{display:flex;flex-direction:column;gap:.7rem}
+.dashboard-aside-card{padding:.9rem .95rem;border-radius:18px;border:1px solid var(--border);background:rgba(255,255,255,.88);box-shadow:var(--shadow-sm)}
+.dashboard-aside-card.accent{background:linear-gradient(135deg,#EEF4FF 0%,#F8FBFF 100%);border-color:var(--blue-b)}
+.dashboard-aside-card span{display:block;font-size:.58rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.85px;color:var(--t2)}
+.dashboard-aside-card strong{display:block;font-size:.95rem;letter-spacing:-.45px;margin-top:.25rem;color:var(--t0)}
+.dashboard-aside-card p{margin-top:.24rem;font-size:.73rem;line-height:1.5;color:var(--t2)}
 .dashboard-logo{
   width:70px;height:70px;border-radius:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(10px);font-size:1.15rem;font-weight:800;letter-spacing:-.7px
+  background:linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%);border:1px solid rgba(37,99,235,.22);color:#fff;box-shadow:0 16px 28px rgba(37,99,235,.24);font-size:1.15rem;font-weight:800;letter-spacing:-.7px
 }
-.dashboard-eyebrow{font-size:.66rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:1px;color:rgba(248,250,252,.7);margin-bottom:.35rem}
-.dashboard-project{font-size:1.7rem;font-weight:800;letter-spacing:-1px;line-height:1.02}
-.dashboard-project-sub{margin-top:.4rem;font-size:.82rem;color:rgba(248,250,252,.82);max-width:720px}
+.dashboard-eyebrow{font-size:.66rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:1px;color:var(--accent);margin-bottom:.35rem}
+.dashboard-project{font-size:1.84rem;font-weight:800;letter-spacing:-1.2px;line-height:1.02;color:var(--t0)}
+.dashboard-project-sub{margin-top:.42rem;font-size:.82rem;color:var(--t2);max-width:720px;line-height:1.55}
 .dashboard-meta-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.8rem}
 .hero-chip{
   display:inline-flex;align-items:center;gap:.35rem;padding:.45rem .75rem;border-radius:999px;
-  border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.08);font-size:.68rem;color:#F8FAFC;font-family:var(--mono)
+  border:1px solid var(--blue-b);background:var(--accent-bg);font-size:.68rem;color:var(--accent);font-family:var(--mono)
 }
 .hero-summary{
-  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:1rem;backdrop-filter:blur(12px)
+  background:linear-gradient(135deg,#1D4ED8 0%,#2563EB 68%,#1E40AF 100%);border:1px solid rgba(37,99,235,.2);border-radius:24px;padding:1rem;box-shadow:0 22px 44px rgba(37,99,235,.22)
 }
 .hero-summary h3{font-size:.78rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.9px;color:rgba(248,250,252,.72);margin-bottom:.8rem}
-.hero-summary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.65rem}
-.hero-summary-box{padding:.7rem .72rem;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1)}
-.hero-summary-box strong{display:block;font-size:1.35rem;letter-spacing:-.8px}
+.hero-summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.65rem}
+.hero-summary-box{padding:.78rem .76rem;border-radius:16px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14)}
+.hero-summary-box strong{display:block;font-size:1.42rem;letter-spacing:-.9px}
 .hero-summary-box span{display:block;margin-top:.18rem;font-size:.62rem;font-family:var(--mono);text-transform:uppercase;color:rgba(248,250,252,.7)}
+.dashboard-exec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-bottom:1rem}
+.dashboard-exec-card{border:1px solid var(--border);border-radius:20px;padding:1rem;background:linear-gradient(180deg,#fff 0%,#F9FBFF 100%);box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+.dashboard-exec-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#2563EB 0%,#0EA5E9 100%)}
+.dashboard-exec-card span{display:block;font-size:.62rem;color:var(--t2);font-family:var(--mono);text-transform:uppercase;letter-spacing:.85px}
+.dashboard-exec-card strong{display:block;font-size:1.05rem;letter-spacing:-.55px;margin-top:.34rem}
+.dashboard-exec-card p{margin-top:.32rem;font-size:.74rem;color:var(--t2);line-height:1.5}
+.dashboard-focus-list{display:flex;flex-direction:column;gap:.55rem;margin-top:1rem}
+.dashboard-focus-item{display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;padding:.78rem .82rem;border-radius:16px;border:1px solid var(--border);background:linear-gradient(180deg,#fff 0%,#F9FBFF 100%);box-shadow:var(--shadow-sm);cursor:pointer;transition:transform .14s ease,border-color .14s ease,box-shadow .14s ease}
+.dashboard-focus-item:hover{transform:translateY(-1px);border-color:var(--blue-b);box-shadow:var(--shadow)}
+.dashboard-focus-main{display:flex;align-items:flex-start;gap:.65rem;min-width:0}
+.dashboard-focus-rank{width:30px;height:30px;border-radius:10px;background:var(--accent-bg);border:1px solid var(--blue-b);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:.67rem;font-family:var(--mono);font-weight:700;flex-shrink:0}
+.dashboard-focus-copy strong{display:block;font-size:.8rem}
+.dashboard-focus-copy span{display:block;margin-top:.14rem;font-size:.67rem;color:var(--t2);font-family:var(--mono);line-height:1.45}
+.person-inline-link{border:none;background:none;padding:0;color:var(--accent);font:inherit;font-weight:800;cursor:pointer;text-align:left}
+.person-inline-link:hover{text-decoration:underline}
+.person-inline-link.subtle{font-weight:700;color:var(--t1)}
+.dossier-alert-strip{display:flex;flex-wrap:wrap;gap:.5rem}
+.dossier-alert-chip{display:inline-flex;align-items:center;gap:.38rem;padding:.48rem .72rem;border-radius:999px;border:1px solid var(--border);background:var(--surface2);font-size:.66rem;font-family:var(--mono);color:var(--t1)}
+.dossier-alert-chip::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.dossier-alert-chip.red{background:var(--red-bg);border-color:var(--red-b);color:var(--red)}
+.dossier-alert-chip.red::before{background:var(--red)}
+.dossier-alert-chip.orange{background:var(--orange-bg);border-color:var(--orange-b);color:var(--orange)}
+.dossier-alert-chip.orange::before{background:var(--orange)}
+.dossier-alert-chip.green{background:var(--green-bg);border-color:var(--green-b);color:var(--green)}
+.dossier-alert-chip.green::before{background:var(--green)}
 .status-board{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem}
 .status-column{border:1px solid var(--border);border-radius:18px;padding:.95rem;background:linear-gradient(180deg,#fff 0%,#f9fbfb 100%)}
 .status-column.complete{border-color:var(--green-b)}
@@ -334,39 +368,45 @@ tbody tr:last-child td{border-bottom:none}
 .project-bar-mini span{display:block;font-size:.56rem;color:var(--t2);font-family:var(--mono);text-transform:uppercase}
 .dossier{display:flex;flex-direction:column;gap:1rem}
 .dossier-hero{
-  position:relative;overflow:hidden;border-radius:22px;padding:1rem 1rem 1.05rem;color:#F8FAFC;
-  background:linear-gradient(135deg,#0F172A 0%,#173654 58%,var(--person-accent,#0F766E) 135%);
-  box-shadow:var(--shadow)
+  position:relative;overflow:hidden;border-radius:24px;padding:1.05rem 1.05rem 1.1rem;color:var(--t0);
+  background:
+    radial-gradient(circle at top right,rgba(37,99,235,.12),transparent 28%),
+    linear-gradient(180deg,#FFFFFF 0%,#F7FAFF 100%);
+  border:1px solid var(--border);box-shadow:var(--shadow)
 }
 .dossier-hero::after{
   content:'';position:absolute;right:-40px;bottom:-55px;width:180px;height:180px;border-radius:50%;
-  background:radial-gradient(circle,rgba(255,255,255,.13),transparent 62%)
+  background:radial-gradient(circle,rgba(37,99,235,.12),transparent 62%)
 }
 .dossier-hero-main{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;position:relative;z-index:1}
 .dossier-person{display:flex;align-items:flex-start;gap:.9rem}
 .dossier-avatar{
   width:68px;height:68px;border-radius:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.16);font-size:1.1rem;font-weight:800
+  background:linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%);border:1px solid rgba(37,99,235,.18);box-shadow:0 14px 24px rgba(37,99,235,.18);font-size:1.1rem;font-weight:800;color:#fff
 }
-.dossier-name{font-size:1.32rem;font-weight:800;letter-spacing:-.8px;line-height:1.05}
-.dossier-role{margin-top:.26rem;font-size:.8rem;color:rgba(248,250,252,.8)}
+.dossier-name{font-size:1.38rem;font-weight:800;letter-spacing:-.9px;line-height:1.05;color:var(--t0)}
+.dossier-role{margin-top:.26rem;font-size:.8rem;color:var(--t2)}
 .dossier-tags{display:flex;gap:.42rem;flex-wrap:wrap;margin-top:.68rem}
 .dossier-tag{
-  padding:.42rem .7rem;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
-  font-size:.64rem;font-family:var(--mono);color:#F8FAFC
+  padding:.42rem .7rem;border-radius:999px;background:var(--accent-bg);border:1px solid var(--blue-b);
+  font-size:.64rem;font-family:var(--mono);color:var(--accent)
 }
 .dossier-score{
-  min-width:148px;padding:.95rem;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px)
+  min-width:148px;padding:.95rem;border-radius:20px;background:linear-gradient(135deg,#1D4ED8 0%,#2563EB 100%);border:1px solid rgba(37,99,235,.2);box-shadow:0 20px 38px rgba(37,99,235,.22)
 }
 .dossier-score .big{display:block;font-size:2rem;font-weight:800;letter-spacing:-1.2px}
 .dossier-score .small{display:block;margin-top:.18rem;font-size:.62rem;font-family:var(--mono);text-transform:uppercase;color:rgba(248,250,252,.72)}
 .dossier-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem}
-.dossier-kpi{padding:.78rem .8rem;border-radius:16px;border:1px solid var(--border);background:linear-gradient(180deg,#fff 0%,#f9fbfb 100%)}
+.dossier-kpi{padding:.82rem .84rem;border-radius:18px;border:1px solid var(--border);background:linear-gradient(180deg,#fff 0%,#F8FBFF 100%);box-shadow:var(--shadow-sm)}
 .dossier-kpi span{display:block;font-size:.6rem;color:var(--t2);font-family:var(--mono);text-transform:uppercase;letter-spacing:.8px}
-.dossier-kpi strong{display:block;font-size:1.18rem;letter-spacing:-.7px;margin-top:.26rem}
+.dossier-kpi strong{display:block;font-size:1.22rem;letter-spacing:-.8px;margin-top:.26rem}
 .dossier-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:.85rem}
-.dossier-panel{border:1px solid var(--border);border-radius:18px;padding:.95rem;background:linear-gradient(180deg,#fff 0%,#fbfcfc 100%)}
-.dossier-panel h4{font-size:.76rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.9px;color:var(--t2);margin-bottom:.75rem}
+.dossier-panel{border:1px solid var(--border);border-radius:22px;padding:1rem;background:linear-gradient(180deg,#fff 0%,#FBFDFF 100%);box-shadow:var(--shadow-sm)}
+.dossier-panel h4{font-size:.76rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.9px;color:var(--accent);margin-bottom:.75rem}
+.dossier-profile-banner{display:grid;grid-template-columns:repeat(3,1fr);gap:.55rem;margin-bottom:.72rem}
+.dossier-profile-pill{padding:.7rem .74rem;border-radius:14px;background:var(--surface2);border:1px solid var(--border)}
+.dossier-profile-pill span{display:block;font-size:.56rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.8px;color:var(--t2)}
+.dossier-profile-pill strong{display:block;margin-top:.16rem;font-size:.8rem;color:var(--t0)}
 .dossier-info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.55rem}
 .dossier-info{padding:.68rem .72rem;border-radius:12px;border:1px solid var(--border);background:var(--surface2)}
 .dossier-info span{display:block;font-size:.58rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.8px;color:var(--t2);margin-bottom:.15rem}
@@ -376,7 +416,20 @@ tbody tr:last-child td{border-bottom:none}
 .dossier-step{padding:.68rem .72rem;border-radius:12px;border:1px solid var(--border);background:var(--surface2)}
 .dossier-step strong{display:block;font-size:.78rem}
 .dossier-step span{display:block;margin-top:.15rem;font-size:.68rem;color:var(--t2);font-family:var(--mono)}
+.dossier-action-callout{padding:.92rem .96rem;border-radius:18px;background:linear-gradient(180deg,#EFF6FF 0%,#F8FBFF 100%);border:1px solid var(--blue-b)}
+.dossier-action-callout strong{display:block;font-size:.84rem;color:var(--blue)}
+.dossier-action-callout p{margin-top:.28rem;font-size:.74rem;line-height:1.55;color:var(--t1)}
+.priority-doc-list{display:flex;flex-direction:column;gap:.6rem}
+.priority-doc-item{display:flex;align-items:flex-start;justify-content:space-between;gap:.7rem;padding:.78rem .82rem;border:1px solid var(--border);border-radius:16px;background:linear-gradient(180deg,#fff 0%,#F9FBFF 100%);box-shadow:var(--shadow-sm)}
+.priority-doc-main{display:flex;align-items:flex-start;gap:.7rem;min-width:0}
+.priority-doc-rank{width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--accent-bg);border:1px solid var(--blue-b);font-size:.67rem;font-family:var(--mono);color:var(--accent);font-weight:700}
+.priority-doc-copy strong{display:block;font-size:.8rem}
+.priority-doc-copy span{display:block;margin-top:.15rem;font-size:.68rem;color:var(--t2);font-family:var(--mono);line-height:1.45}
 .dossier-doc-block{border-top:1px solid var(--border);padding-top:1rem}
+.control-priority-list{display:flex;flex-direction:column;gap:.6rem}
+.control-priority-item{display:flex;align-items:flex-start;justify-content:space-between;gap:.7rem;padding:.78rem .82rem;border:1px solid var(--border);border-radius:16px;background:linear-gradient(180deg,#fff 0%,#F9FBFF 100%);box-shadow:var(--shadow-sm)}
+.control-priority-item strong{display:block;font-size:.8rem}
+.control-priority-item .sub{margin-top:.15rem}
 .doc-original{display:flex;flex-direction:column;gap:.95rem}
 .doc-page{
   position:relative;border:1px solid #D6DEE6;border-radius:18px;background:#fff;padding:1.1rem 1.1rem 1rem;
@@ -443,6 +496,8 @@ tbody tr:last-child td{border-bottom:none}
 .summary-box span{font-size:.62rem;color:var(--t2);font-family:var(--mono);text-transform:uppercase}
 .mini-list{display:flex;flex-direction:column;gap:.45rem}
 .mini-item{display:flex;align-items:flex-start;justify-content:space-between;gap:.7rem;padding:.62rem .72rem;border:1px solid var(--border);border-radius:10px;background:var(--surface2)}
+.mini-item.clickable{cursor:pointer;transition:transform .14s ease,border-color .14s ease,box-shadow .14s ease}
+.mini-item.clickable:hover{transform:translateY(-1px);border-color:var(--blue-b);box-shadow:var(--shadow-sm)}
 .mini-item .sub{font-size:.68rem;color:var(--t2);font-family:var(--mono);margin-top:.15rem}
 .email-preview{padding:.8rem;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
 .email-preview h4{font-size:.82rem;margin-bottom:.3rem}
@@ -513,8 +568,9 @@ tbody tr:last-child td{border-bottom:none}
 .scan-pages{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem}
 .scan-page{
   position:relative;height:128px;border-radius:14px;padding:.7rem;background:linear-gradient(180deg,#fff 0%,#EEF4F6 100%);
-  border:1px solid rgba(255,255,255,.16);color:var(--t1);box-shadow:0 8px 20px rgba(15,23,42,.22)
+  border:1px solid rgba(255,255,255,.16);color:var(--t1);box-shadow:0 8px 20px rgba(15,23,42,.22);cursor:pointer;transition:transform .14s ease,box-shadow .14s ease
 }
+.scan-page:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(15,23,42,.26)}
 .scan-page::before{
   content:'';position:absolute;left:10px;right:10px;top:14px;height:2px;background:rgba(15,23,42,.1);
   box-shadow:0 18px 0 rgba(15,23,42,.08),0 36px 0 rgba(15,23,42,.08),0 54px 0 rgba(15,23,42,.08)
@@ -576,9 +632,9 @@ tbody tr:last-child td{border-bottom:none}
 .subgrid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .footer-note{font-size:.67rem;color:var(--t3);font-family:var(--mono)}
 @media (max-width:1200px){
-  .grid-4,.quick-grid,.phase-summary,.stats-inline,.status-board,.dossier-kpis{grid-template-columns:repeat(2,1fr)}
+  .grid-4,.quick-grid,.phase-summary,.stats-inline,.status-board,.dossier-kpis,.dashboard-exec-grid{grid-template-columns:repeat(2,1fr)}
   .grid-2,.panel-grid,.split,.subgrid{grid-template-columns:1fr}
-  .dashboard-hero-grid,.dossier-grid{grid-template-columns:1fr}
+  .dashboard-hero-grid,.dossier-grid,.dashboard-brand{grid-template-columns:1fr}
   .project-grid,.platform-grid{grid-template-columns:1fr}
 }
 @media (max-width:1024px){
@@ -592,7 +648,7 @@ tbody tr:last-child td{border-bottom:none}
   .tool-row > *{max-width:100%}
   .mini-item{flex-direction:column;align-items:flex-start}
   .platform-head{align-items:flex-start}
-  .project-bar-meta,.hero-summary-grid,.doc-page-grid,.doc-signatures,.dossier-info-grid,.doc-id-card-grid{grid-template-columns:1fr 1fr}
+  .project-bar-meta,.hero-summary-grid,.doc-page-grid,.doc-signatures,.dossier-info-grid,.doc-id-card-grid,.dossier-profile-banner{grid-template-columns:1fr 1fr}
   .scan-pages{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:820px){
@@ -608,7 +664,7 @@ tbody tr:last-child td{border-bottom:none}
   .nav-item{min-width:128px;justify-content:center;padding:.7rem .8rem}
   .nav-item .nav-badge{margin-left:.35rem}
   .content{padding:1rem}
-  .grid-4,.quick-grid,.doc-grid,.form-grid,.status-board,.dossier-kpis,.hero-summary-grid,.project-bar-meta,.doc-page-grid,.doc-signatures,.dossier-info-grid,.doc-id-card-grid,.scan-pages,.classification-grid{grid-template-columns:1fr}
+  .grid-4,.quick-grid,.doc-grid,.form-grid,.status-board,.dossier-kpis,.hero-summary-grid,.project-bar-meta,.doc-page-grid,.doc-signatures,.dossier-info-grid,.doc-id-card-grid,.scan-pages,.classification-grid,.dashboard-exec-grid,.dossier-profile-banner{grid-template-columns:1fr}
   .page-head h1{font-size:1.18rem}
   .page-head p{font-size:.72rem}
   .phase-head{flex-direction:column;align-items:flex-start}
@@ -621,6 +677,8 @@ tbody tr:last-child td{border-bottom:none}
   .doc-viewer-head{flex-direction:column;align-items:flex-start}
   .dashboard-brand,.dossier-person,.doc-id-layout,.dossier-hero-main{flex-direction:column}
   .dossier-score{min-width:0;width:100%}
+  .priority-doc-item,.control-priority-item{flex-direction:column}
+  .priority-doc-item .tool-row,.control-priority-item .tool-row{width:100%;justify-content:space-between}
   .table-wrap{overflow:visible}
   .table-wrap table{min-width:0}
   .mobile-table table,
@@ -725,6 +783,7 @@ tbody tr:last-child td{border-bottom:none}
         </div>
       </div>
       <div id="dashboard-hero"></div>
+      <div class="dashboard-exec-grid" id="dashboard-exec-grid"></div>
       <div class="grid-4" id="dashboard-metrics"></div>
       <div class="grid-2" style="margin-top:1rem">
         <div class="card">
@@ -754,6 +813,8 @@ tbody tr:last-child td{border-bottom:none}
             <button class="quick-btn" onclick="goToById('control')"><strong>Revisar control</strong><span>Filtra completos, parciales y sin docs.</span></button>
             <button class="quick-btn" onclick="goToById('platforms')"><strong>Ver plataformas</strong><span>Folios, errores y reintentos.</span></button>
           </div>
+          <div class="card-title" style="margin-top:1rem"><span class="cdot" style="background:var(--red)"></span>Gestión prioritaria</div>
+          <div id="dashboard-focus-list" class="dashboard-focus-list"></div>
           <div class="callout blue" style="margin-top:1rem">
             <strong style="font-size:.84rem">Última simulación</strong>
             <div class="inline-note" id="last-sim-summary" style="margin-top:.25rem">Aún no ejecutas el pipeline en esta sesión.</div>
@@ -919,6 +980,10 @@ tbody tr:last-child td{border-bottom:none}
             <div id="control-detail" class="empty">Selecciona una persona para revisar documentos recibidos, faltantes o vencidos.</div>
           </div>
           <div class="card">
+            <div class="card-title"><span class="cdot" style="background:var(--red)"></span>Prioridad documental</div>
+            <div id="control-priority-list" class="control-priority-list"></div>
+          </div>
+          <div class="card">
             <div class="card-title"><span class="cdot" style="background:var(--orange)"></span>Acciones sugeridas</div>
             <div id="control-actions-hints" class="mini-list"></div>
           </div>
@@ -930,9 +995,10 @@ tbody tr:last-child td{border-bottom:none}
       <div class="page-head">
         <div>
           <h1>Plataformas</h1>
-          <p>Seguimiento de subidas simuladas a Workmate, Sucal, SIGA y LMS BHP con folio, log y reintentos.</p>
+          <p>Seguimiento de subidas simuladas a la casa acreditadora elegida, con folio, log y reintentos.</p>
         </div>
         <div class="head-actions">
+          <button class="btn btn-g btn-sm" onclick="chooseAccreditor(state.ui.activeProjectId,true);renderPipelineView();renderPlatformsView();">Elegir casa acreditadora</button>
           <button class="btn btn-g btn-sm" onclick="pushEligibleToPlatforms()">Subir aptos del proyecto activo</button>
         </div>
       </div>
@@ -1092,47 +1158,47 @@ function defaultProjects(){
 }
 function defaultPeople(){
   return [
-    {id:'PER-001',rut:'12.345.678-9',nombre:'Carlos Gutiérrez',correo:'c.gutierrez@contratista.cl',telefono:'+56 9 8765 4321',cargo:'Operador Grúa',proyecto_id:'PRJ-001',nota:'Caso demo principal',docs:{
+    {id:'PER-001',rut:'12.345.678-9',nombre:'Carlos Gutiérrez',correo:'c.gutierrez@contratista.cl',telefono:'+56 9 8765 4321',cargo:'Operador Grúa',proyecto_id:'PRJ-001',nota:'Bloqueado por licencia vencida y exámenes faltantes',docs:{
       'Cédula de identidad':makeDoc('Cédula de identidad','ok',isoOffset(420)),
       'Currículum Vitae':makeDoc('Currículum Vitae','ok'),
       'Licencia conducir clase B':makeDoc('Licencia conducir clase B','expired',isoOffset(-16)),
       'Examen pre-ocupacional':makeDoc('Examen pre-ocupacional','missing'),
       'Curso ISEM Minería':makeDoc('Curso ISEM Minería','missing'),
       'Contrato de trabajo':makeDoc('Contrato de trabajo','ok')
-    },lastActivity:'Sincronizado desde carga inicial'},
-    {id:'PER-002',rut:'11.222.333-4',nombre:'María López',correo:'m.lopez@contratista.cl',telefono:'+56 9 8111 0022',cargo:'Jefa de Seguridad',proyecto_id:'PRJ-001',nota:'Completa',docs:{
+    },lastActivity:'Observado crítico en control documental'},
+    {id:'PER-002',rut:'11.222.333-4',nombre:'María López',correo:'m.lopez@contratista.cl',telefono:'+56 9 8111 0022',cargo:'Jefa de Seguridad',proyecto_id:'PRJ-001',nota:'Lista para certificación inmediata',docs:{
       'Cédula de identidad':makeDoc('Cédula de identidad','ok',isoOffset(380)),
       'Currículum Vitae':makeDoc('Currículum Vitae','ok'),
       'Licencia conducir clase B':makeDoc('Licencia conducir clase B','ok',isoOffset(170)),
       'Examen pre-ocupacional':makeDoc('Examen pre-ocupacional','ok',isoOffset(66)),
       'Curso ISEM Minería':makeDoc('Curso ISEM Minería','ok',isoOffset(222)),
       'Contrato de trabajo':makeDoc('Contrato de trabajo','ok')
-    },lastActivity:'Acreditación vigente'},
-    {id:'PER-003',rut:'13.444.555-6',nombre:'Jorge Valdés',correo:'j.valdes@contratista.cl',telefono:'+56 9 8777 1010',cargo:'Mecánico de Turno',proyecto_id:'PRJ-001',nota:'Sin docs',docs:{},lastActivity:'Pendiente de carga inicial'},
-    {id:'PER-004',rut:'14.555.666-7',nombre:'Ana Torres',correo:'a.torres@contratista.cl',telefono:'+56 9 8555 0909',cargo:'Técnico Eléctrico',proyecto_id:'PRJ-001',nota:'Por vencer',docs:{
+    },lastActivity:'Apta para subir a plataformas'},
+    {id:'PER-003',rut:'13.444.555-6',nombre:'Jorge Valdés',correo:'j.valdes@contratista.cl',telefono:'+56 9 8777 1010',cargo:'Mecánico de Turno',proyecto_id:'PRJ-001',nota:'Sin recepción documental',docs:{},lastActivity:'Atrasado · aún no responde al correo inicial'},
+    {id:'PER-004',rut:'14.555.666-7',nombre:'Ana Torres',correo:'a.torres@contratista.cl',telefono:'+56 9 8555 0909',cargo:'Técnico Eléctrico',proyecto_id:'PRJ-001',nota:'Riesgo de pasar a observado por vencimiento próximo',docs:{
       'Cédula de identidad':makeDoc('Cédula de identidad','ok',isoOffset(450)),
       'Currículum Vitae':makeDoc('Currículum Vitae','ok'),
       'Licencia conducir clase B':makeDoc('Licencia conducir clase B','soon',isoOffset(14)),
       'Examen pre-ocupacional':makeDoc('Examen pre-ocupacional','ok',isoOffset(30)),
       'Curso ISEM Minería':makeDoc('Curso ISEM Minería','ok',isoOffset(180)),
       'Contrato de trabajo':makeDoc('Contrato de trabajo','ok')
-    },lastActivity:'Documento próximo a vencer'},
-    {id:'PER-005',rut:'15.666.777-8',nombre:'Pedro Soto',correo:'p.soto@contratista.cl',telefono:'+56 9 8222 3434',cargo:'Conductor Clase A',proyecto_id:'PRJ-001',nota:'Faltantes críticos',docs:{
+    },lastActivity:'Alerta preventiva por licencia próxima a vencer'},
+    {id:'PER-005',rut:'15.666.777-8',nombre:'Pedro Soto',correo:'p.soto@contratista.cl',telefono:'+56 9 8222 3434',cargo:'Conductor Clase A',proyecto_id:'PRJ-001',nota:'Faltan exámenes base para cierre de carpeta',docs:{
       'Cédula de identidad':makeDoc('Cédula de identidad','ok',isoOffset(600)),
       'Currículum Vitae':makeDoc('Currículum Vitae','ok'),
       'Licencia conducir clase B':makeDoc('Licencia conducir clase B','ok',isoOffset(121)),
       'Examen pre-ocupacional':makeDoc('Examen pre-ocupacional','missing'),
       'Curso ISEM Minería':makeDoc('Curso ISEM Minería','missing')
-    },lastActivity:'Solicitud pendiente'},
-    {id:'PER-006',rut:'16.777.888-9',nombre:'Claudia Vera',correo:'c.vera@contratista.cl',telefono:'+56 9 8666 4545',cargo:'Enfermera Turno',proyecto_id:'PRJ-001',nota:'Casi completa',docs:{
+    },lastActivity:'Atrasado · sigue sin adjuntar examen pre-ocupacional'},
+    {id:'PER-006',rut:'16.777.888-9',nombre:'Claudia Vera',correo:'c.vera@contratista.cl',telefono:'+56 9 8666 4545',cargo:'Enfermera Turno',proyecto_id:'PRJ-001',nota:'Solo falta licencia de respaldo',docs:{
       'Cédula de identidad':makeDoc('Cédula de identidad','ok',isoOffset(520)),
       'Currículum Vitae':makeDoc('Currículum Vitae','ok'),
       'Licencia conducir clase B':makeDoc('Licencia conducir clase B','missing'),
       'Examen pre-ocupacional':makeDoc('Examen pre-ocupacional','ok',isoOffset(45)),
       'Curso ISEM Minería':makeDoc('Curso ISEM Minería','ok',isoOffset(200)),
       'Contrato de trabajo':makeDoc('Contrato de trabajo','ok')
-    },lastActivity:'Falta licencia de respaldo'},
-    {id:'PER-007',rut:'17.888.999-0',nombre:'Roberto Díaz',correo:'r.diaz@contratista.cl',telefono:'+56 9 8999 5656',cargo:'Supervisor Terreno',proyecto_id:'PRJ-002',nota:'Expirado',docs:{
+    },lastActivity:'Pendiente menor · carpeta casi lista'},
+    {id:'PER-007',rut:'17.888.999-0',nombre:'Roberto Díaz',correo:'r.diaz@contratista.cl',telefono:'+56 9 8999 5656',cargo:'Supervisor Terreno',proyecto_id:'PRJ-002',nota:'Bloqueado por examen vencido',docs:{
       'Cédula de identidad':makeDoc('Cédula de identidad','ok',isoOffset(300)),
       'Currículum Vitae':makeDoc('Currículum Vitae','ok'),
       'Certificado operador grúa':makeDoc('Certificado operador grúa','ok',isoOffset(150)),
@@ -1140,8 +1206,8 @@ function defaultPeople(){
       'Examen altura geográfica':makeDoc('Examen altura geográfica','missing'),
       'Curso ISEM Minería':makeDoc('Curso ISEM Minería','ok',isoOffset(210)),
       'Certificado antecedentes':makeDoc('Certificado antecedentes','soon',isoOffset(18))
-    },lastActivity:'Observación en control'},
-    {id:'PER-008',rut:'18.999.000-1',nombre:'Sofía Muñoz',correo:'s.munoz@contratista.cl',telefono:'+56 9 8444 6767',cargo:'Geóloga Senior',proyecto_id:'PRJ-002',nota:'Parcial',docs:{
+    },lastActivity:'Observado · requiere renovación médica y respaldo legal'},
+    {id:'PER-008',rut:'18.999.000-1',nombre:'Sofía Muñoz',correo:'s.munoz@contratista.cl',telefono:'+56 9 8444 6767',cargo:'Geóloga Senior',proyecto_id:'PRJ-002',nota:'Carpeta parcial con múltiples faltantes',docs:{
       'Cédula de identidad':makeDoc('Cédula de identidad','ok',isoOffset(430)),
       'Currículum Vitae':makeDoc('Currículum Vitae','ok'),
       'Certificado operador grúa':makeDoc('Certificado operador grúa','missing'),
@@ -1149,8 +1215,8 @@ function defaultPeople(){
       'Examen altura geográfica':makeDoc('Examen altura geográfica','missing'),
       'Curso ISEM Minería':makeDoc('Curso ISEM Minería','missing'),
       'Certificado antecedentes':makeDoc('Certificado antecedentes','ok',isoOffset(90))
-    },lastActivity:'Esperando adjuntos'},
-    {id:'PER-009',rut:'19.111.222-3',nombre:'Diego Castro',correo:'d.castro@contratista.cl',telefono:'+56 9 8555 7878',cargo:'Soldador Certificado',proyecto_id:'PRJ-002',nota:'Completo',docs:{
+    },lastActivity:'Pendiente de respuesta del trabajador'},
+    {id:'PER-009',rut:'19.111.222-3',nombre:'Diego Castro',correo:'d.castro@contratista.cl',telefono:'+56 9 8555 7878',cargo:'Soldador Certificado',proyecto_id:'PRJ-002',nota:'Expediente listo para emitir certificado',docs:{
       'Cédula de identidad':makeDoc('Cédula de identidad','ok',isoOffset(280)),
       'Currículum Vitae':makeDoc('Currículum Vitae','ok'),
       'Certificado operador grúa':makeDoc('Certificado operador grúa','ok',isoOffset(132)),
@@ -1158,38 +1224,38 @@ function defaultPeople(){
       'Examen altura geográfica':makeDoc('Examen altura geográfica','ok',isoOffset(38)),
       'Curso ISEM Minería':makeDoc('Curso ISEM Minería','ok',isoOffset(270)),
       'Certificado antecedentes':makeDoc('Certificado antecedentes','ok',isoOffset(140))
-    },lastActivity:'Listo para subida'},
-    {id:'PER-010',rut:'20.222.333-4',nombre:'Valentina Reyes',correo:'v.reyes@contratista.cl',telefono:'+56 9 8666 8989',cargo:'Ingeniera de Procesos',proyecto_id:'PRJ-002',nota:'Sin certificado',docs:{
+    },lastActivity:'Lista para envío a plataforma'},
+    {id:'PER-010',rut:'20.222.333-4',nombre:'Valentina Reyes',correo:'v.reyes@contratista.cl',telefono:'+56 9 8666 8989',cargo:'Ingeniera de Procesos',proyecto_id:'PRJ-002',nota:'En seguimiento por certificado faltante y examen próximo a vencer',docs:{
       'Cédula de identidad':makeDoc('Cédula de identidad','ok',isoOffset(580)),
       'Currículum Vitae':makeDoc('Currículum Vitae','ok'),
       'Examen pre-ocupacional':makeDoc('Examen pre-ocupacional','ok',isoOffset(52)),
       'Examen altura geográfica':makeDoc('Examen altura geográfica','soon',isoOffset(10)),
       'Curso ISEM Minería':makeDoc('Curso ISEM Minería','ok',isoOffset(160)),
       'Certificado antecedentes':makeDoc('Certificado antecedentes','missing')
-    },lastActivity:'Debe reenviar certificado'},
-    {id:'PER-011',rut:'9.876.543-2',nombre:'Matías Rojas',correo:'m.rojas@contratista.cl',telefono:'+56 9 8777 1234',cargo:'Ayudante Mantención',proyecto_id:'PRJ-002',nota:'Sin documentos',docs:{},lastActivity:'Pendiente de contacto'},
-    {id:'PER-012',rut:'10.123.456-7',nombre:'Fernanda Silva',correo:'f.silva@contratista.cl',telefono:'+56 9 8888 2323',cargo:'Asistente Operaciones',proyecto_id:'PRJ-001',nota:'Con recordatorio enviado',docs:{
+    },lastActivity:'Pendiente de regularización documental'},
+    {id:'PER-011',rut:'9.876.543-2',nombre:'Matías Rojas',correo:'m.rojas@contratista.cl',telefono:'+56 9 8777 1234',cargo:'Ayudante Mantención',proyecto_id:'PRJ-002',nota:'Atraso crítico por falta total de carpeta',docs:{},lastActivity:'Atrasado · pendiente de contacto inicial'},
+    {id:'PER-012',rut:'10.123.456-7',nombre:'Fernanda Silva',correo:'f.silva@contratista.cl',telefono:'+56 9 8888 2323',cargo:'Asistente Operaciones',proyecto_id:'PRJ-001',nota:'Recordatorio automático ya enviado',docs:{
       'Cédula de identidad':makeDoc('Cédula de identidad','ok',isoOffset(480)),
       'Currículum Vitae':makeDoc('Currículum Vitae','ok'),
       'Examen pre-ocupacional':makeDoc('Examen pre-ocupacional','missing'),
       'Curso ISEM Minería':makeDoc('Curso ISEM Minería','missing'),
       'Contrato de trabajo':makeDoc('Contrato de trabajo','ok')
-    },lastActivity:'Recordatorio enviado'},
-    {id:'PER-013',rut:'7.654.321-0',nombre:'Nicolás Pizarro',correo:'n.pizarro@contratista.cl',telefono:'+56 9 8111 5678',cargo:'Topógrafo',proyecto_id:'PRJ-002',nota:'Carga reciente',docs:{
+    },lastActivity:'Seguimiento activo por documentos pendientes'},
+    {id:'PER-013',rut:'7.654.321-0',nombre:'Nicolás Pizarro',correo:'n.pizarro@contratista.cl',telefono:'+56 9 8111 5678',cargo:'Topógrafo',proyecto_id:'PRJ-002',nota:'Carga parcial reciente',docs:{
       'Cédula de identidad':makeDoc('Cédula de identidad','ok',isoOffset(365)),
       'Currículum Vitae':makeDoc('Currículum Vitae','ok'),
       'Examen pre-ocupacional':makeDoc('Examen pre-ocupacional','ok',isoOffset(95)),
       'Curso ISEM Minería':makeDoc('Curso ISEM Minería','missing'),
       'Certificado antecedentes':makeDoc('Certificado antecedentes','missing')
-    },lastActivity:'Pendiente de respuesta'},
-    {id:'PER-014',rut:'8.765.432-1',nombre:'Paula Contreras',correo:'p.contreras@contratista.cl',telefono:'+56 9 8222 6789',cargo:'Operadora Sala Control',proyecto_id:'PRJ-001',nota:'Completa',docs:{
+    },lastActivity:'Pendiente de cierre documental'},
+    {id:'PER-014',rut:'8.765.432-1',nombre:'Paula Contreras',correo:'p.contreras@contratista.cl',telefono:'+56 9 8222 6789',cargo:'Operadora Sala Control',proyecto_id:'PRJ-001',nota:'Expediente sin alertas',docs:{
       'Cédula de identidad':makeDoc('Cédula de identidad','ok',isoOffset(560)),
       'Currículum Vitae':makeDoc('Currículum Vitae','ok'),
       'Licencia conducir clase B':makeDoc('Licencia conducir clase B','ok',isoOffset(230)),
       'Examen pre-ocupacional':makeDoc('Examen pre-ocupacional','ok',isoOffset(87)),
       'Curso ISEM Minería':makeDoc('Curso ISEM Minería','ok',isoOffset(333)),
       'Contrato de trabajo':makeDoc('Contrato de trabajo','ok')
-    },lastActivity:'Acreditación exitosa'}
+    },lastActivity:'Acreditación exitosa y vigente'}
   ];
 }
 function defaultState(){
@@ -1205,6 +1271,7 @@ function defaultState(){
       controlFilter:'Todos',
       selectedControlPersonId:'PER-001',
       selectedPlatformJobId:null,
+      selectedAccreditorByProject:{},
       importPreview:[],
       importErrors:[],
       phaseOpen:0
@@ -1231,7 +1298,11 @@ function loadState(){
     const raw=sessionStorage.getItem(STORAGE_KEY);
     if(raw){
       const parsed=JSON.parse(raw);
-      if(parsed && parsed.projects && parsed.people) return parsed;
+      if(parsed && parsed.projects && parsed.people){
+        parsed.ui=parsed.ui||{};
+        parsed.ui.selectedAccreditorByProject=parsed.ui.selectedAccreditorByProject||{};
+        return parsed;
+      }
     }
   }catch(err){}
   return defaultState();
@@ -1260,6 +1331,45 @@ function avatarStyle(index){
 function getProject(id){return state.projects.find(p=>p.id===id)}
 function getPerson(id){return state.people.find(p=>p.id===id)}
 function projectPeople(projectId){return state.people.filter(p=>p.proyecto_id===projectId)}
+function availableAccreditors(projectId){
+  const project=getProject(projectId);
+  return PLATFORM_LIBRARY.filter(p=>project?.plataformas?.includes(p.id));
+}
+function selectedAccreditorForProject(projectId){
+  const options=availableAccreditors(projectId);
+  const selectedId=state.ui.selectedAccreditorByProject?.[projectId];
+  return options.find(p=>p.id===selectedId) || options[0] || null;
+}
+function chooseAccreditor(projectId,force=false){
+  const options=availableAccreditors(projectId);
+  if(!options.length){
+    toast('⛔','Este proyecto no tiene casas acreditadoras activas en Configuración.','var(--red)');
+    return null;
+  }
+  if(options.length===1){
+    state.ui.selectedAccreditorByProject[projectId]=options[0].id;
+    saveState();
+    return options[0];
+  }
+  if(!force){
+    const current=selectedAccreditorForProject(projectId);
+    if(current) return current;
+  }
+  const choice=prompt(`Selecciona casa acreditadora para ${getProject(projectId).nombre}:\n${options.map((option,index)=>`${index+1}. ${option.name} (${option.id})`).join('\n')}\n\nEscribe el número o ID exacto.`);
+  if(choice===null) return null;
+  const clean=choice.trim().toLowerCase();
+  const byIndex=options[Number(clean)-1];
+  const byId=options.find(option=>option.id.toLowerCase()===clean || option.name.toLowerCase()===clean);
+  const selected=byIndex || byId || null;
+  if(!selected){
+    toast('⚠️','La casa acreditadora ingresada no es válida para este proyecto.','var(--orange)');
+    return null;
+  }
+  state.ui.selectedAccreditorByProject[projectId]=selected.id;
+  saveState();
+  toast('🏢',`Casa acreditadora seleccionada: ${selected.name}`,'var(--blue)');
+  return selected;
+}
 function libDoc(label){return DOC_LIBRARY.find(d=>d.label===label)||{label,expirable:false,days:0}}
 function getRequiredDocs(projectId){return getProject(projectId)?.documentos_requeridos||[]}
 function docStatus(person,docLabel){
@@ -1298,13 +1408,94 @@ function bucketTone(bucket){
   if(bucket==='Sin documentos') return 'empty-state';
   return 'partial';
 }
+function documentPriorityWeight(status){
+  if(status==='Vencido') return 400;
+  if(status==='Faltante') return 300;
+  if(status==='Por vencer') return 200;
+  return 100;
+}
+function issuePriorityScore(summary){
+  return summary.expired*100 + summary.missing*75 + summary.soon*40 + (summary.bucket==='Sin documentos'?25:0);
+}
+function unresolvedCount(summary){
+  return summary.missing + summary.expired + summary.soon;
+}
+function statusNarrative(summary){
+  if(summary.expired) return `${summary.expired} vencido(s) bloquean la acreditación`;
+  if(summary.missing) return `${summary.missing} faltante(s) pendientes de recepción`;
+  if(summary.soon) return `${summary.soon} documento(s) por vencer`;
+  return 'Carpeta al día y sin bloqueos';
+}
+function dossierAlertChips(summary){
+  const chips=[];
+  if(summary.expired) chips.push(`<span class="dossier-alert-chip red">${summary.expired} documento(s) vencido(s)</span>`);
+  if(summary.missing) chips.push(`<span class="dossier-alert-chip orange">${summary.missing} faltante(s)</span>`);
+  if(summary.soon) chips.push(`<span class="dossier-alert-chip orange">${summary.soon} por vencer</span>`);
+  if(!chips.length) chips.push('<span class="dossier-alert-chip green">Sin alertas activas</span>');
+  return chips.join('');
+}
+function nextActionForPerson(person,summary){
+  if(summary.expired){
+    return {
+      title:'Resolver observados críticos',
+      text:`${summary.expired} documento(s) vencidos bloquean la acreditación de ${person.nombre}. La acción correcta es pedir renovación y revisar el original antes de subir a plataforma.`,
+      button:'Revisar observados',
+      action:`openWorkerProfile('${person.id}')`
+    };
+  }
+  if(summary.missing){
+    return {
+      title:'Solicitar faltantes',
+      text:`Faltan ${summary.missing} documento(s) por recibir. El siguiente paso es enviar recordatorio y cerrar la carpeta antes de intentar certificar.`,
+      button:'Enviar recordatorio',
+      action:`sendReminder('${person.id}')`
+    };
+  }
+  if(summary.soon){
+    return {
+      title:'Prevenir vencimientos',
+      text:`Hay ${summary.soon} documento(s) próximos a caducar. Conviene renovarlos ahora para evitar que el trabajador pase a estado observado.`,
+      button:'Ver por vencer',
+      action:`openWorkerProfile('${person.id}')`
+    };
+  }
+  return {
+    title:'Subir a plataformas',
+    text:`La carpeta está completa y ${person.nombre} ya puede pasar al módulo de certificación para generar folio y certificado final.`,
+    button:'Subir ahora',
+    action:`pushToPlatforms('${person.id}','people')`
+  };
+}
+function prioritizedDocStates(person,summary){
+  return [...summary.docStates]
+    .filter(item=>item.status!=='Recibido')
+    .sort((a,b)=>{
+      const byWeight=documentPriorityWeight(b.status)-documentPriorityWeight(a.status);
+      if(byWeight) return byWeight;
+      const aDate=a.raw?.vencimiento || '9999-12-31';
+      const bDate=b.raw?.vencimiento || '9999-12-31';
+      return String(aDate).localeCompare(String(bDate));
+    });
+}
+function controlPriorityQueue(projectId){
+  return projectPeople(projectId)
+    .map(person=>{
+      const summary=summaryForPerson(person);
+      const topIssue=prioritizedDocStates(person,summary)[0] || null;
+      return {person,summary,topIssue,score:issuePriorityScore(summary)};
+    })
+    .filter(item=>item.score>0)
+    .sort((a,b)=>b.score-a.score || a.summary.pct-b.summary.pct);
+}
 function projectDashboardStats(projectId){
   const summaries=projectPeople(projectId).map(summaryForPerson);
   const completos=summaries.filter(s=>s.bucket==='Completo').length;
   const observados=summaries.filter(s=>s.bucket==='Observado').length;
   const noRealizados=summaries.filter(s=>s.bucket==='Sin documentos').length;
   const pendientes=summaries.filter(s=>s.bucket==='Parcial'||s.bucket==='Observado').length;
-  return {completos,observados,noRealizados,pendientes};
+  const listosCertificar=summaries.filter(s=>s.bucket==='Completo').length;
+  const atrasados=summaries.filter(s=>s.expired || s.missing || s.soon).length;
+  return {completos,observados,noRealizados,pendientes,listosCertificar,atrasados};
 }
 function statusBadgeClass(status){
   return status==='Recibido'||status==='Emitido'?'bg':status==='Vencido'?'br':status==='Por vencer'?'bo':'bv';
@@ -1669,20 +1860,14 @@ function drillToControl(filter){
   saveState();
 }
 function openWorkerProfile(personId){
-  const person=getPerson(personId);
-  if(!person) return;
-  if(person.proyecto_id!==state.ui.activeProjectId) setActiveProject(person.proyecto_id,{silent:true});
-  state.ui.selectedPersonId=person.id;
-  state.ui.selectedControlPersonId=person.id;
-  goToById('people');
-  renderPeopleView();
-  saveState();
+  openWorkerCase(personId,'people');
 }
 function renderWorkerDossier(person){
   const project=getProject(person.proyecto_id);
   const s=summaryForPerson(person);
   const unresolved=s.missing+s.expired+s.soon;
-  const tone=bucketTone(s.bucket);
+  const nextAction=nextActionForPerson(person,s);
+  const priorityDocs=prioritizedDocStates(person,s);
   return `
     <div class="dossier">
       <div class="dossier-hero" style="--person-accent:${project.color}">
@@ -1712,9 +1897,19 @@ function renderWorkerDossier(person){
         <div class="dossier-kpi"><span>Vencidos / observados</span><strong>${s.expired+s.soon}</strong></div>
         <div class="dossier-kpi"><span>No cargados</span><strong>${s.missing}</strong></div>
       </div>
+      <div class="dossier-panel">
+        <h4>Estado del expediente</h4>
+        <div class="dossier-alert-strip">${dossierAlertChips(s)}</div>
+        <div class="inline-note" style="margin-top:.7rem">${statusNarrative(s)}. ${s.bucket==='Completo'?'Puedes avanzar a certificación sin observaciones.':'Abre los documentos priorizados para revisar alertas y observaciones.'}</div>
+      </div>
       <div class="dossier-grid">
         <div class="dossier-panel">
           <h4>Ficha del trabajador</h4>
+          <div class="dossier-profile-banner">
+            <div class="dossier-profile-pill"><span>Proyecto</span><strong>${project.nombre}</strong></div>
+            <div class="dossier-profile-pill"><span>Cargo visible</span><strong>${person.cargo}</strong></div>
+            <div class="dossier-profile-pill"><span>Estado actual</span><strong>${s.bucket}</strong></div>
+          </div>
           <div class="dossier-info-grid">
             <div class="dossier-info"><span>Correo</span><strong>${person.correo}</strong></div>
             <div class="dossier-info"><span>Teléfono</span><strong>${person.telefono}</strong></div>
@@ -1725,11 +1920,18 @@ function renderWorkerDossier(person){
           </div>
         </div>
         <div class="dossier-panel">
-          <h4>Acciones y estado</h4>
-          <div class="dossier-actions">
+          <h4>Siguiente acción recomendada</h4>
+          <div class="dossier-action-callout">
+            <strong>${nextAction.title}</strong>
+            <p>${nextAction.text}</p>
+            <div class="tool-row" style="margin-top:.75rem">
+              <button class="btn btn-p btn-sm" onclick="${nextAction.action}">${nextAction.button}</button>
+              <button class="btn btn-g btn-sm" onclick="openPersonForm('${person.id}')">Editar ficha</button>
+            </div>
+          </div>
+          <div class="dossier-actions" style="margin-top:.75rem">
             <button class="btn btn-g btn-sm" onclick="sendReminder('${person.id}')">Enviar recordatorio</button>
             <button class="btn btn-p btn-sm" onclick="pushToPlatforms('${person.id}','people')">Subir a plataformas</button>
-            <button class="btn btn-g btn-sm" onclick="openPersonForm('${person.id}')">Editar ficha</button>
           </div>
           <div class="dossier-timeline" style="margin-top:.85rem">
             <div class="dossier-step"><strong>Checklist obligatoria</strong><span>${s.required.length} documento(s) requeridos en ${project.nombre}</span></div>
@@ -1737,6 +1939,23 @@ function renderWorkerDossier(person){
             <div class="dossier-step"><strong>Observación de ficha</strong><span>${person.nota||'Sin observaciones adicionales en esta ficha demo.'}</span></div>
           </div>
         </div>
+      </div>
+      <div class="dossier-panel">
+        <h4>Prioridad documental</h4>
+        ${priorityDocs.length?`<div class="priority-doc-list">${priorityDocs.slice(0,4).map((item,index)=>`
+          <div class="priority-doc-item">
+            <div class="priority-doc-main">
+              <div class="priority-doc-rank">${index+1}</div>
+              <div class="priority-doc-copy">
+                <strong>${item.label}</strong>
+                <span>${item.status==='Vencido'?'Bloquea acreditación hasta renovar.':item.status==='Faltante'?'Aún no fue recibido por Acreditator.':'Debe renovarse pronto para no caer en observado.'}</span>
+              </div>
+            </div>
+            <div class="tool-row">
+              <span class="badge ${statusBadgeClass(item.status)}">${item.status}</span>
+              <button class="btn btn-g btn-xs" onclick="openDocViewer('${person.id}','${item.label.replace(/'/g,"\\'")}')">${item.status==='Faltante'?'Ver solicitud':'Ver documento'}</button>
+            </div>
+          </div>`).join('')}</div>`:'<div class="empty">No hay prioridades abiertas. La carpeta está lista para certificación.</div>'}
       </div>
       <div class="dossier-doc-block">
         ${renderDocumentSections(person,s.docStates)}
@@ -1810,6 +2029,16 @@ function renderDocumentOriginal(record,status){
 function addActivity(msg){
   state.activity.unshift({id:id('ACT'),msg,time:new Date().toISOString()});
   state.activity=state.activity.slice(0,40);
+}
+function openWorkerCase(personId,targetView='people'){
+  const person=getPerson(personId);
+  if(!person) return;
+  state.ui.activeProjectId=person.proyecto_id;
+  state.ui.selectedPersonId=person.id;
+  state.ui.selectedControlPersonId=person.id;
+  state.ui.activeView=targetView;
+  saveState();
+  renderApp();
 }
 function goTo(view,el){
   state.ui.activeView=view;
@@ -2135,10 +2364,10 @@ function renderClassificationDetail(classified){
     (byWorker[item.personName] ||= []).push(item);
   });
   const scanCards=classified.slice(0,8).map(item=>`
-    <div class="scan-page">
+    <div class="scan-page" onclick="openWorkerProfile('${item.personId}')">
       <span class="scan-page-badge">scan ok</span>
       <strong>${item.docLabel}</strong>
-      <span>${item.personName}</span>
+      <span>${item.personName} · abrir expediente</span>
     </div>`).join('');
   const typeBlocks=Object.entries(byType).map(([label,items])=>`
     <div class="classification-block">
@@ -2153,7 +2382,7 @@ function renderClassificationDetail(classified){
               <div class="classification-doc-icon">PDF</div>
               <div class="classification-doc-copy">
                 <strong>${item.filename}</strong>
-                <span>${item.personName} · confianza ${item.confianza}</span>
+                <span><button class="person-inline-link subtle" onclick="event.stopPropagation();openWorkerProfile('${item.personId}')">${item.personName}</button> · confianza ${item.confianza}</span>
               </div>
             </div>
             <button class="btn btn-g btn-xs" onclick="openPhaseDocument('${item.personId}','${escapeForAttr(item.docLabel)}','Recibido',{fileName:'${item.filename}',note:'Documento clasificado automáticamente y agregado a ficha.'})">Ver original</button>
@@ -2163,7 +2392,7 @@ function renderClassificationDetail(classified){
   const workerBlocks=Object.entries(byWorker).map(([worker,items])=>`
     <div class="classification-block">
       <div class="classification-block-head">
-        <strong>${worker}</strong>
+        <strong><button class="person-inline-link subtle" onclick="openWorkerProfile('${items[0].personId}')">${worker}</button></strong>
         <span class="badge bb">${items.length} documento(s)</span>
       </div>
       <div class="classification-docs">
@@ -2176,10 +2405,7 @@ function renderClassificationDetail(classified){
                 <span>${item.filename}</span>
               </div>
             </div>
-            <div class="tool-row">
-              <button class="btn btn-g btn-xs" onclick="openDocViewer('${item.personId}','${escapeForAttr(item.docLabel)}')">Ver ficha</button>
-              <button class="btn btn-g btn-xs" onclick="openPhaseDocument('${item.personId}','${escapeForAttr(item.docLabel)}','Recibido',{fileName:'${item.filename}',note:'Documento clasificado automáticamente y agregado a ficha.'})">Ver original</button>
-            </div>
+            <button class="btn btn-g btn-xs" onclick="openPhaseDocument('${item.personId}','${escapeForAttr(item.docLabel)}','Recibido',{fileName:'${item.filename}',note:'Documento clasificado automáticamente y agregado a ficha.'})">Ver original</button>
           </div>`).join('')}
       </div>
     </div>`).join('');
@@ -2340,18 +2566,28 @@ async function executePhase(index){
   }
   if(phase.id==='certificacion'){
     await sleep(500);
+    const accreditor=chooseAccreditor(projectId,false);
+    if(!accreditor){
+      phase.status='pending';
+      phase.summary='Debes seleccionar una casa acreditadora antes de procesar la certificación.';
+      state.pipeline.running=false;
+      saveState();
+      renderPipelineView();
+      return;
+    }
     const eligible=projectPeople(projectId).filter(p=>summaryForPerson(p).bucket==='Completo');
     const jobs=[];
     for(const person of eligible.slice(0,4)){
-      const job=createPlatformJob(person.id,'pipeline-certificacion');
-      job.logs.unshift({msg:'Ingreso automatizado a plataforma de certificación.',time:new Date().toISOString()});
+      const job=createPlatformJob(person.id,'pipeline-certificacion',accreditor.id);
+      if(!job) continue;
+      job.logs.unshift({msg:`Ingreso automatizado a ${accreditor.name}.`,time:new Date().toISOString()});
       await simulatePlatformJob(job.id);
       jobs.push(job);
     }
-    phase.payload={jobs:jobs.map(job=>({jobId:job.id,personId:job.personId,status:job.status,platforms:job.platforms,completedAt:job.completedAt||new Date().toISOString()}))};
+    phase.payload={platformId:accreditor.id,platformName:accreditor.name,jobs:jobs.map(job=>({jobId:job.id,personId:job.personId,status:job.status,platforms:job.platforms,completedAt:job.completedAt||new Date().toISOString()}))};
     phase.status='done';
-    phase.summary=`${jobs.length} trabajador(es) enviados a plataforma de certificación con simulación de carga y validación.`;
-    addActivity(`Certificación en plataforma ejecutada para ${jobs.length} trabajador(es).`);
+    phase.summary=`${jobs.length} trabajador(es) enviados a ${accreditor.name} con simulación de carga y validación.`;
+    addActivity(`Certificación ejecutada en ${accreditor.name} para ${jobs.length} trabajador(es).`);
     toast('☁️',phase.summary,'var(--blue)');
   }
   if(phase.id==='certificado'){
@@ -2380,18 +2616,21 @@ async function executePhase(index){
   renderApp();
 }
 
-function createPlatformJob(personId,source='manual'){
+function createPlatformJob(personId,source='manual',platformId=null){
   const person=getPerson(personId);
   const project=getProject(person.proyecto_id);
+  const accreditor=platformId ? PLATFORM_LIBRARY.find(p=>p.id===platformId) : selectedAccreditorForProject(project.id);
+  if(!accreditor) return null;
   const job={
     id:id('JOB'),
     personId,
     projectId:project.id,
     source,
+    accreditorId:accreditor.id,
     createdAt:new Date().toISOString(),
     status:'running',
-    platforms:project.plataformas.reduce((acc,pid)=>{acc[pid]={status:'pending',folio:null,error:null,timestamp:null};return acc;},{}),
-    logs:[{msg:`Trabajo creado para ${person.nombre} desde ${source}.`,time:new Date().toISOString()}]
+    platforms:{[accreditor.id]:{status:'pending',folio:null,error:null,timestamp:null}},
+    logs:[{msg:`Trabajo creado para ${person.nombre} en ${accreditor.name} desde ${source}.`,time:new Date().toISOString()}]
   };
   state.platformJobs.unshift(job);
   state.ui.selectedPlatformJobId=job.id;
@@ -2411,8 +2650,11 @@ function pushToPlatforms(personId,source='control'){
     goToById('control');
     return;
   }
-  const job=createPlatformJob(personId,source);
-  addActivity(`Se inició subida a plataformas para ${person.nombre}.`);
+  const accreditor=chooseAccreditor(person.proyecto_id,false);
+  if(!accreditor) return;
+  const job=createPlatformJob(personId,source,accreditor.id);
+  if(!job) return;
+  addActivity(`Se inició subida a ${accreditor.name} para ${person.nombre}.`);
   goToById('platforms');
   platformSimulationPromise=platformSimulationPromise.then(()=>simulatePlatformJob(job.id));
 }
@@ -2422,8 +2664,14 @@ function pushEligibleToPlatforms(){
     toast('⚠️','No hay personas aptas para subir en el proyecto activo.','var(--orange)');
     return;
   }
-  eligible.slice(0,3).forEach(person=>pushToPlatforms(person.id,'pipeline'));
-  toast('☁️',`Se encolaron ${Math.min(3,eligible.length)} subidas demo a plataformas.`,'var(--blue)');
+  const accreditor=chooseAccreditor(state.ui.activeProjectId,false);
+  if(!accreditor) return;
+  eligible.slice(0,3).forEach(person=>{
+    const job=createPlatformJob(person.id,'pipeline',accreditor.id);
+    if(job) platformSimulationPromise=platformSimulationPromise.then(()=>simulatePlatformJob(job.id));
+  });
+  goToById('platforms');
+  toast('☁️',`Se encolaron ${Math.min(3,eligible.length)} subidas demo a ${accreditor.name}.`,'var(--blue)');
 }
 async function simulatePlatformJob(jobId){
   const sleep=ms=>new Promise(r=>setTimeout(r,ms));
@@ -2548,6 +2796,7 @@ function renderDashboard(){
   const sum=projectSummary(project.id);
   const stats=projectDashboardStats(project.id);
   const projectPeopleRows=projectPeople(project.id).map(person=>({person,summary:summaryForPerson(person)}));
+  const priorityQueue=controlPriorityQueue(project.id);
   const statusColumns=[
     {title:'100% completos',subtitle:'Listos para plataformas',count:stats.completos,filter:'Completo',tone:'complete',rows:projectPeopleRows.filter(x=>x.summary.bucket==='Completo')},
     {title:'Pendientes',subtitle:'Con documentos por completar',count:stats.pendientes,filter:'Pendientes',tone:'partial',rows:projectPeopleRows.filter(x=>x.summary.bucket==='Parcial'||x.summary.bucket==='Observado')},
@@ -2565,29 +2814,75 @@ function renderDashboard(){
     <div class="dashboard-hero">
       <div class="dashboard-hero-grid">
         <div class="dashboard-brand">
-          <div class="dashboard-logo">${clientCode(project.cliente)}</div>
-          <div>
-            <div class="dashboard-eyebrow">Proyecto que estás viendo</div>
-            <div class="dashboard-project">${project.nombre}</div>
-            <div class="dashboard-project-sub">${project.cliente} · ${project.region}. Vista principal de acreditación con foco en cumplimiento documental, seguimiento y salida a plataformas.</div>
-            <div class="dashboard-meta-row">
-              <span class="hero-chip">Cliente ${project.cliente}</span>
-              <span class="hero-chip">Correo receptor ${project.correo}</span>
-              <span class="hero-chip">${project.documentos_requeridos.length} documentos exigidos</span>
+          <div class="dashboard-brand-main">
+            <div class="dashboard-logo">${clientCode(project.cliente)}</div>
+            <div>
+              <div class="dashboard-eyebrow">Proyecto que estás viendo</div>
+              <div class="dashboard-project">${project.nombre}</div>
+              <div class="dashboard-project-sub">${project.cliente} · ${project.region}. Vista principal de acreditación con foco en cumplimiento documental, seguimiento y salida a plataformas.</div>
+              <div class="dashboard-meta-row">
+                <span class="hero-chip">Cliente ${project.cliente}</span>
+                <span class="hero-chip">Correo receptor ${project.correo}</span>
+                <span class="hero-chip">${project.documentos_requeridos.length} documentos exigidos</span>
+              </div>
+            </div>
+          </div>
+          <div class="dashboard-brand-aside">
+            <div class="dashboard-aside-card">
+              <span>Empresa activa</span>
+              <strong>${project.cliente}</strong>
+              <p>Proyecto visible para la operación documental y las salidas a plataformas.</p>
+            </div>
+            <div class="dashboard-aside-card accent">
+              <span>Objetivo del lote</span>
+              <strong>${sum.total} ingresos por gestionar</strong>
+              <p>${stats.completos} completos · ${stats.pendientes + stats.noRealizados} aún requieren gestión documental.</p>
             </div>
           </div>
         </div>
         <div class="hero-summary">
-          <h3>Lectura rápida del proyecto</h3>
+          <h3>Resumen ejecutivo del proyecto</h3>
           <div class="hero-summary-grid">
-            <div class="hero-summary-box"><strong>${sum.pct}%</strong><span>cumplimiento global</span></div>
+            <div class="hero-summary-box"><strong>${sum.total}</strong><span>solicitados</span></div>
+            <div class="hero-summary-box"><strong>${stats.completos}</strong><span>100% completos</span></div>
+            <div class="hero-summary-box"><strong>${stats.pendientes}</strong><span>pendientes</span></div>
+            <div class="hero-summary-box"><strong>${stats.noRealizados}</strong><span>no realizados</span></div>
+            <div class="hero-summary-box"><strong>${stats.listosCertificar}</strong><span>listos para certificar</span></div>
             <div class="hero-summary-box"><strong>${stats.observados}</strong><span>observados críticos</span></div>
-            <div class="hero-summary-box"><strong>${sum.porVencer}</strong><span>por vencer ≤ 30 días</span></div>
-            <div class="hero-summary-box"><strong>${project.plataformas.length}</strong><span>plataformas destino</span></div>
           </div>
         </div>
       </div>
     </div>`;
+  document.getElementById('dashboard-exec-grid').innerHTML=`
+    <div class="dashboard-exec-card">
+      <span>Foco de hoy</span>
+      <strong>${stats.pendientes} carpeta(s) por cerrar</strong>
+      <p>${stats.pendientes?`La prioridad operativa es completar expedientes con faltantes y observaciones antes de intentar certificar.`:'No hay pendientes abiertos en el proyecto activo.'}</p>
+    </div>
+    <div class="dashboard-exec-card">
+      <span>Riesgo actual</span>
+      <strong>${stats.atrasados} caso(s) con atención</strong>
+      <p>${priorityQueue[0]?`${priorityQueue[0].person.nombre} concentra la prioridad más alta por ${priorityQueue[0].topIssue?.label || 'riesgo documental'}.`:'No hay casos críticos visibles en este momento.'}</p>
+    </div>
+    <div class="dashboard-exec-card">
+      <span>Siguiente resultado</span>
+      <strong>${stats.listosCertificar} trabajador(es) listos</strong>
+      <p>${stats.listosCertificar?`Ya puedes mover ${stats.listosCertificar} carpeta(s) al módulo de certificación para simular folio y certificado final.`:'Todavía no hay carpetas completas para certificar.'}</p>
+    </div>`;
+  document.getElementById('dashboard-focus-list').innerHTML=priorityQueue.length?priorityQueue.slice(0,5).map(({person,summary,topIssue},index)=>`
+    <div class="dashboard-focus-item" onclick="openWorkerProfile('${person.id}')">
+      <div class="dashboard-focus-main">
+        <div class="dashboard-focus-rank">${index+1}</div>
+        <div class="dashboard-focus-copy">
+          <strong>${person.nombre}</strong>
+          <span>${topIssue?`${topIssue.label} · ${topIssue.status}`:'Sin documento priorizado'} · ${unresolvedCount(summary)} gestión(es) abiertas</span>
+        </div>
+      </div>
+      <div class="tool-row">
+        <span class="badge ${topIssue?statusBadgeClass(topIssue.status):'bg'}">${summary.bucket}</span>
+        <button class="btn btn-g btn-xs" onclick="event.stopPropagation();openWorkerProfile('${person.id}')">Abrir caso</button>
+      </div>
+    </div>`).join(''):'<div class="empty">No hay alertas ni atrasos prioritarios en el proyecto activo.</div>';
   document.getElementById('dashboard-metrics').innerHTML=metrics.map(m=>`<button class="metric clickable ${m.cls}" onclick="${m.action}"><div class="label">${m.label}</div><div class="value">${m.value}</div><div class="meta">${m.meta}</div></button>`).join('');
   document.getElementById('project-bars').innerHTML=`<div class="project-bars-rich">${state.projects.map(p=>{
     const ps=projectSummary(p.id);
@@ -2678,11 +2973,11 @@ function renderProjectsView(){
     </div>
     <div style="margin-top:.9rem">
       <div class="card-title" style="margin-bottom:.45rem"><span class="cdot" style="background:var(--green)"></span>Personas asignadas</div>
-      <div class="mini-list">${activePeople.slice(0,5).map(person=>`<div class="mini-item"><div><strong>${person.nombre}</strong><div class="sub">${person.cargo}</div></div><div>${bucketBadge(summaryForPerson(person).bucket)}</div></div>`).join('')}</div>
+      <div class="mini-list">${activePeople.slice(0,5).map(person=>`<div class="mini-item clickable" onclick="openWorkerProfile('${person.id}')"><div><strong>${person.nombre}</strong><div class="sub">${person.cargo} · ${statusNarrative(summaryForPerson(person))}</div></div><div>${bucketBadge(summaryForPerson(person).bucket)}</div></div>`).join('')}</div>
     </div>`;
   const highlighted=activePeople.map(person=>({person,summary:summaryForPerson(person)})).sort((a,b)=>b.summary.expired-a.summary.expired || b.summary.missing-a.summary.missing).slice(0,4);
   document.getElementById('project-highlight-list').innerHTML=highlighted.map(({person,summary})=>`
-    <div class="mini-item" onclick="selectControlPerson('${person.id}');goToById('control')">
+    <div class="mini-item clickable" onclick="openWorkerCase('${person.id}','people')">
       <div><strong>${person.nombre}</strong><div class="sub">${summary.expired?summary.expired+' vencido(s)':summary.missing+' faltante(s)'}</div></div>
       <div>${bucketBadge(summary.bucket)}</div>
     </div>`).join('');
@@ -2721,13 +3016,20 @@ function renderPeopleView(){
 function renderPipelineView(){
   const project=getProject(state.ui.activeProjectId);
   const sum=projectSummary(project.id);
+  const accreditor=selectedAccreditorForProject(project.id);
   document.getElementById('pipeline-top-summary').innerHTML=`
     <div class="phase-summary">
       <div class="summary-box"><strong>${sum.total}</strong><span>Personas del lote</span></div>
       <div class="summary-box"><strong>${sum.vencidos+sum.porVencer+sum.sinDocs}</strong><span>Casos con observación</span></div>
       <div class="summary-box"><strong>${sum.completos}</strong><span>Aptos para certificación</span></div>
     </div>
-    <div class="inline-note">Proyecto activo: ${project.nombre}. Los botones del flujo operan sobre este lote demo y recalculan el resto de la app.</div>`;
+    <div class="tool-row" style="justify-content:space-between;margin-top:.75rem">
+      <div class="inline-note">Proyecto activo: ${project.nombre}. Los botones del flujo operan sobre este lote demo y recalculan el resto de la app.</div>
+      <div class="tool-row">
+        <span class="badge bb">${accreditor?`Casa acreditadora ${accreditor.name}`:'Sin casa acreditadora seleccionada'}</span>
+        <button class="btn btn-g btn-xs" onclick="chooseAccreditor('${project.id}',true);renderPipelineView();renderPlatformsView();">Elegir casa acreditadora</button>
+      </div>
+    </div>`;
   document.getElementById('phase-list').innerHTML=state.pipeline.phases.map((phase,index)=>{
     const meta=PIPELINE_PHASES[index];
     const open=index===state.ui.phaseOpen;
@@ -2743,7 +3045,7 @@ function renderPipelineView(){
       })).join('')}</div>`;
     }
     if(phase.id==='recepcion' && payload?.inbox){
-      detail=`<div class="stack">${payload.inbox.slice(0,4).map(mail=>`<div class="email-preview"><h4>${mail.subject}</h4><div class="helper" style="margin-bottom:.45rem">${mail.from} · recibido ${new Date(mail.receivedAt).toLocaleString('es-CL')}</div><pre>${mail.body}</pre><div class="mini-list" style="margin-top:.65rem">${mail.attachments.map(att=>`<div class="mini-item"><div><strong>${att.filename}</strong><div class="sub">${att.personName} · ${att.docLabel}</div></div><button class="btn btn-g btn-xs" onclick="openPhaseDocument('${att.personId}','${att.docLabel}','${att.statusAtArrival==='Faltante'?'Recibido':att.statusAtArrival}',{fileName:'${att.filename}',note:'Adjunto recibido por correo en bandeja Acreditator',issuer:'Correo entrante / Postulante'})">Ver documento</button></div>`).join('')}</div></div>`).join('')}</div>`;
+      detail=`<div class="stack">${payload.inbox.slice(0,4).map(mail=>`<div class="email-preview"><h4>${mail.subject}</h4><div class="helper" style="margin-bottom:.45rem">${mail.from} · recibido ${new Date(mail.receivedAt).toLocaleString('es-CL')}</div><pre>${mail.body}</pre><div class="mini-list" style="margin-top:.65rem">${mail.attachments.map(att=>`<div class="mini-item clickable" onclick="openWorkerProfile('${att.personId}')"><div><strong>${att.filename}</strong><div class="sub">${att.personName} · ${att.docLabel}</div></div><button class="btn btn-g btn-xs" onclick="event.stopPropagation();openPhaseDocument('${att.personId}','${att.docLabel}','${att.statusAtArrival==='Faltante'?'Recibido':att.statusAtArrival}',{fileName:'${att.filename}',note:'Adjunto recibido por correo en bandeja Acreditator',issuer:'Correo entrante / Postulante'})">Ver documento</button></div>`).join('')}</div></div>`).join('')}</div>`;
     }
     if(phase.id==='clasificacion' && payload?.classified){
       detail=renderClassificationDetail(payload.classified);
@@ -2753,7 +3055,7 @@ function renderPipelineView(){
         <div class="summary-box"><strong>${payload.result.completos}</strong><span>Completos</span></div>
         <div class="summary-box"><strong>${payload.result.parciales}</strong><span>Parciales</span></div>
         <div class="summary-box"><strong>${payload.result.sinDocs}</strong><span>Sin docs</span></div>
-      </div><div class="mini-list">${payload.checklist.slice(0,6).map(item=>`<div class="mini-item"><div><strong>${item.personName}</strong><div class="sub">${item.pending.length?item.pending.join(' · '):'Sin observaciones pendientes'}</div></div><div>${bucketBadge(item.bucket)}</div></div>`).join('')}</div>`;
+      </div><div class="mini-list">${payload.checklist.slice(0,6).map(item=>`<div class="mini-item clickable" onclick="openWorkerProfile('${item.personId}')"><div><strong>${item.personName}</strong><div class="sub">${item.pending.length?item.pending.join(' · '):'Sin observaciones pendientes'}</div></div><div>${bucketBadge(item.bucket)}</div></div>`).join('')}</div>`;
     }
     if(phase.id==='recordatorio' && payload?.reminders){
       detail=`<div class="stack">${payload.reminders.slice(0,4).map(r=>renderMailMock(r,{
@@ -2764,10 +3066,10 @@ function renderPipelineView(){
       })).join('')}</div>`;
     }
     if(phase.id==='certificacion' && payload?.jobs){
-      detail=`<div class="mini-list">${payload.jobs.map(job=>{const p=getPerson(job.personId);const approved=Object.entries(job.platforms).map(([pid,slot])=>`${platformName(pid)} ${slot.folio||slot.status}`).join(' · ');return `<div class="mini-item"><div><strong>${p.nombre}</strong><div class="sub">Ingreso simulado a plataforma · ${approved}</div></div><button class="btn btn-g btn-xs" onclick="goToById('platforms');selectPlatformJob('${job.jobId}')">Ver subida</button></div>`}).join('')}</div>`;
+      detail=`<div class="callout blue" style="margin-bottom:.75rem"><strong style="font-size:.82rem">Casa acreditadora utilizada</strong><div class="inline-note" style="margin-top:.2rem">${payload.platformName || 'No informada'}.</div></div><div class="mini-list">${payload.jobs.map(job=>{const p=getPerson(job.personId);const approved=Object.entries(job.platforms).map(([pid,slot])=>`${platformName(pid)} ${slot.folio||slot.status}`).join(' · ');return `<div class="mini-item clickable" onclick="openWorkerProfile('${p.id}')"><div><strong>${p.nombre}</strong><div class="sub">Ingreso simulado a plataforma · ${approved}</div></div><button class="btn btn-g btn-xs" onclick="event.stopPropagation();goToById('platforms');selectPlatformJob('${job.jobId}')">Ver subida</button></div>`}).join('')}</div>`;
     }
     if(phase.id==='certificado' && payload?.certificates){
-      detail=`<div class="mini-list">${payload.certificates.map(cert=>`<div class="mini-item"><div><strong>${cert.personName}</strong><div class="sub">${cert.fileName} · ${new Date(cert.issuedAt).toLocaleString('es-CL')}</div></div><button class="btn btn-p btn-xs" onclick="openCertificateViewer('${cert.personId}','${cert.jobId}')">Descargar / ver certificado</button></div>`).join('')}</div>`;
+      detail=`<div class="mini-list">${payload.certificates.map(cert=>`<div class="mini-item clickable" onclick="openWorkerProfile('${cert.personId}')"><div><strong>${cert.personName}</strong><div class="sub">${cert.fileName} · ${new Date(cert.issuedAt).toLocaleString('es-CL')}</div></div><button class="btn btn-p btn-xs" onclick="event.stopPropagation();openCertificateViewer('${cert.personId}','${cert.jobId}')">Descargar / ver certificado</button></div>`).join('')}</div>`;
     }
     return `<div class="phase ${phase.status} ${open?'open':''}">
       <div class="phase-head">
@@ -2803,7 +3105,8 @@ function renderControlView(){
       summary.bucket===state.ui.controlFilter;
     const searchOk=!q||[person.nombre,person.rut].join(' ').toLowerCase().includes(q);
     return filterOk&&searchOk;
-  });
+  }).sort((a,b)=>issuePriorityScore(b.summary)-issuePriorityScore(a.summary) || a.summary.pct-b.summary.pct);
+  const projectPriority=controlPriorityQueue(state.ui.activeProjectId);
   const matchedSelection=people.find(({person})=>person.id===state.ui.selectedControlPersonId)?.person||people[0]?.person||null;
   if(matchedSelection && matchedSelection.id!==state.ui.selectedControlPersonId) state.ui.selectedControlPersonId=matchedSelection.id;
   document.getElementById('control-summary').textContent=`${people.length} fila(s) para ${state.ui.controlFilter}`;
@@ -2813,15 +3116,28 @@ function renderControlView(){
       <td data-label="Proyecto">${getProject(person.proyecto_id).nombre}</td>
       <td data-label="Cumplimiento"><div class="progress-label"><div class="progress" style="width:84px"><span style="width:${summary.pct}%;background:${progressColor(summary.pct)}"></span></div><span class="helper">${summary.pct}%</span></div></td>
       <td data-label="Estado">${bucketBadge(summary.bucket)}</td>
-      <td data-label="Última actividad">${person.lastActivity}</td>
+      <td data-label="Última actividad">${person.lastActivity}<div class="helper" style="margin-top:.2rem">${summary.expired?`${summary.expired} vencido(s)`:(summary.missing?`${summary.missing} faltante(s)`:(summary.soon?`${summary.soon} por vencer`:'Sin bloqueos'))}</div></td>
       <td data-label="Acciones"><div class="tool-row"><button class="btn btn-g btn-xs" onclick="event.stopPropagation();sendReminder('${person.id}')">Recordar</button><button class="btn btn-p btn-xs" onclick="event.stopPropagation();pushToPlatforms('${person.id}','control')">Subir</button></div></td>
     </tr>`).join(''):`<tr><td colspan="6"><div class="empty">No hay resultados para este filtro.</div></td></tr>`;
+  document.getElementById('control-priority-list').innerHTML=projectPriority.length?projectPriority.slice(0,6).map(({person,summary,topIssue},index)=>`
+    <div class="control-priority-item" onclick="selectControlPerson('${person.id}')">
+      <div>
+        <strong>${index+1}. ${person.nombre}</strong>
+        <div class="sub">${topIssue?`${topIssue.label} · ${topIssue.status}`:'Sin documento priorizado'} · ${summary.missing+summary.expired+summary.soon} gestión(es) abiertas</div>
+      </div>
+      <div class="tool-row">
+        <span class="badge ${topIssue?statusBadgeClass(topIssue.status):'bg'}">${topIssue?topIssue.status:'Listo'}</span>
+        <button class="btn btn-g btn-xs" onclick="event.stopPropagation();openWorkerProfile('${person.id}')">Abrir</button>
+      </div>
+    </div>`).join(''):'<div class="empty">No hay prioridades abiertas en el proyecto activo.</div>';
   const selected=matchedSelection;
   if(selected && selected.proyecto_id===state.ui.activeProjectId){
     const s=summaryForPerson(selected);
     document.getElementById('control-detail').className='';
     document.getElementById('control-detail').innerHTML=renderWorkerDossier(selected);
     const hints=[];
+    const nextAction=nextActionForPerson(selected,s);
+    hints.push({title:nextAction.title,text:nextAction.text});
     if(s.bucket!=='Completo') hints.push({title:'Enviar recordatorio',text:`Faltan ${s.missing+s.expired+s.soon} documento(s) por regularizar.`});
     if(s.expired) hints.push({title:'Actualizar vencidos',text:`Hay ${s.expired} documento(s) vencidos que bloquean la acreditación.`});
     if(s.bucket==='Completo') hints.push({title:'Subir a plataformas',text:'La persona ya puede pasar a Workmate / SIGA / LMS según proyecto.'});
@@ -2839,16 +3155,17 @@ function setControlFilter(filter){
 }
 function renderPlatformsView(){
   const jobs=state.platformJobs;
+  const activeAccreditor=selectedAccreditorForProject(state.ui.activeProjectId);
   if(!state.ui.selectedPlatformJobId && jobs[0]) state.ui.selectedPlatformJobId=jobs[0].id;
   const current=jobs.find(j=>j.id===state.ui.selectedPlatformJobId)||null;
   document.getElementById('platform-job-list').innerHTML=jobs.length?jobs.map(job=>{
     const person=getPerson(job.personId);
     const succ=Object.values(job.platforms).filter(p=>p.status==='success').length;
     const err=Object.values(job.platforms).filter(p=>p.status==='error').length;
-    return `<div class="job-item ${current?.id===job.id?'active':''}" onclick="selectPlatformJob('${job.id}')"><strong>${person?.nombre||'Persona eliminada'}</strong><div class="helper">${getProject(job.projectId)?.nombre||'—'} · ${new Date(job.createdAt).toLocaleString('es-CL')}</div><div class="helper" style="margin-top:.2rem">${succ} ok · ${err} error · origen ${job.source}</div></div>`;
+    return `<div class="job-item ${current?.id===job.id?'active':''}" onclick="selectPlatformJob('${job.id}')"><strong>${person?`<button class="person-inline-link subtle" onclick="event.stopPropagation();openWorkerProfile('${person.id}')">${person.nombre}</button>`:'Persona eliminada'}</strong><div class="helper">${getProject(job.projectId)?.nombre||'—'} · ${new Date(job.createdAt).toLocaleString('es-CL')}</div><div class="helper" style="margin-top:.2rem">${succ} ok · ${err} error · origen ${job.source}</div></div>`;
   }).join(''):`<div class="empty">Todavía no hay subidas simuladas.</div>`;
   if(!current){
-    document.getElementById('platform-current-job').innerHTML='<div class="empty">Selecciona o genera una subida para ver detalle por plataforma.</div>';
+    document.getElementById('platform-current-job').innerHTML=`<div class="callout blue"><strong style="font-size:.9rem">${activeAccreditor?activeAccreditor.name:'Sin casa acreditadora seleccionada'}</strong><div class="inline-note" style="margin-top:.24rem">${activeAccreditor?'La próxima subida se procesará solo por esta casa acreditadora.':'Antes de subir, elige Workmate, SUCAL, SIGA o la opción activa del proyecto.'}</div></div><div class="empty" style="margin-top:.8rem">Selecciona o genera una subida para ver detalle por plataforma.</div>`;
     document.getElementById('platform-status-grid').innerHTML='';
     document.getElementById('platform-log-list').innerHTML='';
     document.getElementById('platform-errors-box').innerHTML='<div class="empty">Sin errores en este momento.</div>';
@@ -2859,8 +3176,8 @@ function renderPlatformsView(){
   const err=Object.values(current.platforms).filter(p=>p.status==='error').length;
   document.getElementById('platform-current-job').innerHTML=`
     <div class="callout ${err?'orange':'green'}">
-      <strong style="font-size:.9rem">${person.nombre}</strong>
-      <div class="inline-note" style="margin-top:.24rem">${getProject(current.projectId).nombre} · ${current.source} · ${new Date(current.createdAt).toLocaleString('es-CL')}</div>
+      <strong style="font-size:.9rem"><button class="person-inline-link subtle" onclick="openWorkerProfile('${person.id}')">${person.nombre}</button></strong>
+      <div class="inline-note" style="margin-top:.24rem">${getProject(current.projectId).nombre} · ${platformName(current.accreditorId)} · ${current.source} · ${new Date(current.createdAt).toLocaleString('es-CL')}</div>
     </div>
     <div class="phase-summary" style="margin-top:.85rem">
       <div class="summary-box"><strong>${Object.keys(current.platforms).length}</strong><span>Plataformas</span></div>
