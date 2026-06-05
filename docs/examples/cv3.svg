@@ -1,0 +1,1400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- PDFTron PDFNet Generated! Version: 7.1.0.741 -->
+<!--UserId:31843eb3-575b-4ac1-a10c-6969a6ca210b,DocId:9beb8e24-4667-4623-a8cd-b7140a3306b9,SkinCD:MLJ1,SDCL:#3691AB-->
+<svg style="background: #fff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:cs="svg" version="1.1" width="595px" height="842px" viewBox="0 0 595 842" xml:space="preserve">
+  <style type="text/css">.ps02{fill-opacity:0.2;stroke-opacity:0.2;fill:#3591AB}.ps07{fill:#000000}.ps06{fill:#333A3F}.ps08{fill:#333A3F}.ps03{fill:#3591AB}.ps05{fill:#595959}.ps04{fill:#FFFFFF}.ps01{fill:#FFFFFF}.ps00{fill:none}.ps20{letter-spacing:0;word-spacing:0;font-family:'Arial';font-size:40px;font-weight: 600;}.ps22{letter-spacing:0;word-spacing:0;font-family:'Arial';font-size:14px;font-weight: 600;}.ps25{letter-spacing:0;word-spacing:0;font-family:'Arial';font-size:10px;font-weight: 600;}.ps24{letter-spacing:0;word-spacing:0;font-family:'Arial';font-size:9px;font-weight: 600;font-style:italic}.ps21{letter-spacing:0;word-spacing:0;font-family:'Arial';font-size:10px}.ps23{letter-spacing:0;word-spacing:0;font-family:'Arial';font-size:9px}</style>
+  <clipPath id="clp1">
+    <rect width="595" height="842"></rect>
+  </clipPath>
+  <g clip-path="url(#clp1)" transform="matrix(1 0 0 -1 0 842)">
+    <g>
+      <g transform="matrix(1.342 0 0 1.342 0 0)">
+        <clipPath id="clp2">
+          <rect width="446.3" height="627.3"></rect>
+        </clipPath>
+        <g clip-path="url(#clp2)">
+          <g>
+            <g transform="matrix(0.744 0 0 -0.744 0 627.282)">
+              <g>
+                <clipPath id="clp3">
+                  <path d="M0 0 L599 0 L599 842.09 L0 842.09 Z"></path>
+                </clipPath>
+                <g clip-path="url(#clp3)">
+                  <g class="ps00">
+                    <path d="M0 0 L599 0 L599 842.09 L0 842.09 Z" class="ps01"></path>
+                  </g>
+                </g>
+              </g>
+              <g>
+                <clipPath id="clp4">
+                  <path d="M0 0 L211 0 L211 842.09 L0 842.09 Z"></path>
+                </clipPath>
+                <g clip-path="url(#clp4)">
+                  <g class="ps00">
+                    <path d="M0 0 L211 0 L211 842.09 L0 842.09 Z" class="ps02"></path>
+                  </g>
+                </g>
+              </g>
+              <g>
+                <clipPath id="clp5">
+                  <path d="M0 0 L599 0 L599 842.09 L0 842.09 Z"></path>
+                </clipPath>
+                <g clip-path="url(#clp5)">
+                  <g transform="matrix(0.591 0 0 0.591 0 0)">
+                    <g class="ps00">
+                      <g>
+                        <clipPath id="clp6">
+                          <path d="M0 0 L357 0 L357 357 L0 357 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp6)">
+                          <g class="ps00">
+                            <g transform="matrix(356.997 0 0 -356.997 0 356.997)">
+                              <image width="1" height="1" transform="matrix(1 0 0 -1 0 1)" preserveAspectRatio="none" image-rendering="optimizeSpeed" xlink:href="data:image/jpg;base64, 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"></image>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                    <g transform="matrix(1.691 0 0 1.691 0 0)">
+                      <g class="ps00">
+                        <path d="M211 0 L595 0 L595 211 L211 211 Z" class="ps03"></path>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp7">
+                          <path d="M236 27.999 L317 27.999 L317 83.998 L236 83.998 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 241 69)">
+                              <tspan class="ps04 ps20" xml:space="preserve">Ana Torres Luna</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp8">
+                          <path d="M315 27.999 L527 27.999 L527 83.998 L315 83.998 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 320.012 69)">
+                              <tspan class="ps04 ps20" xml:space="preserve"></tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp9">
+                          <path d="M236 107 L563 107 L563 128 L236 128 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp9)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 241 121.5)">
+                              <tspan class="ps04 ps21" xml:space="preserve">Instructora de gimnasio con experiencia en acondicionamiento físico.</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp10">
+                          <path d="M236 123 L551 123 L551 144 L236 144 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp10)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 241 137.5)">
+                              <tspan class="ps04 ps21" xml:space="preserve">Soy una persona enérgica con habilidad para ayudar a los demás a</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp11">
+                          <path d="M236 139 L519 139 L519 160 L236 160 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp11)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 241 153.5)">
+                              <tspan class="ps04 ps21" xml:space="preserve">alcanzar sus objetivos de entrenamiento mediante sesiones</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp12">
+                          <path d="M236 155 L540 155 L540 176 L236 176 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp12)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 241 169.5)">
+                              <tspan class="ps04 ps21" xml:space="preserve">personalizadas. Busco unirme a un equipo dinámico y motivado.</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp13">
+                          <path d="M241 95.497 L286 95.497 L286 96.499 L241 96.499 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp13)">
+                          <g class="ps00">
+                            <path d="M241 95.497 L286 95.497 L286 96.499 L241 96.499 Z" class="ps05"></path>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp14">
+                          <path d="M47.001 264 L139 264 L139 284 L47.001 284 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp14)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 52 278)">
+                              <tspan class="ps06 ps21" xml:space="preserve">Calle Obregón 107</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp15">
+                          <path d="M129 264 L169 264 L169 284 L129 284 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp15)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 134.787 278)">
+                              <tspan x="0,5.51" class="ps06 ps21" xml:space="preserve">80000</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp16">
+                          <path d="M47.001 280 L97.003 280 L97.003 300 L47.001 300 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp16)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 52 294)">
+                              <tspan class="ps06 ps21" xml:space="preserve">Culiacán</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp17">
+                          <path d="M47.001 306 L111 306 L111 326 L47.001 326 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp17)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 52 320)">
+                              <tspan class="ps06 ps21" xml:space="preserve">667.713-1126</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp18">
+                          <path d="M47.001 332 L153 332 L153 352 L47.001 352 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp18)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 52 346)">
+                              <tspan class="ps06 ps21" xml:space="preserve">ana.tl@example.com</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp19">
+                          <path d="M24.998 230 L96.998 230 L96.998 262 L24.998 262 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp19)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 30 253)">
+                              <tspan class="ps06 ps22" xml:space="preserve">CONTACTO</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp20">
+                          <path d="M29.998 365 L181 365 L181 366 L29.998 366 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp20)">
+                          <g class="ps00">
+                            <path d="M29.998 365 L181 365 L181 366 L29.998 366 Z" class="ps07"></path>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp21">
+                          <path d="M29.998 532 L181 532 L181 533 L29.998 533 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp21)">
+                          <g class="ps00">
+                            <path d="M29.998 532 L181 532 L181 533 L29.998 533 Z" class="ps08"></path>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp22">
+                          <path d="M24.998 375 L112 375 L112 407 L24.998 407 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 30 398)">
+                              <tspan class="ps06 ps22" xml:space="preserve">HABILIDADES</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp23">
+                          <path d="M34.998 404 L156 404 L156 424 L34.998 424 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp23)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 40 418)">
+                              <tspan class="ps06 ps21" xml:space="preserve">Entrenamiento personal</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp24">
+                          <path d="M24.998 404 L39.001 404 L39.001 424 L24.998 424 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp24)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 30 417.5)">
+                              <tspan class="ps06 ps23">•</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp25">
+                          <path d="M34.998 425 L141 425 L141 445 L34.998 445 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp25)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 40 439)">
+                              <tspan class="ps06 ps21" xml:space="preserve">Animación deportiva</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp26">
+                          <path d="M24.998 425 L39.001 425 L39.001 445 L24.998 445 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp26)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 30 438.5)">
+                              <tspan class="ps06 ps23">•</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp27">
+                          <path d="M34.998 446 L175 446 L175 466 L34.998 466 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp27)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 40 460)">
+                              <tspan class="ps06 ps21" xml:space="preserve">Coordinación de actividades</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp28">
+                          <path d="M24.998 446 L39.001 446 L39.001 466 L24.998 466 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp28)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 30 459.5)">
+                              <tspan class="ps06 ps23">•</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp29">
+                          <path d="M34.998 467 L149 467 L149 487 L34.998 487 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp29)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 40 481)">
+                              <tspan class="ps06 ps21" xml:space="preserve">Programas de ejercicio</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp30">
+                          <path d="M24.998 467 L39.001 467 L39.001 487 L24.998 487 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp30)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 30 480.5)">
+                              <tspan class="ps06 ps23">•</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp31">
+                          <path d="M34.998 488 L175 488 L175 508 L34.998 508 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp31)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 40 502)">
+                              <tspan class="ps06 ps21" xml:space="preserve">Habilidades interpersonales</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp32">
+                          <path d="M24.998 488 L39.001 488 L39.001 508 L24.998 508 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp32)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 30 501.5)">
+                              <tspan class="ps06 ps23">•</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp33">
+                          <path d="M34.998 509 L148 509 L148 529 L34.998 529 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp33)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 40 523)">
+                              <tspan x="0,5.45" class="ps06 ps21" xml:space="preserve">Simpatía y amabilidad</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp34">
+                          <path d="M24.998 509 L39.001 509 L39.001 529 L24.998 529 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp34)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 30 522.5)">
+                              <tspan class="ps06 ps23">•</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp35">
+                          <path d="M29.998 663 L181 663 L181 664 L29.998 664 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp35)">
+                          <g class="ps00">
+                            <path d="M29.998 663 L181 663 L181 664 L29.998 664 Z" class="ps08"></path>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp36">
+                          <path d="M24.998 542 L83.001 542 L83.001 574 L24.998 574 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 30 565)">
+                              <tspan class="ps06 ps22" xml:space="preserve">CURSOS</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp37">
+                          <path d="M34.998 571 L162 571 L162 591 L34.998 591 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp37)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 40 585)">
+                              <tspan class="ps06 ps21" xml:space="preserve">Entrenamiento Personal -</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp38">
+                          <path d="M34.998 587 L119 587 L119 607 L34.998 607 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp38)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 40 601)">
+                              <tspan class="ps06 ps21" xml:space="preserve">Editorial Médica</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp39">
+                          <path d="M34.998 603 L137 603 L137 623 L34.998 623 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp39)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 40 617)">
+                              <tspan class="ps06 ps21" xml:space="preserve">Panamericana, 2020</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp40">
+                          <path d="M24.998 571 L39.001 571 L39.001 591 L24.998 591 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp40)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 30 584.5)">
+                              <tspan class="ps06 ps23">•</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp41">
+                          <path d="M34.998 624 L181 624 L181 644 L34.998 644 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp41)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 40 638)">
+                              <tspan class="ps06 ps21" xml:space="preserve">Pilates - Instituto Superior de</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp42">
+                          <path d="M34.998 640 L136 640 L136 660 L34.998 660 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp42)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 40 654)">
+                              <tspan class="ps06 ps21" xml:space="preserve">Artes Escena 3, 2019</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp43">
+                          <path d="M24.998 624 L39.001 624 L39.001 644 L24.998 644 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp43)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 30 637.5)">
+                              <tspan class="ps06 ps23">•</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp44">
+                          <path d="M29.998 794 L181 794 L181 795 L29.998 795 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp44)">
+                          <g class="ps00">
+                            <path d="M29.998 794 L181 794 L181 795 L29.998 795 Z" class="ps08"></path>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp45">
+                          <path d="M24.998 673 L136 673 L136 705 L24.998 705 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp45)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 30 696)">
+                              <tspan class="ps06 ps22" xml:space="preserve">CERTIFICACIONES</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp46">
+                          <path d="M34.998 702 L180 702 L180 722 L34.998 722 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp46)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 40 716)">
+                              <tspan class="ps06 ps21" xml:space="preserve">Certificación Internacional en</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp47">
+                          <path d="M34.998 718 L184 718 L184 738 L34.998 738 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp47)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 40 732)">
+                              <tspan x="0,2.95,8.81,14.79,20.63,26.47,30.33,32.98" class="ps06 ps21" xml:space="preserve">Indoor Cycling - Bike Live, 2017</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp48">
+                          <path d="M24.998 702 L39.001 702 L39.001 722 L24.998 722 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp48)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 30 715.5)">
+                              <tspan class="ps06 ps23">•</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp49">
+                          <path d="M34.998 739 L169 739 L169 759 L34.998 759 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp49)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 40 753)">
+                              <tspan class="ps06 ps21" xml:space="preserve">Certificación en “Instructor</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp50">
+                          <path d="M34.998 755 L174 755 L174 775 L34.998 775 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp50)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 40 769)">
+                              <tspan class="ps06 ps21" xml:space="preserve">Especializado en Gimnasio y</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp51">
+                          <path d="M34.998 771 L177 771 L177 791 L34.998 791 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp51)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 40 785)">
+                              <tspan class="ps06 ps21" xml:space="preserve">Musculación” - CEDPRO, 2015</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                      <g class="ps00">
+                        <clipPath id="clp52">
+                          <path d="M24.998 739 L39.001 739 L39.001 759 L24.998 759 Z"></path>
+                        </clipPath>
+                        <g clip-path="url(#clp52)">
+                          <g class="ps00">
+                            <text transform="matrix(1 0 0 1 30 752.5)">
+                              <tspan class="ps06 ps23">•</tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+              <g>
+                <clipPath id="clp53">
+                  <path d="M0 211 L211 211 L211 212 L0 212 Z"></path>
+                </clipPath>
+                <g clip-path="url(#clp53)">
+                  <g class="ps00">
+                    <path d="M0 211 L211 211 L211 212 L0 212 Z" class="ps02"></path>
+                  </g>
+                </g>
+              </g>
+              <g>
+                <clipPath id="clp54">
+                  <path d="M0 0 L599 0 L599 842.09 L0 842.09 Z"></path>
+                </clipPath>
+                <g clip-path="url(#clp54)">
+                  <g class="ps00">
+                    <path d="M211 211 L595 211 L595 825 L211 825 Z" class="ps01"></path>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp55">
+                      <path d="M241 707 L565 707 L565 708 L241 708 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp55)">
+                      <g class="ps00">
+                        <path d="M241 707 L565 707 L565 708 L241 708 Z" class="ps03"></path>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp56">
+                      <path d="M236 264 L286 264 L286 284 L236 284 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp56)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 241 278)">
+                          <tspan class="ps06 ps24" xml:space="preserve">FIT ZONE</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp57">
+                      <path d="M277 264 L294 264 L294 284 L277 284 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp57)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 282.524 278)">
+                          <tspan class="ps06 ps21" xml:space="preserve">- </tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp58">
+                      <path d="M284 264 L404 264 L404 284 L284 284 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp58)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 289.200 278)">
+                          <tspan class="ps06 ps25" xml:space="preserve">Instructora de gimnasio</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp59">
+                      <path d="M236 280 L286 280 L286 300 L236 300 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp59)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 241 294)">
+                          <tspan class="ps06 ps21" xml:space="preserve">Culiacán</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp60">
+                      <path d="M277 280 L293 280 L293 300 L277 300 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp60)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 282.062 294)">
+                          <tspan class="ps06 ps21" xml:space="preserve">| </tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp61">
+                      <path d="M283 280 L329 280 L329 300 L283 300 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp61)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 288.737 294)">
+                          <tspan class="ps06 ps21" xml:space="preserve">11/2020</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp62">
+                      <path d="M317 280 L337 280 L337 300 L317 300 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp62)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 322.987 294)">
+                          <tspan xml:space="preserve" x="0,2.65,6.68" class="ps06 ps21"> - </tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp63">
+                      <path d="M327 280 L367 280 L367 300 L327 300 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp63)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 332.312 294)">
+                          <tspan class="ps06 ps21" xml:space="preserve">Actual</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp64">
+                      <path d="M236 426 L319 426 L319 446 L236 446 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp64)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 241 440)">
+                          <tspan class="ps06 ps24" xml:space="preserve">Champions Gym</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp65">
+                      <path d="M310 426 L327 426 L327 446 L310 446 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp65)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 315.637 440)">
+                          <tspan class="ps06 ps21" xml:space="preserve">- </tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp66">
+                      <path d="M317 426 L437 426 L437 446 L317 446 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp66)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 322.312 440)">
+                          <tspan class="ps06 ps25" xml:space="preserve">Instructora de gimnasio</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp67">
+                      <path d="M236 442 L286 442 L286 462 L236 462 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp67)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 241 456)">
+                          <tspan class="ps06 ps21" xml:space="preserve">Culiacán</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp68">
+                      <path d="M277 442 L293 442 L293 462 L277 462 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp68)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 282.062 456)">
+                          <tspan class="ps06 ps21" xml:space="preserve">| </tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp69">
+                      <path d="M283 442 L330 442 L330 462 L283 462 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp69)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 288.737 456)">
+                          <tspan class="ps06 ps21" xml:space="preserve">01/2016</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp70">
+                      <path d="M318 442 L337 442 L337 462 L318 462 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp70)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 323.112 456)">
+                          <tspan xml:space="preserve" x="0,2.65,6.68" class="ps06 ps21"> - </tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp71">
+                      <path d="M327 442 L375 442 L375 462 L327 462 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp71)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 332.437 456)">
+                          <tspan class="ps06 ps21" xml:space="preserve">03/2020</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp72">
+                      <path d="M236 556 L305 556 L305 576 L236 576 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp72)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 241 570)">
+                          <tspan class="ps06 ps24" xml:space="preserve">Dalia Fitness</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp73">
+                      <path d="M295 556 L312 556 L312 576 L295 576 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp73)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 300.875 570)">
+                          <tspan class="ps06 ps21" xml:space="preserve">- </tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp74">
+                      <path d="M302 556 L401 556 L401 576 L302 576 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp74)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 307.549 570)">
+                          <tspan class="ps06 ps25" xml:space="preserve">Monitora de zumba</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp75">
+                      <path d="M236 572 L286 572 L286 592 L236 592 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp75)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 241 586)">
+                          <tspan class="ps06 ps21" xml:space="preserve">Culiacán</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp76">
+                      <path d="M277 572 L293 572 L293 592 L277 592 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp76)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 282.062 586)">
+                          <tspan class="ps06 ps21" xml:space="preserve">| </tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp77">
+                      <path d="M283 572 L329 572 L329 592 L283 592 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp77)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 288.737 586)">
+                          <tspan class="ps06 ps21" xml:space="preserve">03/2011</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp78">
+                      <path d="M317 572 L336 572 L336 592 L317 592 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp78)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 322.587 586)">
+                          <tspan xml:space="preserve" x="0,2.65,6.68" class="ps06 ps21"> - </tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp79">
+                      <path d="M326 572 L373 572 L373 592 L326 592 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp79)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 331.912 586)">
+                          <tspan class="ps06 ps21" xml:space="preserve">10/2015</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp80">
+                      <path d="M236 230 L375 230 L375 262 L236 262 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 241 253)">
+                          <tspan class="ps06 ps22" xml:space="preserve">EXPERIENCIA LABORAL</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp81">
+                      <path d="M246 302 L570 302 L570 322 L246 322 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp81)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 251 316)">
+                          <tspan class="ps06 ps21" xml:space="preserve">Asesoramiento e información al usuario sobre la práctica deportiva y</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp82">
+                      <path d="M246 318 L452 318 L452 338 L246 338 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp82)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 251 332)">
+                          <tspan class="ps06 ps21" xml:space="preserve">la adopción de hábitos de vida saludables.</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp83">
+                      <path d="M236 302 L250 302 L250 322 L236 322 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp83)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 241 315.5)">
+                          <tspan class="ps06 ps23">•</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp84">
+                      <path d="M246 339 L548 339 L548 359 L246 359 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp84)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 251 353)">
+                          <tspan class="ps06 ps21" xml:space="preserve">Mantenimiento y limpieza de máquinas, materiales y espacio de</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp85">
+                      <path d="M246 355 L292 355 L292 375 L246 375 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp85)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 251 369)">
+                          <tspan class="ps06 ps21" xml:space="preserve">trabajo.</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp86">
+                      <path d="M236 339 L250 339 L250 359 L236 359 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp86)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 241 352.5)">
+                          <tspan class="ps06 ps23">•</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp87">
+                      <path d="M246 376 L525 376 L525 396 L246 396 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp87)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 251 390)">
+                          <tspan class="ps06 ps21" xml:space="preserve">Organización y dirección de diferentes tipos de actividades</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp88">
+                      <path d="M246 392 L452 392 L452 412 L246 412 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp88)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 251 406)">
+                          <tspan class="ps06 ps21" xml:space="preserve">deportivas (aerobic, zumba, spinning, etc.).</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp89">
+                      <path d="M236 376 L250 376 L250 396 L236 396 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp89)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 241 389.5)">
+                          <tspan class="ps06 ps23">•</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp90">
+                      <path d="M246 464 L511 464 L511 484 L246 484 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp90)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 251 478)">
+                          <tspan class="ps06 ps21" xml:space="preserve">Prevención y tratamiento básico de lesiones deportivas.</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp91">
+                      <path d="M236 464 L250 464 L250 484 L236 484 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp91)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 241 477.5)">
+                          <tspan class="ps06 ps23">•</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp92">
+                      <path d="M246 485 L564 485 L564 505 L246 505 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp92)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 251 499)">
+                          <tspan class="ps06 ps21" xml:space="preserve">Información y orientación al usuario sobre cómo utilizar el material</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp93">
+                      <path d="M246 501 L528 501 L528 521 L246 521 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp93)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 251 515)">
+                          <tspan class="ps06 ps21" xml:space="preserve">deportivo, las máquinas de ejercicios, las instalaciones, etc.</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp94">
+                      <path d="M236 485 L250 485 L250 505 L236 505 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp94)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 241 498.5)">
+                          <tspan class="ps06 ps23">•</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp95">
+                      <path d="M246 522 L556 522 L556 542 L246 542 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp95)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 251 536)">
+                          <tspan class="ps06 ps21" xml:space="preserve">Planificación y elaboración de calendarios y horarios de sesiones.</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp96">
+                      <path d="M236 522 L250 522 L250 542 L236 542 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp96)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 241 535.5)">
+                          <tspan class="ps06 ps23">•</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp97">
+                      <path d="M246 594 L555 594 L555 614 L246 614 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp97)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 251 608)">
+                          <tspan class="ps06 ps21" xml:space="preserve">Planificación y diseño de clases de zumba adaptadas a diferentes</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp98">
+                      <path d="M246 610 L335 610 L335 630 L246 630 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp98)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 251 624)">
+                          <tspan class="ps06 ps21" xml:space="preserve">niveles y edades.</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp99">
+                      <path d="M236 594 L250 594 L250 614 L236 614 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp99)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 241 607.5)">
+                          <tspan class="ps06 ps23">•</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp100">
+                      <path d="M246 631 L560 631 L560 651 L246 651 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp100)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 251 645)">
+                          <tspan class="ps06 ps21" xml:space="preserve">Adaptación de las clases a las necesidades específicas de alumnos</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp101">
+                      <path d="M246 647 L398 647 L398 667 L246 667 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp101)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 251 661)">
+                          <tspan class="ps06 ps21" xml:space="preserve">con discapacidades o lesiones.</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp102">
+                      <path d="M236 631 L250 631 L250 651 L236 651 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp102)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 241 644.5)">
+                          <tspan class="ps06 ps23">•</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp103">
+                      <path d="M246 668 L548 668 L548 688 L246 688 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp103)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 251 682)">
+                          <tspan class="ps06 ps21" xml:space="preserve">Mantenimiento y actualización de conocimientos sobre zumba y</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp104">
+                      <path d="M246 684 L395 684 L395 704 L246 704 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp104)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 251 698)">
+                          <tspan class="ps06 ps21" xml:space="preserve">otras disciplinas relacionadas.</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp105">
+                      <path d="M236 668 L250 668 L250 688 L236 688 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp105)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 241 681.5)">
+                          <tspan class="ps06 ps23">•</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp106">
+                      <path d="M241 790 L565 790 L565 791 L241 791 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp106)">
+                      <g class="ps00">
+                        <path d="M241 790 L565 790 L565 791 L241 791 Z" class="ps03"></path>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp107">
+                      <path d="M236 746 L400 746 L400 766 L236 766 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp107)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 241 760)">
+                          <tspan class="ps06 ps24" xml:space="preserve">Universidad Autónoma de Sinaloa</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp108">
+                      <path d="M388 746 L403 746 L403 766 L388 766 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp108)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 393.174 760)">
+                          <tspan xml:space="preserve" x="0,2.4" class="ps06 ps21">, </tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp109">
+                      <path d="M393 746 L443 746 L443 766 L393 766 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp109)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 398.225 760)">
+                          <tspan class="ps06 ps21" xml:space="preserve">Culiacán</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp110">
+                      <path d="M434 746 L450 746 L450 766 L434 766 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp110)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 439.287 760)">
+                          <tspan class="ps06 ps21" xml:space="preserve">| </tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp111">
+                      <path d="M440 746 L488 746 L488 766 L440 766 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp111)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 445.962 760)">
+                          <tspan class="ps06 ps21" xml:space="preserve">06/2010</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp112">
+                      <path d="M236 767 L411 767 L411 787 L236 787 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#clp112)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 241 781)">
+                          <tspan class="ps06 ps24" xml:space="preserve">Licenciatura en Educación Deportiva</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                  <g class="ps00">
+                    <clipPath id="clp113">
+                      <path d="M236 717 L303 717 L303 749 L236 749 Z"></path>
+                    </clipPath>
+                    <g clip-path="url(#)">
+                      <g class="ps00">
+                        <text transform="matrix(1 0 0 1 241 740)">
+                          <tspan class="ps06 ps22" xml:space="preserve">ESTUDIOS</tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+              <g transform="matrix(1.343 0 0 1.343 0 0)">
+                <g>
+                  <clipPath id="clp114">
+                    <path d="M22 199 L34 199 L34 210 L22 210 Z"></path>
+                  </clipPath>
+                  <g clip-path="url(#clp114)">
+                    <g transform="matrix(0.744 0 0 0.744 22.337 198.970)">
+                      <g class="ps00">
+                        <path d="M7.536 4.509 C6.529 4.509 5.711 5.328 5.711 6.335 C5.711 7.347 6.529 8.166 7.536 8.166 C8.544 8.166 9.362 7.347 9.362 6.335 C9.362 5.328 8.544 4.509 7.536 4.509" class="ps08"></path>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+                <g>
+                  <clipPath id="clp115">
+                    <path d="M22 199 L34 199 L34 210 L22 210 Z"></path>
+                  </clipPath>
+                  <g clip-path="url(#clp115)">
+                    <g transform="matrix(0.744 0 0 0.744 22.337 198.970)">
+                      <g class="ps00">
+                        <path d="M14.326 -0.002 C14.745 -0.002 15.081 0.338 15.081 0.753 L15.081 14.325 C15.081 14.74 14.745 15.081 14.326 15.081 L0.753 15.081 C0.339 15.081 -0.001 14.74 -0.001 14.325 L-0.001 0.753 C-0.001 0.338 0.339 -0.002 0.753 -0.002 L14.326 -0.002M7.547 12.001 C7.547 12.001 11.115 9.346 11.115 6.340 C11.115 4.368 9.514 2.773 7.547 2.773 C6.597 2.773 5.690 3.150 5.018 3.817 C4.352 4.488 3.974 5.396 3.974 6.340 C3.974 9.346 7.547 12.001 7.547 12.001" class="ps08"></path>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+                <g>
+                  <clipPath id="clp116">
+                    <path d="M22 230 L34 230 L34 241 L22 241 Z"></path>
+                  </clipPath>
+                  <g clip-path="url(#clp116)">
+                    <g transform="matrix(0.744 0 0 0.744 22.337 230.242)">
+                      <g class="ps00">
+                        <path d="M14.326 -0.000 C14.745 -0.000 15.081 0.340 15.081 0.754 L15.081 14.327 C15.081 14.741 14.745 15.077 14.326 15.082 L0.753 15.082 C0.339 15.077 -0.001 14.741 -0.001 14.327 L-0.001 0.754 C-0.001 0.340 0.339 -0.000 0.753 -0.000 ZM5.632 6.237 L4.032 4.647 L3.502 5.172 C3.434 5.240 3.392 5.334 3.392 5.429 C3.392 5.528 3.434 5.618 3.502 5.686 L4.583 6.767 C4.724 6.908 4.955 6.908 5.102 6.767 ZM10.359 10.969 L8.759 9.374 L8.229 9.904 C8.161 9.972 8.124 10.062 8.124 10.161 C8.124 10.256 8.161 10.35 8.229 10.418 L9.310 11.494 C9.457 11.641 9.687 11.641 9.829 11.494 ZM11.382 9.967 C12.117 9.232 11.598 7.527 9.541 5.471 C7.484 3.414 5.774 2.900 5.039 3.634 L4.651 4.028 C4.583 4.091 4.536 4.159 4.483 4.227 L6.109 5.854 C6.503 5.607 6.833 5.728 7.096 5.990 L9.095 7.984 C9.357 8.246 9.457 8.561 9.210 8.949 L10.784 10.523 C10.853 10.471 10.926 10.424 10.989 10.355 Z" class="ps08"></path>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+                <g>
+                  <clipPath id="clp117">
+                    <path d="M22 250 L34 250 L34 261 L22 261 Z"></path>
+                  </clipPath>
+                  <g clip-path="url(#clp117)">
+                    <g transform="matrix(0.744 0 0 0.744 22.337 249.601)">
+                      <g class="ps00">
+                        <path d="M7.521 6.111 C7.201 6.111 6.907 6.237 6.666 6.478 C6.382 6.762 6.209 7.166 6.209 7.648 C6.209 8.325 6.634 8.703 7.232 8.703 C7.542 8.703 7.835 8.572 8.061 8.346 C8.344 8.063 8.533 7.627 8.533 7.134 C8.533 6.515 8.108 6.111 7.521 6.111" class="ps08"></path>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+                <g>
+                  <clipPath id="clp118">
+                    <path d="M22 250 L34 250 L34 261 L22 261 Z"></path>
+                  </clipPath>
+                  <g clip-path="url(#clp118)">
+                    <g transform="matrix(0.744 0 0 0.744 22.337 249.601)">
+                      <g class="ps00">
+                        <path d="M14.326 -0.000 C14.745 -0.000 15.081 0.335 15.081 0.755 L15.081 14.327 C15.081 14.527 15.002 14.721 14.861 14.857 C14.719 14.999 14.525 15.077 14.326 15.077 L0.753 15.077 C0.339 15.077 -0.001 14.742 -0.001 14.327 L-0.001 0.755 C-0.001 0.335 0.339 -0.000 0.753 -0.000 L14.326 -0.000M10.134 9.831 C11.335 9.831 12.306 8.913 12.306 7.092 C12.306 4.857 10.223 2.775 7.552 2.775 C6.283 2.775 5.071 3.278 4.174 4.175 C3.276 5.067 2.773 6.284 2.778 7.549 C2.778 10.156 4.845 12.307 7.636 12.307 C8.659 12.313 9.661 12.029 10.527 11.489 L10.312 11.137 C9.493 11.62 8.717 11.872 7.636 11.872 C5.065 11.872 3.235 9.951 3.235 7.549 C3.235 5.162 5.086 3.210 7.552 3.210 C10.003 3.210 11.849 5.078 11.849 7.092 C11.849 8.540 11.236 9.317 10.464 9.317 C9.960 9.317 9.666 9.023 9.666 8.629 C9.666 8.540 9.677 8.404 9.698 8.294 L10.212 5.361 L8.927 5.151 L8.806 5.728 C8.502 5.314 8.051 4.988 7.300 4.988 C6.026 4.988 4.856 6.190 4.856 7.727 C4.856 9.023 5.742 9.831 6.854 9.831 C7.563 9.831 8.098 9.516 8.465 9.175 C8.738 9.490 9.252 9.831 10.134 9.831" class="ps08"></path>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -256,6 +256,14 @@ tbody tr:last-child td{border-bottom:none}
 .doc-preview-alert{padding:.8rem;border-radius:12px;background:var(--red-bg);border:1px solid var(--red-b);color:var(--red);font-size:.76rem;font-weight:700}
 .doc-preview-note{padding:.8rem;border-radius:12px;background:var(--orange-bg);border:1px solid var(--orange-b);color:var(--orange);font-size:.76rem;font-weight:700}
 .doc-preview-footer{margin-top:.9rem;font-size:.67rem;color:var(--t2);font-family:var(--mono)}
+.doc-sample{margin-top:1rem;border:1px solid var(--border);border-radius:16px;background:#F7FAFC;padding:1rem}
+.doc-sample-head{display:flex;align-items:flex-start;justify-content:space-between;gap:.8rem;margin-bottom:.9rem}
+.doc-sample-head strong{display:block;font-size:.88rem}
+.doc-sample-head span{display:block;margin-top:.15rem;font-size:.68rem;color:var(--t2);font-family:var(--mono)}
+.doc-sample-badge{padding:.35rem .55rem;border-radius:999px;background:var(--blue-bg);border:1px solid rgba(43,108,246,.18);color:var(--blue);font-size:.64rem;font-weight:800;text-transform:uppercase;letter-spacing:.7px}
+.doc-sample-frame{border-radius:14px;overflow:hidden;border:1px solid rgba(15,23,42,.08);background:#fff;box-shadow:0 18px 40px rgba(15,23,42,.08)}
+.doc-sample-image{display:block;width:100%;height:auto;max-height:72vh;object-fit:contain;background:#EEF2FF}
+.doc-sample-caption{margin-top:.75rem;font-size:.72rem;color:var(--t2);line-height:1.5}
 .dashboard-hero{
   position:relative;overflow:hidden;border:1px solid #C8D8DC;border-radius:24px;padding:1.2rem 1.2rem 1.15rem;
   background:
@@ -1319,6 +1327,64 @@ function buildObservation(person,docLabel,status,raw){
   }
   return null;
 }
+function sampleIndexForPerson(person,total){
+  const seed=`${person.id}|${person.rut}|${person.nombre}`;
+  return [...seed].reduce((acc,char)=>acc + char.charCodeAt(0),0)%total;
+}
+function sampleAssetForDocument(docLabel,person){
+  const samples={
+    'Cédula de identidad':{
+      path:'examples/ci.jpg',
+      sourceName:'ci.jpg',
+      title:'Cédula original de ejemplo',
+      caption:'Referencia visual real para este tipo de documento. Se utiliza al abrir cédulas desde clasificación documental, control o ficha del trabajador.'
+    },
+    'Licencia conducir clase B':{
+      path:'examples/licencia-de-conducir.jpg',
+      sourceName:'licencia-de-conducir.jpg',
+      title:'Licencia de conducir original de ejemplo',
+      caption:'Ejemplo realista de licencia utilizada por la demo para mostrar el archivo original al hacer clic en este tipo documental.'
+    },
+    'Certificado antecedentes':{
+      path:'examples/certificado-antecedentes.webp',
+      sourceName:'certificado-antecedentes.webp',
+      title:'Certificado de antecedentes original de ejemplo',
+      caption:'Referencia visual de certificado legal que se muestra como original de apoyo en el expediente del trabajador.'
+    },
+    'Examen pre-ocupacional':{
+      path:'examples/examen-preocupacional.webp',
+      sourceName:'examen-preocupacional.webp',
+      title:'Examen pre-ocupacional original de ejemplo',
+      caption:'Ejemplo real de orden y respaldo médico utilizado para demostrar la visualización documental original.'
+    },
+    'Examen altura geográfica':{
+      path:'examples/examen-preocupacional.webp',
+      sourceName:'examen-preocupacional.webp',
+      title:'Examen de altura geográfica de ejemplo',
+      caption:'Mientras no exista un respaldo específico en la demo, esta vista reutiliza un ejemplo médico realista del mismo grupo documental.'
+    },
+    'Curso ISEM Minería':{
+      path:'examples/isem.png',
+      sourceName:'isem.png',
+      title:'Certificado ISEM original de ejemplo',
+      caption:'Certificado de capacitación mostrado como documento original al revisar la inducción o curso de seguridad minera.'
+    }
+  };
+  if(docLabel==='Currículum Vitae'){
+    const cvs=[
+      {path:'examples/cv1.webp',sourceName:'cv1.webp'},
+      {path:'examples/cv2.png',sourceName:'cv2.png'},
+      {path:'examples/cv3.svg',sourceName:'cv3.svg'}
+    ];
+    const chosen=cvs[sampleIndexForPerson(person,cvs.length)];
+    return {
+      ...chosen,
+      title:'Currículum Vitae original de ejemplo',
+      caption:'La demo rota entre distintos CV reales de referencia para que la experiencia se sienta más cercana a un expediente documental verdadero.'
+    };
+  }
+  return samples[docLabel] || null;
+}
 function buildDocumentRecord(person,docLabel,status,raw){
   const project=getProject(person.proyecto_id);
   const meta=libDoc(docLabel);
@@ -1371,6 +1437,7 @@ function buildDocumentRecord(person,docLabel,status,raw){
     description:descriptionMap[docLabel] || 'Documento asociado al expediente demo de acreditación.',
     note:raw?.note || person.nota || 'Documento generado para demostración funcional del expediente.',
     observation,
+    sampleAsset:raw?.sampleAsset || sampleAssetForDocument(docLabel,person),
     projectName:project.nombre,
     projectRequirement,
     holderName:person.nombre,
@@ -1422,18 +1489,36 @@ function renderRecordInViewer(record,status){
       <div class="doc-preview-head">
         <div>
           <strong>Expediente visual</strong>
-          <span>Vista original simulada del archivo</span>
+          <span>${record.sampleAsset?'Vista original de ejemplo del archivo':'Vista original simulada del archivo'}</span>
         </div>
         <span class="badge ${statusBadgeClass(status)}">${status}</span>
       </div>
       <div class="doc-preview-body">
         ${record.caducado==='Sí'?`<div class="doc-preview-alert">Campo caducado: Sí. Este archivo quedó fuera de vigencia y requiere renovación antes de autorizar el acceso.</div>`:''}
         ${record.observation?`<div class="${record.observation.tone==='alert'?'doc-preview-alert':'doc-preview-note'}">${record.observation.title}: ${record.observation.text}</div>`:''}
-        ${renderDocumentOriginal(record,status)}
-        <div class="doc-preview-footer">Vista generada por Acreditator demo · ${record.pages} página(s) simuladas · archivo de ejemplo no oficial</div>
+        ${renderDocumentVisual(record,status)}
+        <div class="doc-preview-footer">${record.sampleAsset?`Vista original de referencia cargada desde ${record.sampleAsset.sourceName}`:`Vista generada por Acreditator demo · ${record.pages} página(s) simuladas · archivo de ejemplo no oficial`}</div>
       </div>
     </div>`;
   document.getElementById('doc-viewer').classList.add('open');
+}
+function renderDocumentVisual(record,status){
+  if(record.sampleAsset){
+    return `<div class="doc-sample">
+      <div class="doc-sample-head">
+        <div>
+          <strong>${record.sampleAsset.title}</strong>
+          <span>${record.fileName} · ${record.holderName}</span>
+        </div>
+        <span class="doc-sample-badge">Original de ejemplo</span>
+      </div>
+      <div class="doc-sample-frame">
+        <img class="doc-sample-image" src="${record.sampleAsset.path}" alt="${record.label} original de ejemplo">
+      </div>
+      <div class="doc-sample-caption">${record.sampleAsset.caption}</div>
+    </div>`;
+  }
+  return renderDocumentOriginal(record,status);
 }
 function openPhaseDocument(personId,docLabel,status='Recibido',overrides={}){
   const person=getPerson(personId);
