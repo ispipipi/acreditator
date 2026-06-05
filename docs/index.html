@@ -254,6 +254,7 @@ tbody tr:last-child td{border-bottom:none}
 .doc-preview-value{font-size:.81rem;color:var(--t1);line-height:1.55}
 .doc-preview-text{padding:.8rem;border-radius:12px;background:var(--surface2);border:1px solid var(--border)}
 .doc-preview-alert{padding:.8rem;border-radius:12px;background:var(--red-bg);border:1px solid var(--red-b);color:var(--red);font-size:.76rem;font-weight:700}
+.doc-preview-note{padding:.8rem;border-radius:12px;background:var(--orange-bg);border:1px solid var(--orange-b);color:var(--orange);font-size:.76rem;font-weight:700}
 .doc-preview-footer{margin-top:.9rem;font-size:.67rem;color:var(--t2);font-family:var(--mono)}
 .dashboard-hero{
   position:relative;overflow:hidden;border:1px solid #C8D8DC;border-radius:24px;padding:1.2rem 1.2rem 1.15rem;
@@ -1294,6 +1295,30 @@ function projectDashboardStats(projectId){
 function statusBadgeClass(status){
   return status==='Recibido'||status==='Emitido'?'bg':status==='Vencido'?'br':status==='Por vencer'?'bo':'bv';
 }
+function buildObservation(person,docLabel,status,raw){
+  if(status==='Vencido'){
+    return {
+      tone:'alert',
+      title:'Observación crítica',
+      text:`${docLabel} figura vencido para ${person.nombre}. El archivo perdió vigencia el ${shortDate(raw?.vencimiento)} y debe ser renovado antes de autorizar la acreditación o la subida a plataforma.`
+    };
+  }
+  if(status==='Por vencer'){
+    return {
+      tone:'note',
+      title:'Observación preventiva',
+      text:`${docLabel} está próximo a caducar para ${person.nombre}. Su vigencia termina el ${shortDate(raw?.vencimiento)}, por lo que conviene pedir la renovación antes de que pase a estado observado.`
+    };
+  }
+  if(status==='Faltante'){
+    return {
+      tone:'note',
+      title:'Observación de recepción',
+      text:`Aún no se recibe ${docLabel} para ${person.nombre}. La carpeta no puede cerrarse hasta que este archivo llegue y sea validado.`
+    };
+  }
+  return null;
+}
 function buildDocumentRecord(person,docLabel,status,raw){
   const project=getProject(person.proyecto_id);
   const meta=libDoc(docLabel);
@@ -1304,6 +1329,7 @@ function buildDocumentRecord(person,docLabel,status,raw){
   const expired=status==='Vencido';
   const pending=status==='Faltante';
   const soon=status==='Por vencer';
+  const observation=buildObservation(person,docLabel,status,raw);
   const fileName=raw?.fileName || `${slugify(docLabel)}_${person.rut.replace(/\W/g,'')}.${pending?'html':'pdf'}`;
   const documentId=raw?.documentId || `DOC-${person.id.slice(-3)}-${slugify(docLabel).slice(0,6).toUpperCase()}`;
   const issuerMap={
@@ -1344,6 +1370,7 @@ function buildDocumentRecord(person,docLabel,status,raw){
     pages:raw?.pages || (pending?1:2),
     description:descriptionMap[docLabel] || 'Documento asociado al expediente demo de acreditación.',
     note:raw?.note || person.nota || 'Documento generado para demostración funcional del expediente.',
+    observation,
     projectName:project.nombre,
     projectRequirement,
     holderName:person.nombre,
@@ -1401,6 +1428,7 @@ function renderRecordInViewer(record,status){
       </div>
       <div class="doc-preview-body">
         ${record.caducado==='Sí'?`<div class="doc-preview-alert">Campo caducado: Sí. Este archivo quedó fuera de vigencia y requiere renovación antes de autorizar el acceso.</div>`:''}
+        ${record.observation?`<div class="${record.observation.tone==='alert'?'doc-preview-alert':'doc-preview-note'}">${record.observation.title}: ${record.observation.text}</div>`:''}
         ${renderDocumentOriginal(record,status)}
         <div class="doc-preview-footer">Vista generada por Acreditator demo · ${record.pages} página(s) simuladas · archivo de ejemplo no oficial</div>
       </div>
@@ -1455,7 +1483,7 @@ function renderDocumentSections(person,docStates){
           </div>
           <div class="doc-entry-sub">${item.raw?.vencimiento?`Vence ${shortDate(item.raw.vencimiento)}`:item.status==='Faltante'?'Archivo pendiente de recepción':'Documento sin vencimiento'}</div>
           <div class="doc-entry-actions">
-            <button class="btn btn-g btn-xs" onclick="openDocViewer('${person.id}','${item.label.replace(/'/g,"\\'")}')">${item.status==='Faltante'?'Ver solicitud':'Ver documento'}</button>
+            <button class="btn btn-g btn-xs" onclick="openDocViewer('${person.id}','${item.label.replace(/'/g,"\\'")}')">${item.status==='Faltante'?'Ver solicitud':item.status==='Vencido'||item.status==='Por vencer'?'Ver observación':'Ver documento'}</button>
             ${item.status!=='Recibido' && item.status!=='Por vencer' ?`<button class="btn btn-w btn-xs" onclick="markDocReceived('${person.id}','${item.label.replace(/'/g,"\\'")}')">Marcar recibido</button>`:''}
           </div>
         </div>`;
