@@ -432,6 +432,53 @@ tbody tr:last-child td{border-bottom:none}
 .email-preview{padding:.8rem;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
 .email-preview h4{font-size:.82rem;margin-bottom:.3rem}
 .email-preview pre{white-space:pre-wrap;font-family:var(--font);font-size:.75rem;color:var(--t1);line-height:1.5}
+.mail-app{border:1px solid var(--border);border-radius:18px;overflow:hidden;background:#fff;box-shadow:var(--shadow-sm)}
+.mail-app-head{
+  display:flex;align-items:center;justify-content:space-between;gap:.8rem;padding:.7rem .9rem;
+  background:linear-gradient(180deg,#F8FAFC 0%,#F1F5F9 100%);border-bottom:1px solid var(--border)
+}
+.mail-app-brand{display:flex;align-items:center;gap:.55rem;font-weight:700;color:var(--t1)}
+.mail-dot-group{display:flex;gap:.3rem}
+.mail-dot{width:10px;height:10px;border-radius:50%}
+.mail-dot.red{background:#F87171}
+.mail-dot.yellow{background:#FBBF24}
+.mail-dot.green{background:#34D399}
+.mail-app-tools{display:flex;align-items:center;gap:.38rem;color:var(--t2);font-family:var(--mono);font-size:.63rem}
+.mail-app-tool{padding:.22rem .45rem;border-radius:999px;background:#fff;border:1px solid var(--border)}
+.mail-card{padding:1rem}
+.mail-subject{display:flex;align-items:center;justify-content:space-between;gap:.8rem;margin-bottom:.8rem}
+.mail-subject strong{font-size:.94rem;letter-spacing:-.3px;color:var(--t0)}
+.mail-status{
+  display:inline-flex;align-items:center;gap:.35rem;padding:.38rem .62rem;border-radius:999px;
+  background:var(--blue-bg);border:1px solid var(--blue-b);color:var(--blue);font-size:.63rem;font-family:var(--mono);text-transform:uppercase
+}
+.mail-status::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor}
+.mail-meta-grid{display:grid;grid-template-columns:auto 1fr;gap:.38rem .7rem;font-size:.72rem;margin-bottom:.8rem}
+.mail-meta-grid span{color:var(--t2);font-family:var(--mono);text-transform:uppercase;font-size:.6rem;letter-spacing:.8px}
+.mail-meta-grid strong{color:var(--t1);font-weight:600}
+.mail-body{
+  border:1px solid var(--border);border-radius:14px;background:linear-gradient(180deg,#fff 0%,#fbfcfd 100%);
+  padding:.9rem .95rem;font-size:.78rem;color:var(--t1);line-height:1.65
+}
+.mail-attachments{margin-top:.85rem;display:flex;flex-direction:column;gap:.5rem}
+.mail-attachment{
+  display:flex;align-items:center;justify-content:space-between;gap:.7rem;padding:.62rem .7rem;border-radius:12px;
+  background:var(--surface2);border:1px solid var(--border)
+}
+.mail-attachment-main{display:flex;align-items:center;gap:.6rem;min-width:0}
+.mail-attachment-icon{
+  width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  background:var(--accent-bg);border:1px solid #BFE3DD;color:var(--accent);font-weight:800;font-size:.72rem
+}
+.mail-attachment-copy strong{display:block;font-size:.76rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mail-attachment-copy span{display:block;font-size:.63rem;color:var(--t2);font-family:var(--mono)}
+.mail-footer-row{display:flex;align-items:center;justify-content:space-between;gap:.7rem;margin-top:.85rem}
+.mail-sign{font-size:.68rem;color:var(--t2);font-family:var(--mono)}
+.mail-send-bar{display:flex;gap:.42rem;flex-wrap:wrap}
+.mail-send-chip{
+  padding:.38rem .58rem;border-radius:999px;background:var(--green-bg);border:1px solid var(--green-b);color:var(--green);
+  font-size:.62rem;font-family:var(--mono);text-transform:uppercase
+}
 .platform-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem}
 .platform-card{border:1px solid var(--border);border-radius:13px;background:var(--surface);padding:.85rem;box-shadow:var(--shadow-sm)}
 .platform-card.success{border-color:var(--green-b);background:var(--green-bg)}
@@ -1796,6 +1843,57 @@ function generateEmailText(person,mode){
   }
   return `Hola ${person.nombre},\n\nTu carpeta documental para ${project.nombre} sigue con observaciones.\n\nDocumentos pendientes o con atención requerida:\n${items.join('\n')||'- Sin pendientes'}\n\nRecuerda responder a este correo con los archivos faltantes o actualizados. Si alguno está pronto a caducar, envíalo renovado para evitar rechazos en plataforma.\n\nSaludos,\nCoordinación de Acreditación`;
 }
+function renderMailMock(mail,options={}){
+  const statusLabel=options.statusLabel||'Correo enviado';
+  const bodyHtml=(mail.body||'').replace(/\n/g,'<br>');
+  const chips=(options.chips||[]).map(chip=>`<span class="mail-send-chip">${chip}</span>`).join('');
+  const attachments=(options.attachments||[]).map(att=>`
+    <div class="mail-attachment">
+      <div class="mail-attachment-main">
+        <div class="mail-attachment-icon">PDF</div>
+        <div class="mail-attachment-copy">
+          <strong>${att.title}</strong>
+          <span>${att.subtitle||''}</span>
+        </div>
+      </div>
+      ${att.actionHtml||''}
+    </div>`).join('');
+  return `
+    <div class="mail-app">
+      <div class="mail-app-head">
+        <div class="mail-app-brand">
+          <div class="mail-dot-group">
+            <span class="mail-dot red"></span>
+            <span class="mail-dot yellow"></span>
+            <span class="mail-dot green"></span>
+          </div>
+          <span>Google Mail · salida</span>
+        </div>
+        <div class="mail-app-tools">
+          <span class="mail-app-tool">Etiquetar</span>
+          <span class="mail-app-tool">Programar</span>
+          <span class="mail-app-tool">Enviar</span>
+        </div>
+      </div>
+      <div class="mail-card">
+        <div class="mail-subject">
+          <strong>${mail.subject}</strong>
+          <span class="mail-status">${statusLabel}</span>
+        </div>
+        <div class="mail-meta-grid">
+          <span>De</span><strong>${mail.from||'Coordinación de Acreditación'}</strong>
+          <span>Para</span><strong>${mail.to||'—'}</strong>
+          <span>Fecha</span><strong>${new Date((mail.sentAt||mail.receivedAt||new Date().toISOString())).toLocaleString('es-CL')}</strong>
+        </div>
+        <div class="mail-body">${bodyHtml}</div>
+        ${attachments?`<div class="mail-attachments">${attachments}</div>`:''}
+        <div class="mail-footer-row">
+          <div class="mail-sign">${options.footer||'Seguimiento automático desde Acreditator'}</div>
+          <div class="mail-send-bar">${chips}</div>
+        </div>
+      </div>
+    </div>`;
+}
 function resetPipeline(){
   state.pipeline.phases=PIPELINE_PHASES.map(p=>({id:p.id,status:'pending',summary:'Aún no ejecutada',payload:null}));
   state.pipeline.lastRunAt=null;
@@ -2320,7 +2418,12 @@ function renderPipelineView(){
     const badgeMap={pending:'bv',run:'bb',done:'bg',warn:'bo'};
     let detail='<div class="empty">Todavía no hay resultados para esta fase.</div>';
     if(phase.id==='solicitud' && payload?.emails){
-      detail=`<div class="stack">${payload.emails.slice(0,3).map(e=>`<div class="email-preview"><h4>${e.subject}</h4><div class="helper" style="margin-bottom:.45rem">${e.from} · para ${e.to} · ${new Date(e.sentAt).toLocaleString('es-CL')}</div><pre>${e.body}</pre><div class="doc-chip-wrap" style="margin-top:.65rem">${e.pending.map(p=>`<span class="doc-chip">${p}</span>`).join('')}</div></div>`).join('')}</div>`;
+      detail=`<div class="stack">${payload.emails.slice(0,3).map(e=>renderMailMock(e,{
+        statusLabel:'Enviado',
+        footer:'Invitación enviada al postulante para continuar el proceso',
+        chips:['Preselección','Checklist','Salida automática'],
+        attachments:e.pending.map(p=>({title:p,subtitle:'Documento solicitado al postulante'}))
+      })).join('')}</div>`;
     }
     if(phase.id==='recepcion' && payload?.inbox){
       detail=`<div class="stack">${payload.inbox.slice(0,4).map(mail=>`<div class="email-preview"><h4>${mail.subject}</h4><div class="helper" style="margin-bottom:.45rem">${mail.from} · recibido ${new Date(mail.receivedAt).toLocaleString('es-CL')}</div><pre>${mail.body}</pre><div class="mini-list" style="margin-top:.65rem">${mail.attachments.map(att=>`<div class="mini-item"><div><strong>${att.filename}</strong><div class="sub">${att.personName} · ${att.docLabel}</div></div><button class="btn btn-g btn-xs" onclick="openPhaseDocument('${att.personId}','${att.docLabel}','${att.statusAtArrival==='Faltante'?'Recibido':att.statusAtArrival}',{fileName:'${att.filename}',note:'Adjunto recibido por correo en bandeja Acreditator',issuer:'Correo entrante / Postulante'})">Ver documento</button></div>`).join('')}</div></div>`).join('')}</div>`;
@@ -2336,7 +2439,12 @@ function renderPipelineView(){
       </div><div class="mini-list">${payload.checklist.slice(0,6).map(item=>`<div class="mini-item"><div><strong>${item.personName}</strong><div class="sub">${item.pending.length?item.pending.join(' · '):'Sin observaciones pendientes'}</div></div><div>${bucketBadge(item.bucket)}</div></div>`).join('')}</div>`;
     }
     if(phase.id==='recordatorio' && payload?.reminders){
-      detail=`<div class="stack">${payload.reminders.slice(0,4).map(r=>{const p=getPerson(r.personId);return `<div class="email-preview"><h4>${r.subject}</h4><div class="helper" style="margin-bottom:.45rem">Para ${r.to}</div><pre>${r.body}</pre><div class="doc-chip-wrap" style="margin-top:.65rem">${r.pending.map(pend=>`<span class="doc-chip">${pend}</span>`).join('')}</div></div>`}).join('')}</div>`;
+      detail=`<div class="stack">${payload.reminders.slice(0,4).map(r=>renderMailMock(r,{
+        statusLabel:'Recordatorio',
+        footer:'Seguimiento automático por documentos faltantes o próximos a caducar',
+        chips:['Pendientes','Seguimiento'],
+        attachments:r.pending.map(pend=>({title:pend,subtitle:'Documento pendiente o con observación'}))
+      })).join('')}</div>`;
     }
     if(phase.id==='certificacion' && payload?.jobs){
       detail=`<div class="mini-list">${payload.jobs.map(job=>{const p=getPerson(job.personId);const approved=Object.entries(job.platforms).map(([pid,slot])=>`${platformName(pid)} ${slot.folio||slot.status}`).join(' · ');return `<div class="mini-item"><div><strong>${p.nombre}</strong><div class="sub">Ingreso simulado a plataforma · ${approved}</div></div><button class="btn btn-g btn-xs" onclick="goToById('platforms');selectPlatformJob('${job.jobId}')">Ver subida</button></div>`}).join('')}</div>`;
