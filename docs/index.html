@@ -263,6 +263,12 @@ tbody tr:last-child td{border-bottom:none}
 .doc-sample-badge{padding:.35rem .55rem;border-radius:999px;background:var(--blue-bg);border:1px solid rgba(43,108,246,.18);color:var(--blue);font-size:.64rem;font-weight:800;text-transform:uppercase;letter-spacing:.7px}
 .doc-sample-frame{border-radius:14px;overflow:hidden;border:1px solid rgba(15,23,42,.08);background:#fff;box-shadow:0 18px 40px rgba(15,23,42,.08)}
 .doc-sample-image{display:block;width:100%;height:auto;max-height:72vh;object-fit:contain;background:#EEF2FF}
+.doc-sample-pages{display:flex;flex-direction:column;gap:1rem}
+.doc-sample-page{border-radius:16px;border:1px solid rgba(15,23,42,.08);background:#fff;padding:.9rem;box-shadow:0 12px 32px rgba(15,23,42,.06)}
+.doc-sample-page-head{display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;margin-bottom:.75rem}
+.doc-sample-page-head strong{display:block;font-size:.82rem}
+.doc-sample-page-head span{display:block;margin-top:.14rem;font-size:.67rem;color:var(--t2);font-family:var(--mono)}
+.doc-sample-page-tag{padding:.28rem .48rem;border-radius:999px;background:var(--surface2);border:1px solid var(--border);font-size:.62rem;font-family:var(--mono);text-transform:uppercase;color:var(--t2)}
 .doc-sample-caption{margin-top:.75rem;font-size:.72rem;color:var(--t2);line-height:1.5}
 .dashboard-hero{
   position:relative;overflow:hidden;border:1px solid #C8D8DC;border-radius:24px;padding:1.2rem 1.2rem 1.15rem;
@@ -1331,43 +1337,79 @@ function sampleIndexForPerson(person,total){
   const seed=`${person.id}|${person.rut}|${person.nombre}`;
   return [...seed].reduce((acc,char)=>acc + char.charCodeAt(0),0)%total;
 }
+function buildSamplePage(label,path,description,options={}){
+  return {
+    label,
+    path,
+    description,
+    fit:options.fit || 'contain',
+    position:options.position || 'center center',
+    height:options.height || null,
+    background:options.background || '#EEF2FF',
+    tag:options.tag || 'Página'
+  };
+}
 function sampleAssetForDocument(docLabel,person){
   const samples={
     'Cédula de identidad':{
       path:'examples/ci.jpg',
       sourceName:'ci.jpg',
       title:'Cédula original de ejemplo',
-      caption:'Referencia visual real para este tipo de documento. Se utiliza al abrir cédulas desde clasificación documental, control o ficha del trabajador.'
+      caption:'Referencia visual real para este tipo de documento. Se utiliza al abrir cédulas desde clasificación documental, control o ficha del trabajador.',
+      pages:[
+        buildSamplePage('Anverso','examples/ci.jpg','Vista principal del documento de identidad utilizado como ejemplo en la demo.',{tag:'Frente'}),
+        buildSamplePage('Reverso / respaldo','examples/ci.jpg','Vista complementaria del expediente, enfocada en la zona de control y validación del documento.',{fit:'cover',position:'right center',height:320,tag:'Respaldo'})
+      ]
     },
     'Licencia conducir clase B':{
       path:'examples/licencia-de-conducir.jpg',
       sourceName:'licencia-de-conducir.jpg',
       title:'Licencia de conducir original de ejemplo',
-      caption:'Ejemplo realista de licencia utilizada por la demo para mostrar el archivo original al hacer clic en este tipo documental.'
+      caption:'Ejemplo realista de licencia utilizada por la demo para mostrar el archivo original al hacer clic en este tipo documental.',
+      pages:[
+        buildSamplePage('Anverso','examples/licencia-de-conducir.jpg','Documento principal con identificación del conductor, municipio y clase de licencia.',{tag:'Frente'}),
+        buildSamplePage('Reverso / observaciones','examples/licencia-de-conducir.jpg','Vista complementaria enfocada en observaciones, QR y elementos de validación.',{fit:'cover',position:'right center',height:340,tag:'Respaldo'})
+      ]
     },
     'Certificado antecedentes':{
       path:'examples/certificado-antecedentes.webp',
       sourceName:'certificado-antecedentes.webp',
       title:'Certificado de antecedentes original de ejemplo',
-      caption:'Referencia visual de certificado legal que se muestra como original de apoyo en el expediente del trabajador.'
+      caption:'Referencia visual de certificado legal que se muestra como original de apoyo en el expediente del trabajador.',
+      pages:[
+        buildSamplePage('Página 1','examples/certificado-antecedentes.webp','Documento legal completo incluido en el expediente para control de antecedentes.',{tag:'Original'}),
+        buildSamplePage('Timbre y validación','examples/certificado-antecedentes.webp','Detalle del sector inferior donde normalmente se revisa QR, timbre y verificación oficial.',{fit:'cover',position:'center bottom',height:360,tag:'Validación'})
+      ]
     },
     'Examen pre-ocupacional':{
       path:'examples/examen-preocupacional.webp',
       sourceName:'examen-preocupacional.webp',
       title:'Examen pre-ocupacional original de ejemplo',
-      caption:'Ejemplo real de orden y respaldo médico utilizado para demostrar la visualización documental original.'
+      caption:'Ejemplo real de orden y respaldo médico utilizado para demostrar la visualización documental original.',
+      pages:[
+        buildSamplePage('Orden médica','examples/examen-preocupacional.webp','Primera hoja del respaldo médico con citación, trabajador y detalle de atención.',{tag:'Página 1'}),
+        buildSamplePage('Prestaciones solicitadas','examples/examen-preocupacional.webp','Detalle ampliado de la batería de exámenes requerida para el proceso preocupacional.',{fit:'cover',position:'center bottom',height:360,tag:'Página 2'})
+      ]
     },
     'Examen altura geográfica':{
       path:'examples/examen-preocupacional.webp',
       sourceName:'examen-preocupacional.webp',
       title:'Examen de altura geográfica de ejemplo',
-      caption:'Mientras no exista un respaldo específico en la demo, esta vista reutiliza un ejemplo médico realista del mismo grupo documental.'
+      caption:'Mientras no exista un respaldo específico en la demo, esta vista reutiliza un ejemplo médico realista del mismo grupo documental.',
+      pages:[
+        buildSamplePage('Solicitud clínica','examples/examen-preocupacional.webp','Referencia médica utilizada como soporte visual para el expediente de altura geográfica.',{tag:'Página 1'}),
+        buildSamplePage('Checklist de prestaciones','examples/examen-preocupacional.webp','Detalle complementario del panel de exámenes y prestaciones requeridas.',{fit:'cover',position:'center bottom',height:360,tag:'Página 2'})
+      ]
     },
     'Curso ISEM Minería':{
       path:'examples/isem.png',
       sourceName:'isem.png',
       title:'Certificado ISEM original de ejemplo',
-      caption:'Certificado de capacitación mostrado como documento original al revisar la inducción o curso de seguridad minera.'
+      caption:'Certificado de capacitación mostrado como documento original al revisar la inducción o curso de seguridad minera.',
+      pages:[
+        buildSamplePage('Certificado completo','examples/isem.png','Vista del certificado académico de seguridad que respalda la capacitación del trabajador.',{tag:'Página 1'}),
+        buildSamplePage('Firmas y validación','examples/isem.png','Detalle del bloque inferior con firmas y validación del certificado.',{fit:'cover',position:'center bottom',height:330,tag:'Página 2'})
+      ]
     }
   };
   if(docLabel==='Currículum Vitae'){
@@ -1380,7 +1422,10 @@ function sampleAssetForDocument(docLabel,person){
     return {
       ...chosen,
       title:'Currículum Vitae original de ejemplo',
-      caption:'La demo rota entre distintos CV reales de referencia para que la experiencia se sienta más cercana a un expediente documental verdadero.'
+      caption:'La demo rota entre distintos CV reales de referencia para que la experiencia se sienta más cercana a un expediente documental verdadero.',
+      pages:[
+        buildSamplePage('Currículum recibido',chosen.path,'Archivo curricular original cargado por el postulante dentro del flujo documental.',{tag:'Original'})
+      ]
     };
   }
   return samples[docLabel] || null;
@@ -1396,6 +1441,7 @@ function buildDocumentRecord(person,docLabel,status,raw){
   const pending=status==='Faltante';
   const soon=status==='Por vencer';
   const observation=buildObservation(person,docLabel,status,raw);
+  const sampleAsset=raw?.sampleAsset || sampleAssetForDocument(docLabel,person);
   const fileName=raw?.fileName || `${slugify(docLabel)}_${person.rut.replace(/\W/g,'')}.${pending?'html':'pdf'}`;
   const documentId=raw?.documentId || `DOC-${person.id.slice(-3)}-${slugify(docLabel).slice(0,6).toUpperCase()}`;
   const issuerMap={
@@ -1433,11 +1479,11 @@ function buildDocumentRecord(person,docLabel,status,raw){
     caducado:expired?'Sí':'No',
     vencePronto:soon?'Sí':'No',
     issuer:raw?.issuer || issuerMap[docLabel] || 'Sistema demo Acreditator',
-    pages:raw?.pages || (pending?1:2),
+    pages:raw?.pages || sampleAsset?.pages?.length || (pending?1:2),
     description:descriptionMap[docLabel] || 'Documento asociado al expediente demo de acreditación.',
     note:raw?.note || person.nota || 'Documento generado para demostración funcional del expediente.',
     observation,
-    sampleAsset:raw?.sampleAsset || sampleAssetForDocument(docLabel,person),
+    sampleAsset,
     projectName:project.nombre,
     projectRequirement,
     holderName:person.nombre,
@@ -1497,13 +1543,14 @@ function renderRecordInViewer(record,status){
         ${record.caducado==='Sí'?`<div class="doc-preview-alert">Campo caducado: Sí. Este archivo quedó fuera de vigencia y requiere renovación antes de autorizar el acceso.</div>`:''}
         ${record.observation?`<div class="${record.observation.tone==='alert'?'doc-preview-alert':'doc-preview-note'}">${record.observation.title}: ${record.observation.text}</div>`:''}
         ${renderDocumentVisual(record,status)}
-        <div class="doc-preview-footer">${record.sampleAsset?`Vista original de referencia cargada desde ${record.sampleAsset.sourceName}`:`Vista generada por Acreditator demo · ${record.pages} página(s) simuladas · archivo de ejemplo no oficial`}</div>
+        <div class="doc-preview-footer">${record.sampleAsset?`Vista original de referencia cargada desde ${record.sampleAsset.sourceName} · ${record.pages} vista(s) en expediente`:`Vista generada por Acreditator demo · ${record.pages} página(s) simuladas · archivo de ejemplo no oficial`}</div>
       </div>
     </div>`;
   document.getElementById('doc-viewer').classList.add('open');
 }
 function renderDocumentVisual(record,status){
   if(record.sampleAsset){
+    const pages=record.sampleAsset.pages || [buildSamplePage('Original',record.sampleAsset.path,record.sampleAsset.caption,{tag:'Original'})];
     return `<div class="doc-sample">
       <div class="doc-sample-head">
         <div>
@@ -1512,8 +1559,21 @@ function renderDocumentVisual(record,status){
         </div>
         <span class="doc-sample-badge">Original de ejemplo</span>
       </div>
-      <div class="doc-sample-frame">
-        <img class="doc-sample-image" src="${record.sampleAsset.path}" alt="${record.label} original de ejemplo">
+      <div class="doc-sample-pages">
+        ${pages.map((page,idx)=>`
+          <div class="doc-sample-page">
+            <div class="doc-sample-page-head">
+              <div>
+                <strong>${page.label}</strong>
+                <span>${page.description}</span>
+              </div>
+              <span class="doc-sample-page-tag">${page.tag || `P${idx+1}`}</span>
+            </div>
+            <div class="doc-sample-frame">
+              <img class="doc-sample-image" src="${page.path}" alt="${record.label} ${page.label}" style="object-fit:${page.fit};object-position:${page.position};${page.height?`height:${page.height}px;max-height:none;`:''}background:${page.background};">
+            </div>
+          </div>
+        `).join('')}
       </div>
       <div class="doc-sample-caption">${record.sampleAsset.caption}</div>
     </div>`;
