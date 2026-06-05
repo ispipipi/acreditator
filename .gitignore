@@ -1,0 +1,10 @@
+.DS_Store
+**/.DS_Store
+
+# macOS / Finder
+.AppleDouble
+.LSOverride
+
+# Windows noise
+Thumbs.db
+Desktop.ini
